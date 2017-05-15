@@ -1,13 +1,12 @@
-package com.example.golestan;
+package ir.sbu.golestan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-public class DemoApplication {
+public class GolestanApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(GolestanApplication.class, args);
 	}
 }

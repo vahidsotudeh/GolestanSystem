@@ -363,3 +363,15 @@
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
+
+@media screen and (max-width: 468px) {
+    .logoImg1{
+        width: 60% !important;
+    }
+    .logoImg2{
+        width:25% !important;
+    }
+    .header{
+        height:120px !important;
+    }
+}

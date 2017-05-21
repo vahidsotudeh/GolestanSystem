@@ -1,5 +1,8 @@
+body{
+    font-family: IRANSans !important;
+}
 .form-container div, .form-container  span{
-    font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+    font-family: IRANSans;
 }
 
 .form-container ::-webkit-input-placeholder { /* WebKit, Blink, Edge */

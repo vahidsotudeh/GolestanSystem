@@ -1,7 +1,9 @@
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+@import url(fontiran.css);
 @media(min-width:768px) {
     body {
         margin-top: 50px;
+        /*font: IRANSans !important;*/
     }
     /*html, body, #wrapper, #page-wrapper {height: 100%; overflow: hidden;}*/
 }
@@ -76,7 +78,7 @@
         position: fixed;
         top: 60px;
         right: 225px;
-        width: 225px;
+        width: 157px;
         margin-right: -225px;
         border: none;
         border-radius: 0;
@@ -90,7 +92,7 @@
     }
 
     .side-nav>li>a {
-        width: 225px;
+        width: 160px;
         border-bottom: 1px rgba(0,0,0,.3) solid;
     }
 
@@ -140,4 +142,67 @@
 
 .navbar-brand {
     padding: 5px 15px;
+}
+.navbar-toggle{
+    float: right !important;
+}
+@media only screen and (max-width: 800px) {
+
+    /* Force table to not be like tables anymore */
+    #no-more-tables table,
+    #no-more-tables thead,
+    #no-more-tables tbody,
+    #no-more-tables th,
+    #no-more-tables td,
+    #no-more-tables tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #no-more-tables tr { border: 1px solid #ccc; }
+
+    #no-more-tables td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align:left;
+    }
+
+    #no-more-tables td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+    }
+
+    /*
+    Label the data
+    */
+    #no-more-tables td:before { content: attr(data-title); }
+}
+@media (max-width: 1500px) {
+    body{
+        font-family: IRANSans !important;
+    }
+    table{
+        font-family: IRANSans !important;
+    }
+    tr,th{
+        text-align: center;
+    }
 }

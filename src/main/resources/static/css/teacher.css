@@ -1,0 +1,10 @@
+@media (min-width: 995px) {
+    #rightBox{
+        margin-right: 20px !important;
+    }
+}
+@media(min-width: 400px ) and (max-width: 995px){
+    #rightBox{
+        margin-right: 5px !important;
+    }
+}

@@ -22,7 +22,7 @@ import java.util.Collections;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    private boolean alreadySetup = true;
+    private boolean alreadySetup = false;
 
     private final UserRepository userRepository;
 

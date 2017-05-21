@@ -12,7 +12,6 @@ public class MainController {
 
     @GetMapping("/")
     public String home1() {
-        System.out.println("yeeeeeeeeeeeeeeeee");
         return "login";
     }
 

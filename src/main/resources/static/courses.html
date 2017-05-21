@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="./css/master.css">
-    <link rel="stylesheet" href="./css/teacher.css">
+    <link rel="stylesheet" href="./css/courses.css">
 </head>
 <body>
 <div id="wrapper">
@@ -90,16 +90,48 @@
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row" style="margin-bottom: 25px">
-                <div class="col-md-12 text-center"><h1>اساتید</h1></div>
+                <div class="col-md-12 text-center "><h1>دروس</h1></div>
             </div>
             <div class="row" id="main" >
                 <div id="no-more-tables" >
-                    <table class="col-md-6 col-sm-5 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class=" col-sm-9 col-md-offset-1 " id="rightBox" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+
+                        <div class="row">
+                            <form class="form-inline"  >
+                                <div class="form-group" >
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="نام درس">
+                                </div>
+                                <div class="form-group" >
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="شماره درس">
+                                </div>
+                                <div class="form-group" >
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="گروه درس">
+                                </div>
+                                <div class="form-group" >
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="تعداد کل واحد">
+                                        <div class="input-group-addon">و</div>
+                                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="تعداد واحد عملی ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn-block btn btn-success" value="افزودن">
+                                </div>
+
+
+                            </form>
+                    </div>
+                </div>
+                    <table class="col-md-11 col-sm-11 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                         <thead class="cf">
                         <tr>
                             <th>ردیف</th>
-                            <th>نام</th>
-                            <th class="numeric">نام خانوادگی</th>
+                            <th>نام درس</th>
+                            <th >شماره درس</th>
+                            <th >تعداد کل واحد</th>
+                            <th >تعداد واحد عملی</th>
+                            <th >گروه</th>
+                            <th >ویرایش</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -107,6 +139,10 @@
                             <td data-title="ردیف">1</td>
                             <td data-title="شماره و گروه درس">مهندسی نرم افزار 2</td>
                             <td data-title="نام درس" class="numeric">$1.38</td>
+                            <td data-title="نام درس" class="numeric">$1.38</td>
+                            <td data-title="نام درس" class="numeric">$1.38</td>
+                            <td data-title="نام درس" class="numeric">$1.38</td>
+                            <td data-title="نام درس" class="numeric"><span class="glyphicon glyphicon-remove" style="margin-left: 5px;" aria-hidden="true"></span><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
                         </tr>
                         <tr>
                             <td data-title="ردیف">2</td>
@@ -160,73 +196,6 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="col-md-5 col-sm-6" id="rightBox" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
-                        <div class="row" style="margin: 5px;">
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <a href="" class="btn btn-default btn-block">
-                                            افزودن
-                                </a>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <a href="" class="btn btn-default btn-block">
-                                    ویرایش
-                                </a>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <a href="" class="btn btn-default btn-block">
-حذف
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row" style="margin: 5px;">
-                            <div class="col-sm-12">
-                                <a href="" class="btn btn-default btn-block">مشاهده کلاس ها</a>
-                            </div>
-                        </div>
-
-                        <hr>
-                        <form class="row">
-                            <form class="form-horizontal"   >
-                                <div class="form-group" >
-                                    <label for="inputEmail3" class="col-sm-4 control-label">نام</label>
-                                    <div class="col-sm-7">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="نام">
-                                    </div>
-                                </div>
-                                <div class="form-group" >
-                                    <label for="inputEmail3" class="col-sm-4 control-label">نام خانوادگی</label>
-                                    <div class="col-sm-7">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="نام خانوادگی">
-                                    </div>
-                                </div>
-                                <div class="form-group" >
-                                    <label for="inputEmail3" class="col-sm-4 control-label">نام خانوادگی</label>
-                                    <div class="col-sm-7">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="نام خانوادگی">
-                                    </div>
-                                </div>
-                                <div class="form-group" >
-                                    <label for="inputEmail3" class="col-sm-4 control-label">نام خانوادگی</label>
-                                    <div class="col-sm-7">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="نام خانوادگی">
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label for="inputEmail3" class="col-sm-4 control-label">نام خانوادگی</label>
-                                    <div class="col-sm-7 ">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="نام خانوادگی" disabled="true">
-                                    </div>
-                                </div>
-                                <div class="form-group" >
-                                    <label for="inputEmail3" class="col-sm-4 control-label">نام خانوادگی</label>
-                                    <div class="col-sm-7">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="نام خانوادگی">
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- /.row -->

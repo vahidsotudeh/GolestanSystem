@@ -1,4 +1,4 @@
-package ir.sbu.golestan.manager;
+package ir.sbu.golestan.service;
 
 import org.springframework.stereotype.Service;
 

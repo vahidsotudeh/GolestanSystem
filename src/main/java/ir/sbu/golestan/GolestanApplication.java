@@ -1,5 +1,6 @@
 package ir.sbu.golestan;
 
+import ir.sbu.golestan.config.BeansConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

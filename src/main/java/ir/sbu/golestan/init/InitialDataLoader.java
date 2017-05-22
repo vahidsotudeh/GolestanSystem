@@ -44,7 +44,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup)
             return;
-        Role sr = createRoleIfNotFound(Role.EnumNames.STUDENT.name(), null);
+        Role sr = createRoleIfNotFound(Role.RoleTypes.STUDENT.name(), null);
         User student = new User();
         student.setRoles(Collections.singletonList(sr));
         student.setFirstName("Ali");

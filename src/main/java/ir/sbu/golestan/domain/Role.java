@@ -14,7 +14,7 @@ import java.util.Collection;
 @Entity
 public class Role {
 
-    public enum EnumNames {
+    public enum RoleTypes {
         STUDENT, MASTER, GROUP_MANAGER
     }
 
@@ -42,16 +42,16 @@ public class Role {
         this.name = name;
     }
 
-    public EnumNames getEnumName(){
-        return EnumNames.valueOf(this.name.toUpperCase());
+    public RoleTypes getRoleType(){
+        return RoleTypes.valueOf(this.name.toUpperCase());
     }
 
-    public void setEnumName (EnumNames enumName){
-        this.setName(enumName.name());
+    public void setRoleType (RoleTypes roleType){
+        this.setName(roleType.name());
     }
 
     public void setName(String name){
-        for(EnumNames e : EnumNames.values()){
+        for(RoleTypes e : RoleTypes.values()){
             if(name.equals(e.name())){
                 this.name = name;
                 return;

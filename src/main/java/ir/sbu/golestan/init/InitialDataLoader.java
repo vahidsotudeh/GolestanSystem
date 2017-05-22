@@ -9,7 +9,6 @@ import ir.sbu.golestan.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -22,7 +21,7 @@ import java.util.Collections;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    private boolean alreadySetup = false;
+    private boolean alreadySetup = true;
 
     private final UserRepository userRepository;
 
@@ -30,14 +29,14 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
     private final PermissionRepository permissionRepository;
 
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, PasswordEncoder passwordEncoder) {
+    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -45,15 +44,16 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup)
             return;
-
         Role sr = createRoleIfNotFound(Role.EnumNames.STUDENT.name(), null);
         User student = new User();
         student.setRoles(Collections.singletonList(sr));
         student.setFirstName("Ali");
         student.setLastName("Taghizadeh");
-        student.setPassword(passwordEncoder.encode("st"));
+//        student.setPassword(passwordEncoder.encode("st"));
+        student.setPassword("st");
         student.setEmail("ali@google.com");
         student.setUserName("92213055");
+        student.setEnabled(true);
 
         userRepository.save(student);
         alreadySetup = true;

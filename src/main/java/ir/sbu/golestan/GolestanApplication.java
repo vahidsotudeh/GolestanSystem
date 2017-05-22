@@ -1,15 +1,15 @@
 package ir.sbu.golestan;
 
-import ir.sbu.golestan.config.BeansConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories("ir.sbu.golestan.repository")
 public class GolestanApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GolestanApplication.class, args);
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BeansConfig.class);
+//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BeansConfig.class);
 	}
 }

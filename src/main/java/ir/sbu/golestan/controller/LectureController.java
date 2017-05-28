@@ -21,6 +21,7 @@ import java.util.Optional;
 /**
  * Created by Ali Asghar on 28/05/2017.
  */
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/lectures")
 public class LectureController {
@@ -28,7 +29,6 @@ public class LectureController {
     @Autowired
     private LectureRepository lectureRepository;
 
-    @CrossOrigin(origins = "http://localhost")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public @ResponseBody List<LectureDTO> getLectures(@RequestParam("start") Optional<String> start, @RequestParam("size") Optional<String> size){
         List<Lecture> lectures;
@@ -46,7 +46,6 @@ public class LectureController {
         return dtos;
     }
 
-    @CrossOrigin(origins = "http://localhost")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public @ResponseBody LectureDTO getLecture(@PathVariable("id") Long id){
         return getDTO(lectureRepository.findOne(id));
@@ -66,7 +65,6 @@ public class LectureController {
         return dto;
     }
 
-    @CrossOrigin(origins = "http://localhost")
     @RequestMapping(value = "delete/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id){
         try {
@@ -77,7 +75,7 @@ public class LectureController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost")
+
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResponseEntity addLecture(@RequestBody LectureDTO dto){
 

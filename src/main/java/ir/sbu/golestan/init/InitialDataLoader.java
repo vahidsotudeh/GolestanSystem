@@ -59,7 +59,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
         Lecture mabani = new Lecture();
         mabani.setName("مبانی کامپیوتر");
-        mabani.setPracticalUnitCount(3);
+        mabani.setPracticalUnitCount(2);
+        mabani.setTheoreticalUnitCount(1);
+        mabani.setCode("41-22-132-11");
         mabani.setSubGroups(Sets.newHashSet(sg));
         lectureRepository.save(mabani);
 
@@ -68,6 +70,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         ap.setName("برنامه نویسی پیشرفته");
         ap.setPracticalUnitCount(3);
         ap.setSubGroups(Sets.newHashSet(sg));
+        ap.setCode("41-44-551-11");
         ap.setPreRequiredLectures(Sets.newHashSet(mabani));
 
         lectureRepository.save(ap);

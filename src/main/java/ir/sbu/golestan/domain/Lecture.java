@@ -30,5 +30,5 @@ public class Lecture {
 
     private int theoreticalUnitCount;
 
-    private String number;
+    private String code;
 }

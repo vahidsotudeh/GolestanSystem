@@ -2,17 +2,18 @@ package ir.sbu.golestan.controller;
 
 import ir.sbu.golestan.domain.Lecture;
 import ir.sbu.golestan.dto.LectureDTO;
+import ir.sbu.golestan.dto.PreRequiredLectureDTO;
 import ir.sbu.golestan.repository.LectureRepository;
 import jersey.repackaged.com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -39,18 +40,45 @@ public class LectureController {
         }
 
         List<LectureDTO> dtos = new ArrayList<>();
-
         for(Lecture l: lectures){
-            LectureDTO dto = new LectureDTO();
-            dto.setId(l.getId());
-            dto.setName(l.getName());
-            dto.setPracticalUnitCount(l.getPracticalUnitCount());
-            dto.setSubGroups(l.getSubGroups());
-            dto.setTheoreticalUnitCount(l.getTheoreticalUnitCount());
-            dto.setPreRequiredLectures(l.getPreRequiredLectures());
-            dto.setCode(l.getCode());
-            dtos.add(dto);
+            dtos.add(getDTO(l));
         }
         return dtos;
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public @ResponseBody LectureDTO getLecture(@PathParam("id") Long id){
+        return getDTO(lectureRepository.findOne(id));
+    }
+
+    private LectureDTO getDTO(Lecture l){
+        LectureDTO dto = new LectureDTO();
+        dto.setId(l.getId());
+        dto.setName(l.getName());
+        dto.setPracticalUnitCount(l.getPracticalUnitCount());
+        dto.setSubGroups(l.getSubGroups());
+        dto.setTheoreticalUnitCount(l.getTheoreticalUnitCount());
+        for(Lecture lec: l.getPreRequiredLectures()){
+            dto.getPreRequiredLectures().add(new PreRequiredLectureDTO(lec.getId(), lec.getName()));
+        }
+        dto.setCode(l.getCode());
+        return dto;
+    }
+
+    @RequestMapping(value = "delete/{id}")
+    public ResponseEntity delete(@PathParam("id") Long id){
+        try {
+            lectureRepository.delete(id);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ResponseEntity addLecture(@RequestBody LectureDTO dto){
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

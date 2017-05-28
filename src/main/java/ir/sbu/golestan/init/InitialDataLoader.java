@@ -1,11 +1,7 @@
 package ir.sbu.golestan.init;
 
-import ir.sbu.golestan.domain.Permission;
-import ir.sbu.golestan.domain.Role;
-import ir.sbu.golestan.domain.User;
-import ir.sbu.golestan.repository.PermissionRepository;
-import ir.sbu.golestan.repository.RoleRepository;
-import ir.sbu.golestan.repository.UserRepository;
+import ir.sbu.golestan.domain.*;
+import ir.sbu.golestan.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -21,22 +17,21 @@ import java.util.Collections;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    private boolean alreadySetup = true;
-
+    private boolean alreadySetup = false;
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
-
     private final PermissionRepository permissionRepository;
+    private final LectureRepository lectureRepository;
+    private final SubGroupRepository subGroupRepository;
 
-//    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository) {
+    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, LectureRepository lectureRepository, SubGroupRepository subGroupRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
-//        this.passwordEncoder = passwordEncoder;
+        this.lectureRepository = lectureRepository;
+        this.subGroupRepository = subGroupRepository;
     }
 
     @Override
@@ -44,18 +39,38 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup)
             return;
-        Role sr = createRoleIfNotFound(Role.RoleTypes.STUDENT.name(), null);
-        User student = new User();
-        student.setRoles(Collections.singletonList(sr));
-        student.setFirstName("Ali");
-        student.setLastName("Taghizadeh");
-//        student.setPassword(passwordEncoder.encode("st"));
-        student.setPassword("st");
-        student.setEmail("ali@google.com");
-        student.setUserName("92213055");
-        student.setEnabled(true);
+        if(userRepository.findByUserName("92213055") == null) {
+            Role sr = createRoleIfNotFound(Role.RoleTypes.STUDENT.name(), null);
+            User student = new User();
+            student.setRoles(Collections.singletonList(sr));
+            student.setFirstName("Ali");
+            student.setLastName("Taghizadeh");
+            student.setPassword("st");
+            student.setEmail("ali@google.com");
+            student.setUserName("92213055");
+            student.setEnabled(true);
+            userRepository.save(student);
+        }
 
-        userRepository.save(student);
+        SubGroup sg = new SubGroup();
+        sg.setName("مهندسی نرم افزار");
+        subGroupRepository.save(sg);
+
+        Lecture mabani = new Lecture();
+        mabani.setName("مبانی کامپیوتر");
+        mabani.setUnitCount(3);
+        mabani.setSubGroups(Collections.singletonList(sg));
+        lectureRepository.save(mabani);
+
+
+        Lecture ap = new Lecture();
+        ap.setName("برنامه نویسی پیشرفته");
+        ap.setUnitCount(3);
+        ap.setSubGroups(Collections.singletonList(sg));
+        ap.setPreRequiredLectures(Collections.singletonList(mabani));
+
+        lectureRepository.save(ap);
+
         alreadySetup = true;
     }
 

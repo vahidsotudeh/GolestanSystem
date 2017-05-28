@@ -23,6 +23,9 @@ public class Lecture {
     @JoinColumn(name = "sub_group_id", referencedColumnName = "id")
     Collection<SubGroup> subGroups;
 
-    @OneToMany(mappedBy = "lecture")
-    Collection<PreRequiredLecture> preRequiredLectures;
+    @OneToMany
+    Collection<Lecture> preRequiredLectures;
+
+    @Column(nullable = false)
+    private int unitCount;
 }

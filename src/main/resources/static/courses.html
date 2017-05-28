@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <html>
 <head>
     <meta charset="UTF-8">
@@ -35,7 +36,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="#"><i class="fa fa-fw fa-power-off"></i> خروج</a></li>
+                        <li><a th:href="@{/logout}"><i class="fa fa-fw fa-power-off"></i> خروج</a></li>
                     </ul>
                 </li>
             </ul>
@@ -51,7 +52,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#"><i class="fa fa-fw fa-user"></i> ویرایش پروفایل</a></li>
                     <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-fw fa-power-off"></i> خروج</a></li>
+                    <li><a th:href="@{/logout}"><i class="fa fa-fw fa-power-off"></i> خروج</a></li>
                 </ul>
             </li>
         </ul>
@@ -70,7 +71,11 @@
                     <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-star"></i>  کارنامه <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                 </li>
                 <li>
-                    <a href="investigaciones/favoritas"><i class="fa fa-fw fa-user-plus"></i>  دروس</a>
+                    <a href="#" data-toggle="collapse" data-target="#course-gp" class="collapsed" aria-expanded="false" ><i class="fa fa-fw fa-angle-down pull-right "></i> <i class="fa fa-user-plus" ></i> دروس</a>
+                    <ul id="course-gp" class="collapse" aria-expanded="false" style="height: 1px;">
+                        <li><a href="#"> مدیریت دروس <i class="fa fa-angle-double-left"></i></a></li>
+                        <li><a href="#"> گروه های درسی <i class="fa fa-angle-double-left"></i></a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="sugerencias"><i class="fa fa-fw fa-paper-plane-o"></i>ترم ها</a>
@@ -99,23 +104,23 @@
                         <div class="row">
                             <form class="form-inline"  >
                                 <div class="form-group" >
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="نام درس">
+                                        <input type="text" class="form-control" id="lecName" placeholder="نام درس">
                                 </div>
                                 <div class="form-group" >
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="شماره درس">
+                                        <input type="text" class="form-control" id="lecCode" placeholder="شماره درس">
                                 </div>
                                 <div class="form-group" >
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="گروه درس">
+                                        <input type="text" class="form-control" id="lecGroup" placeholder="گروه درس">
                                 </div>
                                 <div class="form-group" >
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="تعداد کل واحد">
+                                        <input type="text" class="form-control" id="lecPracUnit" placeholder="تعداد واحد تئوری">
                                         <div class="input-group-addon">و</div>
-                                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="تعداد واحد عملی ">
+                                        <input type="text" class="form-control" id="lecTheorUnit" placeholder="تعداد واحد عملی ">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn-block btn btn-success" value="افزودن">
+                                    <button onclick="addLecture()"  class="btn-block btn btn-success" > افزودن</button>
                                 </div>
 
 
@@ -134,66 +139,7 @@
                             <th >ویرایش</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td data-title="ردیف">1</td>
-                            <td data-title="شماره و گروه درس">مهندسی نرم افزار 2</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                            <td data-title="نام درس" class="numeric"><span class="glyphicon glyphicon-remove" style="margin-left: 5px;" aria-hidden="true"></span><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">2</td>
-                            <td data-title="شماره و گروه درس">ریاضیات مهندسی </td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">۲</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
-                        <tr>
-                            <td data-title="ردیف">AAC</td>
-                            <td data-title="شماره و گروه درس">مهندسی اینترنت</td>
-                            <td data-title="نام درس" class="numeric">$1.38</td>
-                        </tr>
+                        <tbody id="definedCourses">
                         </tbody>
                     </table>
                 </div>
@@ -225,5 +171,7 @@
 
 
 </script>
+<script src="./js/course.js"></script>
+
 </body>
 </html>

@@ -18,7 +18,7 @@ public class StudentCourse implements Serializable {
         @ManyToOne
         private Student student;
 
-        @ManyToOne()
+        @ManyToOne
         private Course course;
 
         Student getStudent() {

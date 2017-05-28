@@ -3,6 +3,7 @@ package ir.sbu.golestan.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by Ali Asghar on 22/05/2017.
@@ -17,4 +18,11 @@ public class Lecture {
 
     @Column(nullable = false)
     private String name;
+
+    @ManyToMany
+    @JoinColumn(name = "sub_group_id", referencedColumnName = "id")
+    Collection<SubGroup> subGroups;
+
+    @OneToMany(mappedBy = "lecture")
+    Collection<PreRequiredLecture> preRequiredLectures;
 }

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 /**
  * Created by Ali Asghar on 15/05/2017.
@@ -35,5 +36,11 @@ public class BeansConfig {
     @Bean
     public AuthenticationSuccessHandler getAuthenticationSuccessHandler(){
         return new MySimpleUrlAuthenticationSuccessHandler();
+    }
+
+
+    @Bean
+    public SpringSecurityDialect springSecurityDialect(){
+        return new SpringSecurityDialect();
     }
 }

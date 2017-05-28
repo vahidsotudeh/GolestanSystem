@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="./css/master.css">
+    <link rel="stylesheet" href="./css/courses.css">
+</head>
+<body>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" style="width: 140px" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
+                <img src="./img/golestan.png"  style="width: 100%;" alt="LOGO" "="">
+            </a>
+            <ul class="nav navbar-right top-nav visible-xs " style="float: right;">
+                <li><a href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="Stats"><i class="fa fa-bar-chart-o"></i>
+                </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">کاربر ادمین <b class="fa fa-angle-down"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a th:href="@{/logout}"><i class="fa fa-fw fa-power-off"></i> خروج</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav hidden-xs">
+            <li><a href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="Stats"><i class="fa fa-bar-chart-o"></i>
+            </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">کاربر ادمین <b class="fa fa-angle-down"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-fw fa-user"></i> ویرایش پروفایل</a></li>
+                    <li class="divider"></li>
+                    <li><a th:href="@{/logout}"><i class="fa fa-fw fa-power-off"></i> خروج</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li >
+                    <a href="#" data-toggle="collapse" data-target="#submenu-1" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-search"></i> ثبت نام <i class="fa fa-fw pull-right fa-angle-down"></i></a>
+                    <ul id="submenu-1" class="collapse" aria-expanded="false" style="height: 1px;">
+                        <li><a href="#"> منوتو در تو <i class="fa fa-angle-double-left"></i></a></li>
+                        <li><a href="#"> منوتو در تو <i class="fa fa-angle-double-left"></i></a></li>
+                        <li><a href="#"> منوتو در تو <i class="fa fa-angle-double-left"></i></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-star"></i>  کارنامه <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#course-gp" class="collapsed" aria-expanded="false" ><i class="fa fa-fw fa-angle-down pull-right "></i> <i class="fa fa-user-plus" ></i> دروس</a>
+                    <ul id="course-gp" class="collapse" aria-expanded="false" style="height: 1px;">
+                        <li><a href="static/courses.html"> مدیریت دروس <i class="fa fa-angle-double-left"></i></a></li>
+                        <li><a href="#"> گروه های درسی <i class="fa fa-angle-double-left"></i></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="sugerencias"><i class="fa fa-fw fa-paper-plane-o"></i>ترم ها</a>
+                </li>
+                <li class="active">
+                    <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i> اساتید</a>
+                </li>
+                <li >
+                    <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i> دانشجویان</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row" style="margin-bottom: 25px">
+                <div class="col-md-12 text-center "><h1>خوش آمدید</h1></div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/persianumber.min.js"></script>
+<script>
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip("show");
+        $(".side-nav .collapse").on("hide.bs.collapse", function() {
+            $(this).prev().find(".fa").eq(1).removeClass("fa-angle-right").addClass("fa-angle-down");
+        });
+        $('.side-nav .collapse').on("show.bs.collapse", function() {
+            $(this).prev().find(".fa").eq(1).removeClass("fa-angle-down").addClass("fa-angle-right");
+        });
+    });
+    $(document).ready(function(){
+
+        $('#wrapper').persiaNumber();
+
+    });
+
+
+</script>
+<script src="./js/course.js"></script>
+
+</body>
+</html>

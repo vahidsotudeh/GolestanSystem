@@ -13,6 +13,7 @@ import java.util.Set;
 public class LectureDTO {
     private Long id;
     private String name;
+    private String code;
     private Set<SubGroup> subGroups;
     private Set<Lecture> preRequiredLectures;
     private int practicalUnitCount;

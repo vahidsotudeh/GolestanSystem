@@ -48,6 +48,7 @@ public class LectureController {
             dto.setSubGroups(l.getSubGroups());
             dto.setTheoreticalUnitCount(l.getTheoreticalUnitCount());
             dto.setPreRequiredLectures(l.getPreRequiredLectures());
+            dto.setCode(l.getCode());
             dtos.add(dto);
         }
         return dtos;

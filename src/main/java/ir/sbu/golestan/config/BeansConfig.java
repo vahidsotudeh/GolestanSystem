@@ -3,7 +3,6 @@ package ir.sbu.golestan.config;
 import ir.sbu.golestan.repository.UserRepository;
 import ir.sbu.golestan.service.MySimpleUrlAuthenticationSuccessHandler;
 import ir.sbu.golestan.service.MyUserDetailsService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,8 +44,4 @@ public class BeansConfig {
         return new SpringSecurityDialect();
     }
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
 }

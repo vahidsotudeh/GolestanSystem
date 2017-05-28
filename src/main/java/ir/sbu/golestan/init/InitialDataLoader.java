@@ -2,6 +2,7 @@ package ir.sbu.golestan.init;
 
 import ir.sbu.golestan.domain.*;
 import ir.sbu.golestan.repository.*;
+import jersey.repackaged.com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -17,7 +18,7 @@ import java.util.Collections;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    private boolean alreadySetup = false;
+    private boolean alreadySetup = true;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
@@ -58,16 +59,16 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
         Lecture mabani = new Lecture();
         mabani.setName("مبانی کامپیوتر");
-        mabani.setUnitCount(3);
-        mabani.setSubGroups(Collections.singletonList(sg));
+        mabani.setPracticalUnitCount(3);
+        mabani.setSubGroups(Sets.newHashSet(sg));
         lectureRepository.save(mabani);
 
 
         Lecture ap = new Lecture();
         ap.setName("برنامه نویسی پیشرفته");
-        ap.setUnitCount(3);
-        ap.setSubGroups(Collections.singletonList(sg));
-        ap.setPreRequiredLectures(Collections.singletonList(mabani));
+        ap.setPracticalUnitCount(3);
+        ap.setSubGroups(Sets.newHashSet(sg));
+        ap.setPreRequiredLectures(Sets.newHashSet(mabani));
 
         lectureRepository.save(ap);
 

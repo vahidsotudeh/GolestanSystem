@@ -1,6 +1,4 @@
 target/
-!.mvn/wrapper/maven-wrapper.jar
-src/main/java/com/example/golestan/HelloWorld.java
 ### STS ###
 .apt_generated
 .classpath
@@ -22,3 +20,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+*.log

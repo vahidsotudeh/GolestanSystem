@@ -10,9 +10,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * Created by Ali Asghar on 17/05/2017.
  */
 
-@RepositoryRestResource(path = "users")
+@RepositoryRestResource(path = "resources/users")
 public interface UserRepository extends PagingAndSortingRepository<User,Long>{
     User findByUserName(@Param("userName") String userName);
-
     User findByEmail(String email);
+
 }

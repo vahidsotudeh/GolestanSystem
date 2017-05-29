@@ -16,19 +16,20 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @ManyToMany
     @JoinColumn(name = "sub_group_id", referencedColumnName = "id")
     Set<SubGroup> subGroups;
 
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     Set<Lecture> preRequiredLectures;
 
     private int practicalUnitCount;
 
     private int theoreticalUnitCount;
 
+    @Column(unique = true)
     private String code;
 }

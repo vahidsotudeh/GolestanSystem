@@ -9,4 +9,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 
 public interface LectureRepository extends PagingAndSortingRepository<Lecture, Long> {
+    Lecture findByName(String name);
+    Lecture findByCode(String code);
 }

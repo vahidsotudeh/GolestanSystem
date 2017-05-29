@@ -18,13 +18,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
 
-//    private PasswordEncoder passwordEncoder;
-//
-//    @Autowired
-//    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
-
     @Autowired
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
@@ -55,8 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout()
                     .permitAll()
                 .and()
-                    .csrf()
-                .and()
+                    .csrf().disable()
                     .exceptionHandling()
                     .accessDeniedPage("/403");
     }
@@ -68,7 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 //        auth.inMemoryAuthentication().withUser("user").password("pass").roles("STUDENT");
     }
 

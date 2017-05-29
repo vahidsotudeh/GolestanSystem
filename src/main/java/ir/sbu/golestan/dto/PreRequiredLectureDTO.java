@@ -1,11 +1,20 @@
 package ir.sbu.golestan.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
+
 /**
  * Created by Ali Asghar on 28/05/2017.
  */
-public class PreRequiredLectureDTO {
+public class PreRequiredLectureDTO implements Serializable{
+    @JsonProperty
     private Long id;
+    @JsonProperty
     private String name;
+
+    public PreRequiredLectureDTO(){};
+
 
     public PreRequiredLectureDTO(Long id, String name) {
         this.id = id;

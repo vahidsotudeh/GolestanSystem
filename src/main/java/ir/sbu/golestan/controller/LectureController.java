@@ -7,6 +7,7 @@ import ir.sbu.golestan.dto.PreRequiredLectureDTO;
 import ir.sbu.golestan.repository.LectureRepository;
 import ir.sbu.golestan.repository.SubGroupRepository;
 import jersey.repackaged.com.google.common.collect.Lists;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +31,9 @@ public class LectureController {
 
     @Autowired
     private SubGroupRepository subGroupRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public @ResponseBody List<LectureDTO> getLectures(@RequestParam("start") Optional<String> start, @RequestParam("size") Optional<String> size){

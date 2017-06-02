@@ -6,7 +6,7 @@
 	<groupId>sbu.ir</groupId>
 	<artifactId>golestan</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>golestan</name>
 	<description>Golestan System Project</description>

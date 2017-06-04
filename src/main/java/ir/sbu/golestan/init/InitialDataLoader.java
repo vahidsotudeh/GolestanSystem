@@ -18,7 +18,7 @@ import java.util.Collections;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    private boolean alreadySetup = true;
+    private boolean alreadySetup = false;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
@@ -47,34 +47,53 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             student.setFirstName("Ali");
             student.setLastName("Taghizadeh");
             student.setPassword("st");
-            student.setEmail("ali@google.com");
+            student.setEmail("ali@gmail.com");
             student.setUserName("92213055");
             student.setEnabled(true);
             userRepository.save(student);
+
         }
 
-        SubGroup sg = new SubGroup();
-        sg.setName("مهندسی نرم افزار");
-        subGroupRepository.save(sg);
+        if(userRepository.findByUserName("nazemi") == null){
+            Role gr = createRoleIfNotFound(Role.RoleTypes.GROUP_MANAGER.name(), null);
+            User groupManager = new User();
+            groupManager.setRoles(Collections.singletonList(gr));
+            groupManager.setFirstName("Islam");
+            groupManager.setLastName("Nazemi");
+            groupManager.setPassword("gm");
+            groupManager.setEmail("nazemi@gmail.com");
+            groupManager.setUserName("nazemi");
+            groupManager.setEnabled(true);
+            userRepository.save(groupManager);
+        }
 
-        Lecture mabani = new Lecture();
-        mabani.setName("مبانی کامپیوتر");
-        mabani.setPracticalUnitCount(2);
-        mabani.setTheoreticalUnitCount(1);
-        mabani.setCode("41-22-132-11");
-        mabani.setSubGroups(Sets.newHashSet(sg));
-        lectureRepository.save(mabani);
+        Group g1 = new Group();
+        g1.setName("نرم افزار");
+        subGroupRepository.save(g1);
+
+        Group g2 = new Group();
+        g2.setName("سخت افزار");
+        subGroupRepository.save(g2);
+
+        for(int i = 0; i < 50; i++){
+            Lecture lecture1 = new Lecture();
+            lecture1.setName("درس " + i);
+            lecture1.setPracticalUnitCount(2);
+            lecture1.setTheoreticalUnitCount(1);
+            lecture1.setCode("41-22-132-11" + i);
+            lecture1.setGroups(Sets.newHashSet(g1));
+            lectureRepository.save(lecture1);
 
 
-        Lecture ap = new Lecture();
-        ap.setName("برنامه نویسی پیشرفته");
-        ap.setPracticalUnitCount(3);
-        ap.setSubGroups(Sets.newHashSet(sg));
-        ap.setCode("41-44-551-11");
-        ap.setPreRequiredLectures(Sets.newHashSet(mabani));
+            Lecture lecture2 = new Lecture();
+            lecture2.setName("درس وابسته" + i);
+            lecture2.setPracticalUnitCount(3);
+            lecture2.setGroups(Sets.newHashSet(g1));
+            lecture2.setCode("41-44-551-11" + i);
+            lecture2.setPreRequiredLectures(Sets.newHashSet(lecture1));
 
-        lectureRepository.save(ap);
-
+            lectureRepository.save(lecture2);
+        }
         alreadySetup = true;
     }
 

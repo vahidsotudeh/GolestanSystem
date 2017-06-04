@@ -10,8 +10,8 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "sub_groups")
-public class SubGroup {
+@Table(name = "groups")
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

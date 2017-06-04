@@ -7,16 +7,18 @@ import java.io.Serializable;
 /**
  * Created by Ali Asghar on 28/05/2017.
  */
-public class PreRequiredLectureDTO implements Serializable{
+public class LectureLightDTO implements Serializable{
     @JsonProperty
     private Long id;
     @JsonProperty
     private String name;
 
-    public PreRequiredLectureDTO(){};
+    public LectureLightDTO(){
+
+    }
 
 
-    public PreRequiredLectureDTO(Long id, String name) {
+    public LectureLightDTO(Long id, String name) {
         this.id = id;
         this.name = name;
     }

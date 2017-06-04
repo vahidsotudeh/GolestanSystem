@@ -1,5 +1,8 @@
 package ir.sbu.golestan.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,10 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
+    @Autowired
+    private AuthenticationTrustResolver authenticationTrustResolver;
 
     @GetMapping("/login")
-    public String home1() {
-        return "login";
+    public String getLoginPage() {
+        SecurityContextHolder.getContext().getAuthentication();
+        if (authenticationTrustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
+            return "/login";
+        }
+        return "redirect:/";
     }
 
 //    @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})

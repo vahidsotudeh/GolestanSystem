@@ -20,8 +20,8 @@ public class Lecture {
     private String name;
 
     @ManyToMany
-    @JoinColumn(name = "sub_group_id", referencedColumnName = "id")
-    Set<SubGroup> subGroups;
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    Set<Group> groups;
 
     @ManyToMany(cascade = CascadeType.ALL)
     Set<Lecture> preRequiredLectures;

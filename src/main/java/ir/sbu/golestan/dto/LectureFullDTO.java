@@ -1,7 +1,6 @@
 package ir.sbu.golestan.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ir.sbu.golestan.domain.Group;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,7 +22,7 @@ public class LectureFullDTO implements Serializable{
     private String code;
 
     @JsonProperty
-    private Set<Group> groups = new HashSet<>();
+    private Set<GroupLightDTO> groups = new HashSet<>();
     @JsonProperty
     private Set<LectureLightDTO> preRequiredLectures = new HashSet<>();
     @JsonProperty

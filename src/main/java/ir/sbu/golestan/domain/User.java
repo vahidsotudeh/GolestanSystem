@@ -3,7 +3,7 @@ package ir.sbu.golestan.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Ali Asghar on 17/05/2017.
@@ -36,8 +36,15 @@ public class User {
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private Set<Role> roles;
 
+    @ManyToMany
+    @JoinTable(
+            name = "users_permissions",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id")
+    )
+    private Set<Permission> permissions;
 
     public User(String userName, String password) {
         this.userName = userName;

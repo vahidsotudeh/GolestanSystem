@@ -9,8 +9,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.Set;
 
 /**
  * Created by Ali Asghar on 21/05/2017.
@@ -18,7 +17,7 @@ import java.util.Collections;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    private boolean alreadySetup = false;
+    private boolean alreadySetup = true;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
@@ -43,7 +42,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         if(userRepository.findByUserName("92213055") == null) {
             Role sr = createRoleIfNotFound(Role.RoleTypes.STUDENT.name(), null);
             User student = new User();
-            student.setRoles(Collections.singletonList(sr));
+            student.setRoles(Sets.newHashSet(sr));
             student.setFirstName("Ali");
             student.setLastName("Taghizadeh");
             student.setPassword("st");
@@ -54,10 +53,15 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
         }
 
+
         if(userRepository.findByUserName("nazemi") == null){
+            Permission permission = new Permission("READ_LECTURE");
+            permissionRepository.save(permission);
             Role gr = createRoleIfNotFound(Role.RoleTypes.GROUP_MANAGER.name(), null);
+            gr.setPermissions(Sets.newHashSet(permission));
+            roleRepository.save(gr);
             User groupManager = new User();
-            groupManager.setRoles(Collections.singletonList(gr));
+            groupManager.setRoles(Sets.newHashSet(gr));
             groupManager.setFirstName("Islam");
             groupManager.setLastName("Nazemi");
             groupManager.setPassword("gm");
@@ -108,7 +112,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     }
 
     @Transactional
-    private Role createRoleIfNotFound(String name, Collection<Permission> permissions) {
+    private Role createRoleIfNotFound(String name, Set<Permission> permissions) {
         Role role = roleRepository.findByName(name);
         if (role == null) {
             role = new Role(name);

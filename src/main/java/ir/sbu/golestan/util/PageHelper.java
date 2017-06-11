@@ -43,12 +43,16 @@ public class PageHelper {
 
     public PageRequest getPageRequest(PageParams pageParams){
         if(pageParams.getSize() != 0 && pageParams.getSortBy() != null && pageParams.getDir() != null){
-            return new PageRequest(pageParams.getPage(), pageParams.getSize()
-                    , Sort.Direction.fromString(pageParams.getDir()), pageParams.getSortBy());
+            return new PageRequest(pageParams.getPage()
+                    , pageParams.getSize()
+                    , Sort.Direction.fromString(pageParams.getDir())
+                    , pageParams.getSortBy());
 
         }else if(pageParams.getSize() == 0 && pageParams.getDir() != null && pageParams.getSortBy() != null){
-            return new PageRequest(0, Integer.MIN_VALUE
-                    , Sort.Direction.fromString(pageParams.getDir()), pageParams.getSortBy());
+            return new PageRequest(0
+                    , Integer.MAX_VALUE
+                    , Sort.Direction.fromString(pageParams.getDir())
+                    , pageParams.getSortBy());
         }
         else if(pageParams.getSize() != 0){
             return new PageRequest(pageParams.getPage(), pageParams.getSize());

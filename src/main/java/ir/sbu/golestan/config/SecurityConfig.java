@@ -29,19 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final String AUTHORIZED_ROLES = "hasRole(\'STUDENT\') or hasRole(\'MASTER\') or hasRole(\'GROUP_MANAGER\')";
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.
-                    authorizeRequests()
-                    .antMatchers("/static/**")
-                    .permitAll()
-                .and()
+        http
                     .authorizeRequests()
                     .antMatchers("/")
                     .access(AUTHORIZED_ROLES)
-//                    .permitAll()
-//                .and()
-//                    .authorizeRequests()
-//                    .antMatchers("resources/**")
-//                    .access(AUTHORIZED_ROLES)
                 .and()
                     .formLogin()
                     .loginPage("/login")

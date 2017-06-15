@@ -55,10 +55,16 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
 
         if(userRepository.findByUserName("nazemi") == null){
-            Permission permission = new Permission("READ_LECTURE");
-            permissionRepository.save(permission);
+            Permission p1 = new Permission("READ_LECTURE");
+            Permission p2 = new Permission("CREATE_LECTURE");
+            Permission p3 = new Permission("UPDATE_LECTURE");
+            Permission p4 = new Permission("DELETE_LECTURE");
+            permissionRepository.save(p1);
+            permissionRepository.save(p2);
+            permissionRepository.save(p3);
+            permissionRepository.save(p4);
             Role gr = createRoleIfNotFound(Role.RoleTypes.GROUP_MANAGER.name(), null);
-            gr.setPermissions(Sets.newHashSet(permission));
+            gr.setPermissions(Sets.newHashSet(p1, p2, p3, p4));
             roleRepository.save(gr);
             User groupManager = new User();
             groupManager.setRoles(Sets.newHashSet(gr));

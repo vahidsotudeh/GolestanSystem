@@ -18,4 +18,6 @@ public class UserService extends AbstractPagingAndSortingEntityService<User> {
     public UserService(UserRepository userRepository){
         super.r = userRepository;
     }
+
+
 }

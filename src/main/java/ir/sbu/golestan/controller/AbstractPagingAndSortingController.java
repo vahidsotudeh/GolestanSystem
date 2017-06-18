@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Ali Asghar on 11/06/2017.
  */
+@CrossOrigin(origins = "*")
 public abstract class AbstractPagingAndSortingController<E, D> {
     AbstractPagingAndSortingEntityService<E> s;
 
@@ -91,32 +92,32 @@ public abstract class AbstractPagingAndSortingController<E, D> {
         }
     }
 
-    private D convertToDto(E e) {
+    protected D convertToDto(E e) {
         return modelMapper.map(e, dClass);
     }
 
-    private E convertToEntity(D d){
+    protected E convertToEntity(D d){
         return modelMapper.map(d, eClass);
     }
 
 
-    private boolean hasReadPermission(){
+    protected boolean hasReadPermission(){
         return hasPermission("READ_" + eClass.getSimpleName().toUpperCase());
     }
 
-    private boolean hasUpdatePermission(){
+    protected boolean hasUpdatePermission(){
         return hasPermission("UPDATE_" + eClass.getSimpleName().toUpperCase());
     }
 
-    private boolean hasDeletePermission(){
+    protected boolean hasDeletePermission(){
         return hasPermission("DELETE_" + eClass.getSimpleName().toUpperCase());
     }
 
-    private boolean hasCreatePermission(){
+    protected boolean hasCreatePermission(){
         return hasPermission("CREATE_" + eClass.getSimpleName().toUpperCase());
     }
 
-    private boolean hasPermission(String permission) {
+    protected boolean hasPermission(String permission) {
         Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)
                 SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         boolean hasPermission = false;

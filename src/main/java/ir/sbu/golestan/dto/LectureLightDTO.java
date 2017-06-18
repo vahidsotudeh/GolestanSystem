@@ -1,12 +1,14 @@
 package ir.sbu.golestan.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
 /**
  * Created by Ali Asghar on 28/05/2017.
  */
+@Data
 public class LectureLightDTO implements Serializable{
     @JsonProperty
     private Long id;
@@ -20,22 +22,6 @@ public class LectureLightDTO implements Serializable{
 
     public LectureLightDTO(Long id, String name) {
         this.id = id;
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 }

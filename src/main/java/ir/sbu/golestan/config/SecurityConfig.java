@@ -25,13 +25,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
-
-    private final String AUTHORIZED_ROLES = "hasRole(\'STUDENT\') or hasRole(\'MASTER\') or hasRole(\'GROUP_MANAGER\')";
+    private final String AUTHORIZED_ROLES = "hasRole(\'STUDENT\') or hasRole(\'MASTER\') or hasRole(\'GROUP_MANAGER\') or hasRole('USER')";
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                     .authorizeRequests()
-                    .antMatchers("/")
+                    .antMatchers("/**")
                     .access(AUTHORIZED_ROLES)
                 .and()
                     .formLogin()
@@ -40,11 +39,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .and()
                     .logout()
+                    .logoutSuccessUrl("/login")
                     .permitAll()
                 .and()
                     .csrf().disable()
                     .exceptionHandling()
-                    .accessDeniedPage("/403");
+                    .accessDeniedPage("/403")
+                    .and();
     }
 
     @Override
@@ -61,5 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
         web.ignoring().antMatchers("/static/**");
+        web.ignoring().antMatchers("/js/**");
+        web.ignoring().antMatchers("/css/**");
+        web.ignoring().antMatchers("/img/**");
+        web.ignoring().antMatchers("/fonts/**");
     }
 }

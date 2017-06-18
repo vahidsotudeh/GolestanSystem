@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
  * Created by Ali Asghar on 11/06/2017.
  */
 @CrossOrigin(origins = "*")
+@EnableSwagger2
 public abstract class AbstractPagingAndSortingController<E, D> {
     AbstractPagingAndSortingEntityService<E> s;
 

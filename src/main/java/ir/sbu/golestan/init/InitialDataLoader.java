@@ -9,8 +9,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.Set;
 
 /**
  * Created by Ali Asghar on 21/05/2017.
@@ -23,16 +22,16 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
     private final LectureRepository lectureRepository;
-    private final SubGroupRepository subGroupRepository;
+    private final GroupRepository groupRepository;
 
 
     @Autowired
-    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, LectureRepository lectureRepository, SubGroupRepository subGroupRepository) {
+    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, LectureRepository lectureRepository, GroupRepository groupRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
         this.lectureRepository = lectureRepository;
-        this.subGroupRepository = subGroupRepository;
+        this.groupRepository = groupRepository;
     }
 
     @Override
@@ -43,38 +42,155 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         if(userRepository.findByUserName("92213055") == null) {
             Role sr = createRoleIfNotFound(Role.RoleTypes.STUDENT.name(), null);
             User student = new User();
-            student.setRoles(Collections.singletonList(sr));
+            student.setRoles(Sets.newHashSet(sr));
             student.setFirstName("Ali");
             student.setLastName("Taghizadeh");
             student.setPassword("st");
-            student.setEmail("ali@google.com");
+            student.setEmail("ali@gmail.com");
             student.setUserName("92213055");
             student.setEnabled(true);
             userRepository.save(student);
+
         }
 
-        SubGroup sg = new SubGroup();
-        sg.setName("مهندسی نرم افزار");
-        subGroupRepository.save(sg);
 
-        Lecture mabani = new Lecture();
-        mabani.setName("مبانی کامپیوتر");
-        mabani.setPracticalUnitCount(2);
-        mabani.setTheoreticalUnitCount(1);
-        mabani.setCode("41-22-132-11");
-        mabani.setSubGroups(Sets.newHashSet(sg));
-        lectureRepository.save(mabani);
+        if(userRepository.findByUserName("nazemi") == null){
+            Permission p1 = new Permission("READ_LECTURE");
+            Permission p2 = new Permission("CREATE_LECTURE");
+            Permission p3 = new Permission("UPDATE_LECTURE");
+            Permission p4 = new Permission("DELETE_LECTURE");
+
+            Permission p5 = new Permission("READ_USER");
+            Permission p6 = new Permission("CREATE_USER");
+            Permission p7 = new Permission("UPDATE_USER");
+            Permission p8 = new Permission("DELETE_USER");
+
+            Permission p9 = new Permission("READ_COURSE");
+            Permission p10 = new Permission("CREATE_COURSE");
+            Permission p11 = new Permission("UPDATE_COURSE");
+            Permission p12 = new Permission("DELETE_COURSE");
 
 
-        Lecture ap = new Lecture();
-        ap.setName("برنامه نویسی پیشرفته");
-        ap.setPracticalUnitCount(3);
-        ap.setSubGroups(Sets.newHashSet(sg));
-        ap.setCode("41-44-551-11");
-        ap.setPreRequiredLectures(Sets.newHashSet(mabani));
+            Permission p13 = new Permission("READ_GROUP");
+            Permission p14 = new Permission("CREATE_GROUP");
+            Permission p15 = new Permission("UPDATE_GROUP");
+            Permission p16 = new Permission("DELETE_GROUP");
 
-        lectureRepository.save(ap);
+            Permission p17 = new Permission("READ_MASTER");
+            Permission p18 = new Permission("CREATE_MASTER");
+            Permission p19 = new Permission("UPDATE_MASTER");
+            Permission p20 = new Permission("DELETE_MASTER");
 
+            Permission p21 = new Permission("READ_PERMISSION");
+            Permission p22 = new Permission("CREATE_PERMISSION");
+            Permission p23 = new Permission("UPDATE_PERMISSION");
+            Permission p24 = new Permission("DELETE_PERMISSION");
+
+            Permission p25 = new Permission("READ_ROLE");
+            Permission p26 = new Permission("CREATE_ROLE");
+            Permission p27 = new Permission("UPDATE_ROLE");
+            Permission p28 = new Permission("DELETE_ROLE");
+
+            Permission p29 = new Permission("READ_STUDENT");
+            Permission p30 = new Permission("CREATE_STUDENT");
+            Permission p31 = new Permission("UPDATE_STUDENT");
+            Permission p32 = new Permission("DELETE_STUDENT");
+
+
+            Permission p33 = new Permission("READ_STUDENTCOURSE");
+            Permission p34 = new Permission("CREATE_STUDENTCOURSE");
+            Permission p35 = new Permission("UPDATE_STUDENTCOURSE");
+            Permission p36 = new Permission("DELETE_STUDENTCOURSE");
+
+            Permission p37 = new Permission("READ_TERM");
+            Permission p38 = new Permission("CREATE_TERM");
+            Permission p39 = new Permission("UPDATE_TERM");
+            Permission p40 = new Permission("DELETE_TERM");
+
+            permissionRepository.save(p1);
+            permissionRepository.save(p2);
+            permissionRepository.save(p3);
+            permissionRepository.save(p4);
+            permissionRepository.save(p5);
+            permissionRepository.save(p6);
+            permissionRepository.save(p7);
+            permissionRepository.save(p8);
+            permissionRepository.save(p9);
+            permissionRepository.save(p10);
+            permissionRepository.save(p11);
+            permissionRepository.save(p12);
+            permissionRepository.save(p13);
+            permissionRepository.save(p14);
+            permissionRepository.save(p15);
+            permissionRepository.save(p16);
+            permissionRepository.save(p17);
+            permissionRepository.save(p18);
+            permissionRepository.save(p19);
+            permissionRepository.save(p20);
+            permissionRepository.save(p21);
+            permissionRepository.save(p22);
+            permissionRepository.save(p23);
+            permissionRepository.save(p24);
+            permissionRepository.save(p25);
+            permissionRepository.save(p26);
+            permissionRepository.save(p27);
+            permissionRepository.save(p28);
+            permissionRepository.save(p29);
+            permissionRepository.save(p30);
+            permissionRepository.save(p31);
+            permissionRepository.save(p32);
+            permissionRepository.save(p33);
+            permissionRepository.save(p34);
+            permissionRepository.save(p35);
+            permissionRepository.save(p36);
+            permissionRepository.save(p37);
+            permissionRepository.save(p38);
+            permissionRepository.save(p39);
+            permissionRepository.save(p40);
+
+            Role gr = createRoleIfNotFound(Role.RoleTypes.GROUP_MANAGER.name(), null);
+            gr.setPermissions(Sets.newHashSet(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13,
+                    p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29
+                    ,p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40));
+            roleRepository.save(gr);
+            User groupManager = new User();
+            groupManager.setRoles(Sets.newHashSet(gr));
+            groupManager.setFirstName("Islam");
+            groupManager.setLastName("Nazemi");
+            groupManager.setPassword("gm");
+            groupManager.setEmail("nazemi@gmail.com");
+            groupManager.setUserName("nazemi");
+            groupManager.setEnabled(true);
+            userRepository.save(groupManager);
+        }
+
+        Group g1 = new Group();
+        g1.setName("نرم افزار");
+        groupRepository.save(g1);
+
+        Group g2 = new Group();
+        g2.setName("سخت افزار");
+        groupRepository.save(g2);
+
+        for(int i = 0; i < 50; i++){
+            Lecture lecture1 = new Lecture();
+            lecture1.setName("درس " + i);
+            lecture1.setPracticalUnitCount(2);
+            lecture1.setTheoreticalUnitCount(1);
+            lecture1.setCode("41-22-132-11" + i);
+            lecture1.setGroups(Sets.newHashSet(g1));
+            lectureRepository.save(lecture1);
+
+
+            Lecture lecture2 = new Lecture();
+            lecture2.setName("درس وابسته" + i);
+            lecture2.setPracticalUnitCount(3);
+            lecture2.setGroups(Sets.newHashSet(g1));
+            lecture2.setCode("41-44-551-11" + i);
+            lecture2.setPreRequiredLectures(Sets.newHashSet(lecture1));
+
+            lectureRepository.save(lecture2);
+        }
         alreadySetup = true;
     }
 
@@ -89,7 +205,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     }
 
     @Transactional
-    private Role createRoleIfNotFound(String name, Collection<Permission> permissions) {
+    private Role createRoleIfNotFound(String name, Set<Permission> permissions) {
         Role role = roleRepository.findByName(name);
         if (role == null) {
             role = new Role(name);

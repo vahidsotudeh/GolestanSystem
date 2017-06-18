@@ -1,17 +1,16 @@
 package ir.sbu.golestan.domain;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.security.InvalidParameterException;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Ali Asghar on 21/05/2017.
  */
 
-@Data
 @Entity
+@Table(name = "roles")
 public class Role {
 
     public enum RoleTypes {
@@ -34,7 +33,7 @@ public class Role {
                     name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "permission_id", referencedColumnName = "id"))
-    private Collection<Permission> permissions;
+    private Set<Permission> permissions;
 
     public Role(){
     }
@@ -58,5 +57,33 @@ public class Role {
             }
         }
         throw new InvalidParameterException("Role name should be set according to enum");
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<User> users) {
+        this.users = users;
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
     }
 }

@@ -27,8 +27,8 @@ public class Student extends User{
     String level;
 
     @ManyToOne
-    @JoinColumn(name = "sub_group_id", referencedColumnName = "id")
-    SubGroup subGroup;
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    Group group;
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "student")
     Set<StudentCourse> studentCourses = new HashSet<>();

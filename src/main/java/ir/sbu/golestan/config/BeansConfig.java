@@ -12,11 +12,17 @@ import org.springframework.security.authentication.AuthenticationTrustResolverIm
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Created by Ali Asghar on 15/05/2017.
  */
 @Configuration
+@EnableSwagger2
 public class BeansConfig {
 
     private UserRepository userRepository;
@@ -55,6 +61,15 @@ public class BeansConfig {
     @Bean
     public AuthenticationTrustResolver getAuthenticationTrustResolver(){
         return new AuthenticationTrustResolverImpl();
+    }
+
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
     }
 
 }

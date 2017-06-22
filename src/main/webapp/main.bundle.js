@@ -1,4 +1,4 @@
-webpackJsonp([2],{
+webpackJsonp([1],{
 
 /***/ "./node_modules/css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!./node_modules/postcss-loader/index.js?{\"ident\":\"postcss\"}!./src/assets/css/font-awesome.min.css":
 /***/ (function(module, exports, __webpack_require__) {
@@ -120,12 +120,14 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_routes__ = __webpack_require__("./src/app/app.routes.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_restangular__ = __webpack_require__("./node_modules/ngx-restangular/dist/esm/src/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_restangular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ngx_restangular__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("./node_modules/ng2-bs3-modal/ng2-bs3-modal.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("./src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__courses_courses_component__ = __webpack_require__("./src/app/courses/courses.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ngx_restangular__ = __webpack_require__("./node_modules/ngx-restangular/dist/esm/src/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ngx_restangular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ngx_restangular__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("./node_modules/ng2-bs3-modal/ng2-bs3-modal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("./src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__courses_courses_component__ = __webpack_require__("./src/app/courses/courses.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular_2_dropdown_multiselect__ = __webpack_require__("./node_modules/angular-2-dropdown-multiselect/index.js");
 /* unused harmony export RestangularConfigFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -137,14 +139,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 // import {HttpModule, Headers, Response, ResponseOptions} from "@angular/http";
 // import {RestangularConfigFactory} from './services/config'
 
 
 
 
+
 function RestangularConfigFactory(RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://217.182.230.17:8080');
+    RestangularProvider.setBaseUrl('http://localhost:8080/api');
     //RestangularProvider.setFullResponse(true);
     RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response) {
         console.log(data.length);
@@ -161,17 +165,19 @@ var AppModule = (function () {
 AppModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__courses_courses_component__["a" /* CoursesComponent */]
+            __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__courses_courses_component__["a" /* CoursesComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_3_ngx_restangular__["RestangularModule"].forRoot(RestangularConfigFactory),
+            __WEBPACK_IMPORTED_MODULE_4_ngx_restangular__["RestangularModule"].forRoot(RestangularConfigFactory),
             __WEBPACK_IMPORTED_MODULE_2__app_routes__["a" /* routing */],
-            __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__["Ng2Bs3ModalModule"]
+            __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__["Ng2Bs3ModalModule"],
+            __WEBPACK_IMPORTED_MODULE_8_angular_2_dropdown_multiselect__["a" /* MultiselectDropdownModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormsModule */]
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["b" /* Title */]],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -220,7 +226,7 @@ module.exports = module.exports.toString();
 /***/ "./src/app/courses/courses.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\n                <div class=\"col-md-12 text-center \"><h1>دروس</h1></div>\n            </div>\n            <div class=\"row\" id=\"main\" >\n                <div id=\"no-more-tables\" >\n                    <div class=\" col-sm-9 col-md-offset-1 \" id=\"rightBox\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\" >\n\n                        <div class=\"row\">\n                            <form class=\"form-inline\"  >\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecName\" placeholder=\"نام درس\">\n                                </div>\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecCode\" placeholder=\"شماره درس\">\n                                </div>\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecGroup\" placeholder=\"گروه درس\">\n                                </div>\n                                <div class=\"form-group\" >\n                                    <div class=\"input-group\">\n                                        <input type=\"text\" class=\"form-control\" id=\"lecPracUnit\" placeholder=\"تعداد واحد تئوری\">\n                                        <div class=\"input-group-addon\">و</div>\n                                        <input type=\"text\" class=\"form-control\" id=\"lecTheorUnit\" placeholder=\"تعداد واحد عملی \">\n                                    </div>\n                                </div>\n                                <div class=\"form-group\">\n                                    <button onclick=\"addLecture()\"  class=\" btn btn-success\" >\n                                         <span [hidden]=\"isEditing\">\n                                             افزودن\n                                         </span>\n                                         <span [hidden]=\"!isEditing\">\n                                             ویرایش\n                                         </span>\n                                    </button>                             \n                                </div>\n                                <div class=\"form-group\">\n                                    <span>\n                                        <button class=\"btn btn-success\">\n                                                لغو ویرایش\n                                        </button>    \n                                    </span>       \n                                </div>\n                            </form>\n                    </div>\n                </div>\n                    <table class=\"col-md-11 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\n                        <thead class=\"cf\">\n                        <tr>\n                            <th>ردیف</th>\n                            <th>نام درس</th>\n                            <th >شماره درس</th>\n                            <th >تعداد واحد عملی</th>\n                            <th >تعداد واحد تئوری</th>\n                            <th >گروه</th>\n                            <th >پیش نیاز ها</th>\n                            <th >ویرایش</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"definedCourses\">\n                            <tr *ngFor=\"let course of coursesArr; let i=index\">\n                                <td data-title=\"test\">{{i+1}}</td>\n                                <td data-title=\"test\">{{course.name}}</td>\n                                <td data-title=\"test\">{{course.code}}</td>\n                                <td data-title=\"test\">{{course.practicalUnitCount}}</td>\n                                <td data-title=\"test\">{{course.theoreticalUnitCount}}</td>\n                                <td data-title=\"test\">\n                                    <span *ngFor=\"let coursegp of course.groups \">\n                                        {{coursegp.name}} \n                                    </span>\n                                </td>\n                                <td data-title=\"test\">\n                                    <span *ngFor=\"let predef of course.preRequiredLectures \">\n                                        {{predef.name}} \n                                    </span>\n                                </td>\n\n                                <td data-title=\"test\">\n                                    <span (click)=\"removeCourse(i,course.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\n                                    </span>\n                                    <span (click)=\"editCourseSelect(i,course.id)\" class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\">\n                                    </span>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n            <!-- /.row -->\n<modal #myModal [keyboard]=\"false\" [backdrop]=\"'static'\">\n    <modal-header [show-close]=\"false\">\n        <h4 class=\"modal-title\">تایید عملیات</h4>\n    </modal-header>\n    <modal-body>\n        {{confirmMessage}}\n    </modal-body>\n    <modal-footer >\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">خیر</button>\n        <button type=\"button\" class=\"btn btn-defult\" (click)=\"modal.close()\">بله</button>\n    </modal-footer>\n</modal>"
+module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\n                <div class=\"col-md-12 text-center \"><h1>دروس</h1></div>\n            </div>\n            <div class=\"row\" >\n                <div class=\"col-md-11\" [ngClass]=\"{'alert-success': operationSuccessFull, 'alert-danger': operationUnSuccessFull}\" >{{alertMessage}}</div>\n            </div>\n            <div class=\"row\" id=\"main\" >\n                <div id=\"no-more-tables\" >\n                    <div class=\" col-sm-9 col-md-offset-1 \" id=\"rightBox\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\" >\n\n                        <div class=\"row\">\n                            <form class=\"form-inline\" #lectureModifyForm=\"ngForm\" (ngSubmit)=\"modifyForm(lectureModifyForm)\" >\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecName\" name=\"lecName\" placeholder=\"نام درس\" [(ngModel)]=\"lecName\" required minlength=\"4\" maxlength=\"24\" ngModel>\n                                </div>\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecCode\" name=\"lecCode\" placeholder=\"شماره درس\"  [(ngModel)]=\"lecCode\" required minlength=\"8\" maxlength=\"24\">\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"courseGroups\" [options]=\"courseGroups\" [texts]=\"groupsText\" [(ngModel)]=\"courseGroupsModel\" [settings]=\"mySettings\" required></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"coursePreRequired\" [options]=\"coursePreRequired\" [texts]=\"preRequiredsText\" [(ngModel)]=\"coursePreRequiredModel\" [settings]=\"mySettings\" (ngModelChange)=\"onChangecourseGroups($event)\" required ></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <div class=\"input-group\">\n                                        <input class=\"input-lg\" type=\"number\" class=\"form-control\" name=\"lecPracUnit\" id=\"lecPracUnit\" placeholder=\"تئوری\" [(ngModel)]=\"lecPracUnit\" min=\"0\" max=\"4\" required minlength=\"1\" maxlength=\"1\">\n                                        <div class=\"input-group-addon\">تعداد واحد تئوری---تعداد واحد عملی</div>\n                                        <input type=\"number\" class=\"form-control\" name=\"lecTheorUnit\" id=\"lecTheorUnit\" placeholder=\"عملی \" [(ngModel)]=\"lecTheorUnit\" min=\"0\" max=\"4\" required minlength=\"1\" maxlength=\"1\">\n                                    </div>  \n                                </div>\n                                <div class=\"form-group\">\n                                    <button class=\" btn btn-success\" >\n                                         <span [hidden]=\"isEditing\">\n                                             افزودن\n                                         </span>\n                                         <span [hidden]=\"!isEditing\">\n                                             ویرایش\n                                         </span>\n                                    </button>                             \n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\n                                </div>\n                                <div class=\"form-group\" >\n                                    <span [hidden]=\"!isEditing\">\n                                        <a (click)=\"cancelEditing()\" class=\"btn btn-success\">\n                                                لغو ویرایش\n                                        </a>    \n                                    </span>       \n                                </div>\n                            </form>\n                    </div>\n                </div>\n                    <table class=\"col-md-11 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\n                        <thead class=\"cf\">\n                        <tr>\n                            <th>ردیف</th>\n                            <th>نام درس</th>\n                            <th >شماره درس</th>\n                            <th >تعداد واحد عملی</th>\n                            <th >تعداد واحد تئوری</th>\n                            <th >گروه</th>\n                            <th >پیش نیاز ها</th>\n                            <th >ویرایش</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"definedCourses\">\n                            <tr *ngFor=\"let course of coursesArr; let i=index\">\n                                <td data-title=\"test\">{{i+1}}</td>\n                                <td data-title=\"test\">{{course.name}}</td>\n                                <td data-title=\"test\">{{course.code}}</td>\n                                <td data-title=\"test\">{{course.practicalUnitCount}}</td>\n                                <td data-title=\"test\">{{course.theoreticalUnitCount}}</td>\n                                <td data-title=\"test\">\n                                    <span *ngFor=\"let coursegp of course.groups \">\n                                        {{coursegp.name}} \n                                    </span>\n                                </td>\n                                <td data-title=\"test\">\n                                    <span *ngFor=\"let predef of course.preRequiredLectures \">\n                                        {{predef.name}} \n                                    </span>\n                                </td>\n\n                                <td data-title=\"test\">\n                                    <span (click)=\"removeCourse(i,course.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\n                                    </span>\n                                    <span (click)=\"editCourseSelect(i,course.id)\" class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\">\n                                    </span>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n            <!-- /.row -->\n<modal #myModal [keyboard]=\"false\" [backdrop]=\"'static'\">\n    <modal-header [show-close]=\"false\">\n        <h4 class=\"modal-title\">تایید عملیات</h4>\n    </modal-header>\n    <modal-body>\n        {{confirmMessage}}\n    </modal-body>\n    <modal-footer >\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">خیر</button>\n        <button type=\"button\" class=\"btn btn-defult\" (click)=\"modal.close()\">بله</button>\n    </modal-footer>\n</modal>"
 
 /***/ }),
 
@@ -232,8 +238,10 @@ module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__ = __webpack_require__("./src/app/services/ga-services/ga-courses.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("./node_modules/ng2-bs3-modal/ng2-bs3-modal.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__courses_ga_course__ = __webpack_require__("./src/app/courses/ga-course.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("./node_modules/ng2-bs3-modal/ng2-bs3-modal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoursesComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -249,23 +257,69 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var CoursesComponent = (function () {
     function CoursesComponent(titleService, route, gaCoursesService) {
         var _this = this;
         this.titleService = titleService;
         this.route = route;
         this.gaCoursesService = gaCoursesService;
+        this.mySettings = {
+            enableSearch: true,
+            checkedStyle: 'fontawesome',
+            buttonClasses: 'btn btn-default btn-block',
+            dynamicTitleMaxItems: 3,
+            displayAllSelectedText: false
+        };
+        this.groupsText = {
+            checkAll: 'همه را انتخاب کنید',
+            uncheckAll: 'انتخاب ها را کنید',
+            checked: 'انتخاب شد',
+            checkedPlural: 'تا انتخاب شدند',
+            searchPlaceholder: 'بگردید',
+            defaultTitle: 'گروه ها',
+            allSelected: 'همه انتخاب شدند',
+        };
+        this.preRequiredsText = {
+            checkAll: 'همه را انتخاب کنید',
+            uncheckAll: 'انتخاب ها را کنید',
+            checked: 'انتخاب شد',
+            checkedPlural: 'تا انتخاب شدند',
+            searchPlaceholder: 'بگردید',
+            defaultTitle: 'پیش نیازها',
+            allSelected: 'همه انتخاب شدند',
+        };
         this.isEditing = false;
         this.isDeleting = false;
+        this.operationSuccessFull = false;
+        this.operationUnSuccessFull = false;
         this.setTitle("Courses");
         gaCoursesService.getCourseList().then(function (data) {
             _this.coursesArr = data;
+            var tempArrData = new Array;
+            for (var i = 0; i < data.length; i++) {
+                tempArrData[i] = { id: data[i].id, name: data[i].name.toString() };
+            }
+            _this.coursePreRequired = tempArrData;
             console.log(data);
+            gaCoursesService.getGroupsList().then(function (data) {
+                _this.groupsArr = data;
+                var tempArrData = new Array;
+                for (var i = 0; i < data.length; i++) {
+                    tempArrData[i] = { id: data[i].id, name: data[i].name.toString() };
+                }
+                _this.courseGroups = tempArrData;
+            });
         });
         console.log(this.coursesArr);
     }
     CoursesComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // this.courseGroups = [
+        //     { id: 1, name: 'مهندسی نرم افزار' },
+        //     { id: 2, name: 'مهندسی اینترنت' },
+        // ];    
         this.rowCounter = 1;
         this.modal.onClose.subscribe(function () { return _this.ApproveOperation(); });
         this.modal.onDismiss.subscribe(function () { return _this.cancelOperation(); });
@@ -285,12 +339,13 @@ var CoursesComponent = (function () {
     CoursesComponent.prototype.removeCourse = function (index, id) {
         this.isEditing = false;
         this.isDeleting = true;
-        this.selectedCourseId = id;
-        this.selectedCourseIndex = index;
+        this.selectedCourseId = id - 1;
+        this.selectedCourseIndex = index - 1;
         this.confirmMessage = "آیا از حذف درس مطمئن هستید؟";
         this.modal.open();
     };
-    CoursesComponent.prototype.addCourse = function () {
+    CoursesComponent.prototype.addLecture = function (formFields) {
+        this.modifyForm(formFields);
     };
     CoursesComponent.prototype.openConfirmPanel = function () {
     };
@@ -299,24 +354,76 @@ var CoursesComponent = (function () {
         this.isEditing = false;
     };
     CoursesComponent.prototype.ApproveOperation = function () {
+        console.log(this.isEditing);
         if (this.isDeleting) {
-            this.coursesArr.splice(this.selectedCourseIndex, 1);
+            // this.coursesArr.splice(this.selectedCourseIndex,1);
             this.isDeleting = false;
             this.isEditing = false;
+            this.gaCoursesService.deleteCourse(this.selectedCourseId);
+            this.courseForm.reset();
             //send delete to server
         }
         else if (this.isEditing) {
             //show course fields in form to edit
+            var tempArrindexGroups = new Array;
+            var tempArrindexPreReqs = new Array;
+            this.courseForm.controls['lecName'].setValue(this.coursesArr[this.selectedCourseIndex].name);
+            this.courseForm.controls['lecCode'].setValue(this.coursesArr[this.selectedCourseIndex].code);
+            this.courseForm.controls['lecPracUnit'].setValue(this.coursesArr[this.selectedCourseIndex].practicalUnitCount);
+            this.courseForm.controls['lecTheorUnit'].setValue(this.coursesArr[this.selectedCourseIndex].theoreticalUnitCount);
+            for (var i = 0; i < this.coursesArr[this.selectedCourseIndex].groups.length; i++) {
+                var grId = this.coursesArr[this.selectedCourseIndex].groups[i].id;
+                tempArrindexGroups[i] = grId.valueOf();
+            }
+            // console.log(this.coursesArr[this.selectedCourseId]);
+            console.log(this.selectedCourseIndex + " index");
+            for (var i = 0; i < this.coursesArr[this.selectedCourseIndex].preRequiredLectures.length; i++) {
+                var grId = this.coursesArr[this.selectedCourseIndex].preRequiredLectures[i].id;
+                tempArrindexPreReqs[i] = grId.valueOf();
+                console.log(tempArrindexPreReqs);
+            }
+            this.courseGroupsModel = tempArrindexGroups;
+            this.coursePreRequiredModel = tempArrindexPreReqs;
             this.isDeleting = false;
-            this.isEditing = false;
         }
+    };
+    CoursesComponent.prototype.cancelEditing = function () {
+        this.isDeleting = false;
+        this.isEditing = false;
+        this.courseForm.reset();
+    };
+    CoursesComponent.prototype.modifyForm = function (formFields) {
+        var _this = this;
+        console.log("hellp");
+        var groups = new Array;
+        for (var i = 0; i < this.courseGroupsModel.length; i++) {
+            groups[i] = { id: this.courseGroupsModel[i], name: this.groupsArr.find(function (x) { return x.id === _this.courseGroupsModel[i]; }).name.toString() };
+        }
+        var preDefs = new Array;
+        for (var i = 0; i < this.coursePreRequiredModel.length; i++) {
+            preDefs[i] = { id: this.coursePreRequiredModel[i], name: this.coursesArr.find(function (x) { return x.id === _this.coursePreRequiredModel[i]; }).name.toString() };
+        }
+        console.log(formFields.value);
+        var course = new __WEBPACK_IMPORTED_MODULE_4__courses_ga_course__["a" /* GaCourse */](this.selectedCourseId, formFields.value.lecName, formFields.value.lecCode, groups, preDefs, formFields.value.lecPracUnit, formFields.value.lecTheorUnit);
+        console.log(course);
+        this.gaCoursesService.updateCourse(course);
+        this.courseForm.reset();
+        this.isEditing = false;
+        this.isDeleting = false;
+    };
+    CoursesComponent.prototype.onChangecourseGroups = function (event) {
+        console.log(this.coursePreRequiredModel);
     };
     return CoursesComponent;
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('myModal'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"]) === "function" && _a || Object)
 ], CoursesComponent.prototype, "modal", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('lectureModifyForm'),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_forms__["c" /* NgForm */]) === "function" && _b || Object)
+], CoursesComponent.prototype, "courseForm", void 0);
 CoursesComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-courses',
@@ -324,11 +431,40 @@ CoursesComponent = __decorate([
         styles: [__webpack_require__("./src/app/courses/courses.component.css")],
         providers: [__WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__["a" /* GaCoursesService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__["a" /* GaCoursesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__["a" /* GaCoursesService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__["a" /* GaCoursesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__["a" /* GaCoursesService */]) === "function" && _e || Object])
 ], CoursesComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=courses.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/courses/ga-course.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GaCourse; });
+/* unused harmony export GaCourseGroups */
+var GaCourse = (function () {
+    function GaCourse(id, name, code, groups, predefs, practs, theors) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.groups = groups;
+        this.preRequiredLectures = predefs;
+        this.practicalUnitCount = practs;
+        this.theoreticalUnitCount = theors;
+    }
+    return GaCourse;
+}());
+
+var GaCourseGroups = (function () {
+    function GaCourseGroups() {
+    }
+    return GaCourseGroups;
+}());
+
+//# sourceMappingURL=ga-course.js.map
 
 /***/ }),
 
@@ -357,14 +493,19 @@ var GaCoursesService = (function () {
     }
     GaCoursesService.prototype.getCourseList = function () {
         return this.restangular.one('lectures/list').getList().toPromise();
-        // return this.restangular.one('lectures/list').getList().then((data) => {
-        //   console.log("ssss");
-        //   console.log(data );
-        //   console.log("ssss");      
-        //   }).catch((ex) => {
-        //     console.log(ex);
-        //   }
-        // );
+    };
+    GaCoursesService.prototype.getGroupsList = function () {
+        return this.restangular.one('groups/list').getList().toPromise();
+    };
+    GaCoursesService.prototype.updateCourse = function (course) {
+        // console.log(this.restangular.one("lectures/update").post(course));
+        this.restangular.all("lectures/update").post(course);
+        // this.restangular.post("lectures/update",course);
+        return true;
+    };
+    GaCoursesService.prototype.deleteCourse = function (id) {
+        this.restangular.one("lectures/delete", id).get();
+        return true;
     };
     return GaCoursesService;
 }());

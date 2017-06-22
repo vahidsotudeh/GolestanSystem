@@ -1,30 +1,36 @@
             <div class="row" style="margin-bottom: 25px">
                 <div class="col-md-12 text-center "><h1>دروس</h1></div>
             </div>
+            <div class="row" >
+                <div class="col-md-11" [ngClass]="{'alert-success': operationSuccessFull, 'alert-danger': operationUnSuccessFull}" >{{alertMessage}}</div>
+            </div>
             <div class="row" id="main" >
                 <div id="no-more-tables" >
                     <div class=" col-sm-9 col-md-offset-1 " id="rightBox" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
 
                         <div class="row">
-                            <form class="form-inline"  >
+                            <form class="form-inline" #lectureModifyForm="ngForm" (ngSubmit)="modifyForm(lectureModifyForm)" >
                                 <div class="form-group" >
-                                        <input type="text" class="form-control" id="lecName" placeholder="نام درس">
+                                        <input type="text" class="form-control" id="lecName" name="lecName" placeholder="نام درس" [(ngModel)]="lecName" required minlength="4" maxlength="24" ngModel>
                                 </div>
                                 <div class="form-group" >
-                                        <input type="text" class="form-control" id="lecCode" placeholder="شماره درس">
+                                        <input type="text" class="form-control" id="lecCode" name="lecCode" placeholder="شماره درس"  [(ngModel)]="lecCode" required minlength="8" maxlength="24">
                                 </div>
                                 <div class="form-group" >
-                                        <input type="text" class="form-control" id="lecGroup" placeholder="گروه درس">
+                                    <ss-multiselect-dropdown name="courseGroups" [options]="courseGroups" [texts]="groupsText" [(ngModel)]="courseGroupsModel" [settings]="mySettings" required></ss-multiselect-dropdown>
+                                </div>
+                                <div class="form-group" >
+                                    <ss-multiselect-dropdown name="coursePreRequired" [options]="coursePreRequired" [texts]="preRequiredsText" [(ngModel)]="coursePreRequiredModel" [settings]="mySettings" (ngModelChange)="onChangecourseGroups($event)" required ></ss-multiselect-dropdown>
                                 </div>
                                 <div class="form-group" >
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="lecPracUnit" placeholder="تعداد واحد تئوری">
-                                        <div class="input-group-addon">و</div>
-                                        <input type="text" class="form-control" id="lecTheorUnit" placeholder="تعداد واحد عملی ">
-                                    </div>
+                                        <input class="input-lg" type="number" class="form-control" name="lecPracUnit" id="lecPracUnit" placeholder="تئوری" [(ngModel)]="lecPracUnit" min="0" max="4" required minlength="1" maxlength="1">
+                                        <div class="input-group-addon">تعداد واحد تئوری---تعداد واحد عملی</div>
+                                        <input type="number" class="form-control" name="lecTheorUnit" id="lecTheorUnit" placeholder="عملی " [(ngModel)]="lecTheorUnit" min="0" max="4" required minlength="1" maxlength="1">
+                                    </div>  
                                 </div>
                                 <div class="form-group">
-                                    <button onclick="addLecture()"  class=" btn btn-success" >
+                                    <button class=" btn btn-success" >
                                          <span [hidden]="isEditing">
                                              افزودن
                                          </span>
@@ -32,12 +38,13 @@
                                              ویرایش
                                          </span>
                                     </button>                             
+                                    <!--<input type="submit" value="افزودن">-->
                                 </div>
-                                <div class="form-group">
-                                    <span>
-                                        <button class="btn btn-success">
+                                <div class="form-group" >
+                                    <span [hidden]="!isEditing">
+                                        <a (click)="cancelEditing()" class="btn btn-success">
                                                 لغو ویرایش
-                                        </button>    
+                                        </a>    
                                     </span>       
                                 </div>
                             </form>

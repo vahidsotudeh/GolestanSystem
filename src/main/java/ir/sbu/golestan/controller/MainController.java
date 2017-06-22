@@ -24,10 +24,6 @@ public class MainController {
         return "redirect:/";
     }
 
-//    @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
-//    public String login() {
-//        return "login";
-//    }
 
     @GetMapping("/403")
     public String error403() {
@@ -35,4 +31,9 @@ public class MainController {
     }
 
 
+
+    @GetMapping("courses")
+    public String course(){
+        return "redirect:/";
+    }
 }

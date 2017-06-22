@@ -27,7 +27,7 @@ public class Lecture {
     )
     Set<Group> groups;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             joinColumns = @JoinColumn(name = "lecture_id", referencedColumnName = "id")
             ,inverseJoinColumns = @JoinColumn(name = "pre_required_lecture_id", referencedColumnName = "id")

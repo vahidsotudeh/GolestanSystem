@@ -64,7 +64,7 @@ public abstract class AbstractPagingAndSortingController<E, D> {
         try {
             s.delete(id);
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("entity doesn't exists");
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("couldn't delete" + e);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -90,7 +90,7 @@ public abstract class AbstractPagingAndSortingController<E, D> {
         if(s.update(convertToEntity(dto))) {
             return ResponseEntity.status(HttpStatus.CREATED).body("entity updated successfully");
         }else{
-            return ResponseEntity.status(HttpStatus.CREATED).body("couldn't update entity");
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("couldn't update entity");
         }
     }
 

@@ -339,7 +339,7 @@ var CoursesComponent = (function () {
     CoursesComponent.prototype.removeCourse = function (index, id) {
         this.isEditing = false;
         this.isDeleting = true;
-        this.selectedCourseId = id - 1;
+        this.selectedCourseId = id;
         this.selectedCourseIndex = index;
         this.confirmMessage = "آیا از حذف درس مطمئن هستید؟";
         this.modal.open();

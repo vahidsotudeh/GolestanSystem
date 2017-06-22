@@ -1,96 +1,42 @@
 package ir.sbu.golestan.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by Ali Asghar on 22/05/2017.
  */
-
+@Data
 @Entity
 @Table(name = "lectures")
 public class Lecture {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
-    @Column(unique = true)
-    private String code;
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST, mappedBy = "lecture")
+    Set<StudentCourse> studentCourses = new HashSet<>();
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "lecture_id", referencedColumnName = "id")
-            ,inverseJoinColumns = @JoinColumn(name= "group_id", referencedColumnName = "id")
-    )
-    Set<Group> groups;
+    @ManyToOne
+    @JoinColumn(name = "term_id", referencedColumnName = "id")
+    private Term term;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "lecture_id", referencedColumnName = "id")
-            ,inverseJoinColumns = @JoinColumn(name = "pre_required_lecture_id", referencedColumnName = "id")
-    )
-    Set<Lecture> preRequiredLectures;
+    @ManyToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    private Course course;
 
-    private int practicalUnitCount;
+    @Column(nullable = false)
+    private int roomNumber;
 
-    private int theoreticalUnitCount;
+    @ManyToOne
+    @JoinColumn(name = "master_id", referencedColumnName = "id")
+    private Master master;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(Set<Group> groups) {
-        this.groups = groups;
-    }
-
-    public Set<Lecture> getPreRequiredLectures() {
-        return preRequiredLectures;
-    }
-
-    public void setPreRequiredLectures(Set<Lecture> preRequiredLectures) {
-        this.preRequiredLectures = preRequiredLectures;
-    }
-
-    public int getPracticalUnitCount() {
-        return practicalUnitCount;
-    }
-
-    public void setPracticalUnitCount(int practicalUnitCount) {
-        this.practicalUnitCount = practicalUnitCount;
-    }
-
-    public int getTheoreticalUnitCount() {
-        return theoreticalUnitCount;
-    }
-
-    public void setTheoreticalUnitCount(int theoreticalUnitCount) {
-        this.theoreticalUnitCount = theoreticalUnitCount;
-    }
 }

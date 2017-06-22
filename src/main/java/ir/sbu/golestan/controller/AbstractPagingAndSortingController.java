@@ -3,17 +3,15 @@ package ir.sbu.golestan.controller;
 import ir.sbu.golestan.service.AbstractPagingAndSortingEntityService;
 import ir.sbu.golestan.util.PageHelper;
 import ir.sbu.golestan.util.PageParams;
+import ir.sbu.golestan.util.SecurityHelper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,17 +28,19 @@ public abstract class AbstractPagingAndSortingController<E, D> {
     PageHelper ph;
     @Autowired
     ModelMapper modelMapper;
+    @Autowired
+    SecurityHelper securityHelper;
 
     Class<D> dClass;
     Class<E> eClass;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResponseEntity<List<D>> getList(@RequestParam("start") Optional<String> start,
+    public ResponseEntity getList(@RequestParam("start") Optional<String> start,
                                      @RequestParam("size") Optional<String> size,
                                      @RequestParam("sortBy") Optional<String> sortBy,
                                      @RequestParam("sortDir") Optional<String> sortDir){
-        if(!hasReadPermission()){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        if(!securityHelper.hasReadPermission(eClass.getSimpleName())){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("");
         }
         PageParams pageParams = ph.parse(start, size, sortBy, sortDir);
         List<E> list = s.getList(pageParams);
@@ -50,15 +50,15 @@ public abstract class AbstractPagingAndSortingController<E, D> {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<D> getLecture(@PathVariable("id") Long id){
-        if(!hasReadPermission()){
+        if(!securityHelper.hasReadPermission(eClass.getSimpleName())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
         return ResponseEntity.status(HttpStatus.OK).body(convertToDto(s.get(id)));
     }
 
-    @RequestMapping(value = "delete/{id}")
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
     public ResponseEntity delete(@PathVariable("id") Long id){
-        if(!hasDeletePermission()){
+        if(!securityHelper.hasDeletePermission(eClass.getSimpleName())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
         try {
@@ -72,7 +72,7 @@ public abstract class AbstractPagingAndSortingController<E, D> {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
     public ResponseEntity<String> addLecture(@RequestBody D dto){
-        if(!hasCreatePermission()){
+        if(!securityHelper.hasCreatePermission(eClass.getSimpleName())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
         if(s.add(convertToEntity(dto))) {
@@ -84,7 +84,7 @@ public abstract class AbstractPagingAndSortingController<E, D> {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseEntity<String> update(@RequestBody D dto){
-        if(!hasUpdatePermission()){
+        if(!securityHelper.hasUpdatePermission(eClass.getSimpleName())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
         if(s.update(convertToEntity(dto))) {
@@ -102,33 +102,4 @@ public abstract class AbstractPagingAndSortingController<E, D> {
         return modelMapper.map(d, eClass);
     }
 
-
-    protected boolean hasReadPermission(){
-        return hasPermission("READ_" + eClass.getSimpleName().toUpperCase());
-    }
-
-    protected boolean hasUpdatePermission(){
-        return hasPermission("UPDATE_" + eClass.getSimpleName().toUpperCase());
-    }
-
-    protected boolean hasDeletePermission(){
-        return hasPermission("DELETE_" + eClass.getSimpleName().toUpperCase());
-    }
-
-    protected boolean hasCreatePermission(){
-        return hasPermission("CREATE_" + eClass.getSimpleName().toUpperCase());
-    }
-
-    protected boolean hasPermission(String permission) {
-        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)
-                SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        boolean hasPermission = false;
-        for (GrantedAuthority authority : authorities) {
-            hasPermission = authority.getAuthority().equals(permission);
-            if (hasPermission) {
-                break;
-            }
-        }
-        return hasPermission;
-    }
 }

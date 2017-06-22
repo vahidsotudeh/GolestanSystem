@@ -22,7 +22,7 @@ public class Term {
     private int semester;
 
     @OneToMany
-    private Collection<Course> courses;
+    private Collection<Lecture> cours;
 
     public void setSemester(int semester){
         if(semester == 1 || semester == 2){

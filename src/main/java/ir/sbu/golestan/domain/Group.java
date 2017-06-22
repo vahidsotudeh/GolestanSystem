@@ -19,7 +19,7 @@ public class Group {
     private String name;
 
     @ManyToMany(mappedBy = "groups")
-    private Set<Lecture> lectures;
+    private Set<Course> courses;
 
     public long getId() {
         return id;
@@ -37,12 +37,12 @@ public class Group {
         this.name = name;
     }
 
-    public Set<Lecture> getLectures() {
-        return lectures;
+    public Set<Course> getCourses() {
+        return courses;
     }
 
-    public void setLectures(Set<Lecture> lectures) {
-        this.lectures = lectures;
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 
 }

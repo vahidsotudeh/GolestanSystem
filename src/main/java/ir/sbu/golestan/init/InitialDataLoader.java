@@ -21,16 +21,16 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
-    private final LectureRepository lectureRepository;
+    private final CourseRepository courseRepository;
     private final GroupRepository groupRepository;
 
 
     @Autowired
-    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, LectureRepository lectureRepository, GroupRepository groupRepository) {
+    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, CourseRepository courseRepository, GroupRepository groupRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
-        this.lectureRepository = lectureRepository;
+        this.courseRepository = courseRepository;
         this.groupRepository = groupRepository;
     }
 
@@ -173,23 +173,23 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         groupRepository.save(g2);
 
         for(int i = 0; i < 50; i++){
-            Lecture lecture1 = new Lecture();
-            lecture1.setName("درس " + i);
-            lecture1.setPracticalUnitCount(2);
-            lecture1.setTheoreticalUnitCount(1);
-            lecture1.setCode("41-22-132-11" + i);
-            lecture1.setGroups(Sets.newHashSet(g1));
-            lectureRepository.save(lecture1);
+            Course lecture11 = new Course();
+            lecture11.setName("درس " + i);
+            lecture11.setPracticalUnitCount(2);
+            lecture11.setTheoreticalUnitCount(1);
+            lecture11.setCode("41-22-132-11" + i);
+            lecture11.setGroups(Sets.newHashSet(g1));
+            courseRepository.save(lecture11);
 
 
-            Lecture lecture2 = new Lecture();
-            lecture2.setName("درس وابسته" + i);
-            lecture2.setPracticalUnitCount(3);
-            lecture2.setGroups(Sets.newHashSet(g1));
-            lecture2.setCode("41-44-551-11" + i);
-            lecture2.setPreRequiredLectures(Sets.newHashSet(lecture1));
+            Course lecture12 = new Course();
+            lecture12.setName("درس وابسته" + i);
+            lecture12.setPracticalUnitCount(3);
+            lecture12.setGroups(Sets.newHashSet(g1));
+            lecture12.setCode("41-44-551-11" + i);
+            lecture12.setPreRequiredCourses(Sets.newHashSet(lecture11));
 
-            lectureRepository.save(lecture2);
+            courseRepository.save(lecture12);
         }
         alreadySetup = true;
     }

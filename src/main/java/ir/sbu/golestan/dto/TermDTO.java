@@ -21,6 +21,6 @@ public class TermDTO {
     private int semester;
 
     @JsonProperty
-    private Collection<CourseLightDTO> courses;
+    private Collection<LectureLightDTO> courses;
 
 }

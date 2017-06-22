@@ -26,7 +26,7 @@ public class CourseDTO {
     private Term term;
 
     @JsonProperty
-    private LectureLightDTO lecture;
+    private CourseLightDTO lecture;
 
     @JsonProperty
     private int roomNumber;

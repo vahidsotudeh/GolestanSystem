@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Ali Asghar on 28/05/2017.
  */
 @Data
-public class LectureFullDTO implements Serializable{
+public class CourseFullDTO implements Serializable{
     @JsonProperty
     private Long id;
 
@@ -24,7 +24,7 @@ public class LectureFullDTO implements Serializable{
     @JsonProperty
     private Set<GroupLightDTO> groups = new HashSet<>();
     @JsonProperty
-    private Set<LectureLightDTO> preRequiredLectures = new HashSet<>();
+    private Set<CourseLightDTO> preRequiredLectures = new HashSet<>();
     @JsonProperty
     private int practicalUnitCount;
     @JsonProperty

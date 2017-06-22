@@ -13,7 +13,7 @@ public class StudentCourseDTO {
     private StudentLightDTO student;
 
     @JsonProperty
-    private CourseLightDTO course;
+    private LectureLightDTO course;
 
     @JsonProperty
     private float grade;

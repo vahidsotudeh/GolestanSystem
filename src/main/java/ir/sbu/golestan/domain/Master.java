@@ -16,5 +16,5 @@ import java.util.Set;
 public class Master extends User{
 
     @OneToMany
-    private Set<Course> courses;
+    private Set<Lecture> cours;
 }

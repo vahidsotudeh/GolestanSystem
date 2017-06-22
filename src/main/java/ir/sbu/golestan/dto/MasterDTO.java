@@ -23,5 +23,5 @@ public class MasterDTO {
     @JsonProperty
     private String lastName;
 
-    private Set<CourseLightDTO> courses;
+    private Set<LectureLightDTO> courses;
 }

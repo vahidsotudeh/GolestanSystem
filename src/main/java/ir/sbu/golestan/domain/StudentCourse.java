@@ -19,7 +19,7 @@ public class StudentCourse implements Serializable {
         private Student student;
 
         @ManyToOne
-        private Course course;
+        private Lecture lecture;
 
         Student getStudent() {
             return student;
@@ -29,12 +29,12 @@ public class StudentCourse implements Serializable {
             this.student = student;
         }
 
-        Course getCourse() {
-            return course;
+        Lecture getLecture() {
+            return lecture;
         }
 
-        void setCourse(Course course) {
-            this.course = course;
+        void setLecture(Lecture lecture) {
+            this.lecture = lecture;
         }
 
         @Override
@@ -45,20 +45,20 @@ public class StudentCourse implements Serializable {
             StudentCourseId sci = (StudentCourseId) o;
 
             return (student != null ? student.equals(sci.student) : sci.student == null)
-                    && (course != null ? course.equals(sci.course) : sci.course == null);
+                    && (lecture != null ? lecture.equals(sci.lecture) : sci.lecture == null);
         }
 
         @Override
         public int hashCode() {
             int result;
             result = (student != null ? student.hashCode() : 0);
-            result = 31 * result + (course != null ? course.hashCode() : 0);
+            result = 31 * result + (lecture != null ? lecture.hashCode() : 0);
             return result;
         }
     }
 
     @Id private Student student;
-    @Id private Course course;
+    @Id private Lecture lecture;
 
     private float grade;
 

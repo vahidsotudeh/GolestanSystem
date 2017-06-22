@@ -1,5 +1,6 @@
 package ir.sbu.golestan.controller;
 
+import ir.sbu.golestan.domain.Role;
 import ir.sbu.golestan.domain.User;
 import ir.sbu.golestan.dto.AuthoritiesDTO;
 import ir.sbu.golestan.dto.UserDto;
@@ -29,7 +30,7 @@ public class UserController extends AbstractPagingAndSortingController<User, Use
 
     @RequestMapping("authorities")
     public ResponseEntity getRoles() {
-        if(!hasReadPermission())
+        if(!securityHelper.hasReadPermission(Role.class.getSimpleName()))
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         Collection authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         if (authorities == null || authorities.size() == 0)

@@ -340,7 +340,7 @@ var CoursesComponent = (function () {
         this.isEditing = false;
         this.isDeleting = true;
         this.selectedCourseId = id - 1;
-        this.selectedCourseIndex = index - 1;
+        this.selectedCourseIndex = index;
         this.confirmMessage = "آیا از حذف درس مطمئن هستید؟";
         this.modal.open();
     };
@@ -361,6 +361,7 @@ var CoursesComponent = (function () {
             this.isEditing = false;
             this.gaCoursesService.deleteCourse(this.selectedCourseId);
             this.courseForm.reset();
+            // this.opera
             //send delete to server
         }
         else if (this.isEditing) {

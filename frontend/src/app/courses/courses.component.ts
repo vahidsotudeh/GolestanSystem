@@ -114,7 +114,7 @@ export class CoursesComponent implements OnInit {
     this.isEditing=false;
     this.isDeleting=true;
     this.selectedCourseId=id-1;
-    this.selectedCourseIndex=index-1;
+    this.selectedCourseIndex=index;
     this.confirmMessage="آیا از حذف درس مطمئن هستید؟";
     this.modal.open();
   }
@@ -136,6 +136,7 @@ export class CoursesComponent implements OnInit {
         this.isEditing=false;  
         this.gaCoursesService.deleteCourse(this.selectedCourseId);
         this.courseForm.reset();      
+        // this.opera
         //send delete to server
       }else if(this.isEditing){
         //show course fields in form to edit

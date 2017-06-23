@@ -34,6 +34,11 @@ export class AppComponent {
     this.flagTest=false;
 
   }
+  public termsManagement(){
+    this.router.navigate(['/terms']);
+    this.flagTest=false;
+
+  }
   title = 'app';
 
 }

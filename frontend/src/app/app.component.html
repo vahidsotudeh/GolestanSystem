@@ -38,9 +38,9 @@
             </a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">کاربر ادمین <b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">مدیر گروه <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-fw fa-user"></i> ویرایش پروفایل</a></li>
+                    <li><a routerLink='/editProfile' (click)="editProfile()" href="#"><i class="fa fa-fw fa-user"></i> ویرایش پروفایل</a></li>
                     <li class="divider"></li>
                     <li><a th:href="@{/logout}"><i class="fa fa-fw fa-power-off"></i> خروج</a></li>
                 </ul>
@@ -59,17 +59,17 @@
                     <a href="#" data-toggle="collapse" data-target="#course-gp" class="collapsed" aria-expanded="false" ><i class="fa fa-fw fa-angle-down pull-right "></i> <i class="fa fa-user-plus" ></i> دروس</a>
                     <ul id="course-gp" class="collapse" aria-expanded="false" style="height: 1px;">
                         <li><a routerLink='/courses' (click)="courseManagement()"> مدیریت دروس <i class="fa fa-angle-double-left"></i></a></li>
-                        <li><a href="#"> گروه های درسی <i class="fa fa-angle-double-left"></i></a></li>
+                        <li><a routerLink='/groups' (click)="groupManagement()"> گروه های درسی <i class="fa fa-angle-double-left"></i></a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="sugerencias"><i class="fa fa-fw fa-paper-plane-o"></i>ترم ها</a>
+                    <a routerLink='/terms'(click)="termsManagement()"><i class="fa fa-fw fa-paper-plane-o"></i>ترم ها</a>
                 </li>
                 <li class="active">
-                    <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i> اساتید</a>
+                    <a href="faq"><i class="fa fa-fw fa-question-circle"></i> اساتید</a>
                 </li>
                 <li >
-                    <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i> دانشجویان</a>
+                    <a href="faq"><i class="fa fa-fw fa-question-circle"></i> دانشجویان</a>
                 </li>
             </ul>
         </div>

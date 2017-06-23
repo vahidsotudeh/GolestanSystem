@@ -10,20 +10,20 @@ export class GaCoursesService {
 
   }
   public  getCourseList():Promise<Array<GaCourse>>{
-    return this.restangular.one('lectures/list').getList().toPromise();
+    return this.restangular.one('courses/list').getList().toPromise();
   }
   public getGroupsList():Promise<Array<GaGroup>>{
     return this.restangular.one('groups/list').getList().toPromise();
   }
   public updateCourse(course:GaCourse):boolean{
     // console.log(this.restangular.one("lectures/update").post(course));
-    this.restangular.all("lectures/update").post(course);
+    this.restangular.all("courses/update").post(course);
     
     // this.restangular.post("lectures/update",course);
     return true;
   }
   public deleteCourse(id:number):boolean{
-    this.restangular.one("lectures/delete",id).get();
+    this.restangular.one("courses/delete",id).get();
     return true;
   }
 } 

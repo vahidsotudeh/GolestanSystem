@@ -10,15 +10,14 @@ import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { GroupsComponent } from './courses/groups.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { TermsComponent } from './terms/terms.component';
 
 export function RestangularConfigFactory (RestangularProvider) {
   RestangularProvider.setBaseUrl('http://localhost:8080/api');
   //RestangularProvider.setFullResponse(true);
   RestangularProvider.addResponseInterceptor((data, operation, what, url, response)=> {
-       console.log(data.length);
-       console.log(url);
-       console.log(what);
-
        return data;
     });
 }
@@ -27,7 +26,10 @@ export function RestangularConfigFactory (RestangularProvider) {
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent
+    CoursesComponent,
+    GroupsComponent,
+    EditProfileComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,

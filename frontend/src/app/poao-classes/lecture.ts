@@ -4,7 +4,6 @@ import {Master} from './master';
 
 export class Lecture{
     id:number;
-    name:string;
     term:Term;
     course:GaCourse;
     code:string;

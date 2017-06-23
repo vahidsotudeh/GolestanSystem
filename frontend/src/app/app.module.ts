@@ -11,9 +11,8 @@ import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { GroupsComponent } from './courses/groups.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { TermsComponent } from './terms/terms.component';
-
+import { ProfileComponent } from './profile/profile.component';
 export function RestangularConfigFactory (RestangularProvider) {
   RestangularProvider.setBaseUrl('http://localhost:8080/api');
   //RestangularProvider.setFullResponse(true);
@@ -28,8 +27,8 @@ export function RestangularConfigFactory (RestangularProvider) {
     AppComponent,
     CoursesComponent,
     GroupsComponent,
-    EditProfileComponent,
-    TermsComponent
+    TermsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

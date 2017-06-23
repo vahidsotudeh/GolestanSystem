@@ -6,38 +6,32 @@
             </div>
             <div class="row" id="main" >
                 <div id="no-more-tables" >
-                                      <table class="col-md-5 col-sm-11 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <table class="col-md-5 col-sm-11 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                         <thead class="cf">
                         <tr>
                             <th>ردیف</th>
-                            <th>نام درس</th>
-                            <th >شماره درس</th>
-                            <th >تعداد واحد عملی</th>
-                            <th >تعداد واحد تئوری</th>
-                            <th >گروه</th>
-                            <th >پیش نیاز ها</th>
-                            <th >ویرایش</th>
+                            <th>شماره ترم</th>
+                            <th >سال تحصیلی</th>
+                            <th >تاریخ ایجاد</th>
+                            <th >تاریخ آخرین ویرایش</th>
+                            <th >ویرایش کلاس ها</th>
+                            <th > ویرایش</th>
                         </tr>
                         </thead>
                         <tbody id="definedCourses">
-                            <tr *ngFor="let course of coursesArr; let i=index">
-                                <td data-title="test">{{i+1}}</td>
-                                <td data-title="test">{{course.name}}</td>
-                                <td data-title="test">{{course.code}}</td>
-                                <td data-title="test">{{course.practicalUnitCount}}</td>
-                                <td data-title="test">{{course.theoreticalUnitCount}}</td>
-                                <td data-title="test">
-                                    <span *ngFor="let coursegp of course.groups ">
-                                        {{coursegp.name}} 
+                            <tr *ngFor="let term of terms; let i=index">
+                                <td data-title="ردیف">{{i+1}}</td>
+                                <td data-title="شماره ترم">{{term.code}}</td>
+                                <td data-title="سال تحصیلی">{{term.year}}</td>
+                                <td data-title="تاریخ ایجاد">{{course.practicalUnitCount}}</td>
+                                <td data-title="تاریخ آخرین ویرایش">{{course.theoreticalUnitCount}}</td>
+                                <td data-title="ویرایش ">
+                                    <span (click)="removeCourse(i,course.id)" class="glyphicon glyphicon-remove" style="margin-left: 5px;"  aria-hidden="true">
+                                    </span>
+                                    <span (click)="editCourseSelect(i,course.id)" class="glyphicon glyphicon-edit" aria-hidden="true">
                                     </span>
                                 </td>
-                                <td data-title="test">
-                                    <span *ngFor="let predef of course.preRequiredCourses ">
-                                        {{predef.name}} 
-                                    </span>
-                                </td>
-
-                                <td data-title="test">
+                                <td data-title="ویرایش کلاس ها">
                                     <span (click)="removeCourse(i,course.id)" class="glyphicon glyphicon-remove" style="margin-left: 5px;"  aria-hidden="true">
                                     </span>
                                     <span (click)="editCourseSelect(i,course.id)" class="glyphicon glyphicon-edit" aria-hidden="true">

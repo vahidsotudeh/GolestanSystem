@@ -63,6 +63,7 @@ export class CoursesComponent implements OnInit {
   confirmMessage:String;
   public coursesArr:GaCourse[];
   public groupsArr:GaGroup[];
+  gaCoursesServices:GaCoursesService;
   ngOnInit() {
     // this.courseGroups = [
     //     { id: 1, name: 'مهندسی نرم افزار' },
@@ -75,28 +76,9 @@ export class CoursesComponent implements OnInit {
   }
   public constructor(private titleService: Title,private route: ActivatedRoute, public gaCoursesService:GaCoursesService ) {
     this.setTitle("Courses");
-    
-    gaCoursesService.getCourseList().then(
-      (data) => {
-      this.coursesArr=data;
-      var tempArrData:IMultiSelectOption[]=new Array;
-      for(var i=0;i<data.length;i++){
-        tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
-      }
-      this.coursePreRequired=tempArrData;
-      console.log(data );
-      gaCoursesService.getGroupsList().then((data)=>{ 
-        this.groupsArr=data;
-        var tempArrData:IMultiSelectOption[]=new Array;
-        for(var i=0;i<data.length;i++){
-          tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
-        }
-        this.courseGroups=tempArrData;
-          
-      });
-      }
-    );
+    this.retrieveData();    
     console.log(this.coursesArr);
+    this.gaCoursesServices=gaCoursesService;
   }
     public setTitle( newTitle: string) {
     this.titleService.setTitle( newTitle );
@@ -154,8 +136,8 @@ export class CoursesComponent implements OnInit {
         console.log(this.selectedCourseIndex + " index");
         
         
-        for(var i=0;i<this.coursesArr[this.selectedCourseIndex].preRequiredLectures.length;i++){
-          var grId:Number=this.coursesArr[this.selectedCourseIndex].preRequiredLectures[i].id;
+        for(var i=0;i<this.coursesArr[this.selectedCourseIndex].preRequiredCourses.length;i++){
+          var grId:Number=this.coursesArr[this.selectedCourseIndex].preRequiredCourses[i].id;
           tempArrindexPreReqs[i]=grId.valueOf();
           console.log(tempArrindexPreReqs);
           
@@ -174,34 +156,72 @@ export class CoursesComponent implements OnInit {
   }
   public modifyForm(formFields : NgForm){
     console.log("hellp");
-    
-    var groups:GaCourseGroups[]=new Array;
-    for(var i=0;i<this.courseGroupsModel.length;i++){
-        groups[i]={id:this.courseGroupsModel[i],name:this.groupsArr.find(x => x.id === this.courseGroupsModel[i]).name.toString()};
+      var groups:GaCourseGroups[]=new Array;
+      for(var i=0;i<this.courseGroupsModel.length;i++){
+          groups[i]={id:this.courseGroupsModel[i],name:this.groupsArr.find(x => x.id === this.courseGroupsModel[i]).name.toString()};
+      }
+      var preDefs:GaCourseGroups[]=new Array;
+      for(var i=0;i<this.coursePreRequiredModel.length;i++){
+          preDefs[i]={id:this.coursePreRequiredModel[i],name:this.coursesArr.find(x => x.id === this.coursePreRequiredModel[i]).name.toString()};
+      }
+      console.log(formFields.value);
+      
+      var course=new GaCourse(
+        this.selectedCourseId,
+        formFields.value.lecName,
+        formFields.value.lecCode,
+        groups,
+        preDefs,
+        formFields.value.lecPracUnit,
+        formFields.value.lecTheorUnit
+      );
+      console.log(course);
+    if(this.isEditing){
+      
+      this.gaCoursesService.updateCourse(course);
+      this.courseForm.reset();
+      this.isEditing=false;
+      this.isDeleting=false;
+      this.operationSuccessFull=true;
+      this.alertMessage="درس مورد نظر شما بروزرسانی شد.";
+      this.retrieveData();
+
+    }else{
+      course.id=null;
+      this.gaCoursesService.addCourse(course);
+      this.courseForm.reset();
+      this.isEditing=false;
+      this.isDeleting=false;
+      this.operationSuccessFull=true;
+      this.alertMessage="درس اضافه شد.";
+      this.retrieveData();
     }
-    var preDefs:GaCourseGroups[]=new Array;
-    for(var i=0;i<this.coursePreRequiredModel.length;i++){
-        preDefs[i]={id:this.coursePreRequiredModel[i],name:this.coursesArr.find(x => x.id === this.coursePreRequiredModel[i]).name.toString()};
-    }
-    console.log(formFields.value);
-    
-    var course=new GaCourse(
-      this.selectedCourseId,
-      formFields.value.lecName,
-      formFields.value.lecCode,
-      groups,
-      preDefs,
-      formFields.value.lecPracUnit,
-      formFields.value.lecTheorUnit
-    );
-    console.log(course);
-    
-    this.gaCoursesService.updateCourse(course);
-    this.courseForm.reset();
-    this.isEditing=false;
-    this.isDeleting=false;
   }
   public onChangecourseGroups(event){
     console.log(this.coursePreRequiredModel);
   }
+  public retrieveData(){
+    this.gaCoursesService.getCourseList().then(
+      (data) => {
+      this.coursesArr=data;
+      var tempArrData:IMultiSelectOption[]=new Array;
+      for(var i=0;i<data.length;i++){
+        tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
+      }
+      this.coursePreRequired=tempArrData;
+      console.log(data );
+      this.gaCoursesService.getGroupsList().then((data)=>{ 
+        this.groupsArr=data;
+        var tempArrData:IMultiSelectOption[]=new Array;
+        for(var i=0;i<data.length;i++){
+          tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
+        }
+        this.courseGroups=tempArrData;
+          
+      });
+      }
+    );
+
+  }
 }
+

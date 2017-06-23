@@ -200,6 +200,14 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 courseRepository.save(lecture12);
             }
         }
+        if(!termRepository.findAll().iterator().hasNext()){
+            for (int i = 0; i < 50; i++) {
+                Term term = new Term();
+                term.setYear(1380 + i);
+                term.setSemester(i%2 == 0? 1:2);
+                termRepository.save(term);
+            }
+        }
 
         if(!masterRepository.findAll().iterator().hasNext()){
             for (int i = 0; i < 50; i++) {
@@ -225,21 +233,12 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 lecture.setCourse(courseRepository.findOne((long) i + 1));
                 lecture.setMaster(masterRepository.findOne((long) (i + 1)));
                 lecture.setRoomNumber(100 + i);
+                lecture.setTerm(termRepository.findOne((long) i));
                 lectureRepository.save(lecture);
             }
         }
 
-        if(!termRepository.findAll().iterator().hasNext()){
-            for (int i = 0; i < 50; i++) {
-                Term term = new Term();
-                term.setYear(1380 + i);
-                term.setSemester(i%2 == 0? 1:2);
-                Lecture l = lectureRepository.findOne((long) (i + 1));
-                if(l != null)
-                term.setLectures(Sets.newHashSet(l));
-                termRepository.save(term);
-            }
-        }
+
 
         alreadySetup = true;
     }

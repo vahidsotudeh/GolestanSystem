@@ -23,18 +23,18 @@ public class Lecture {
     Set<StudentLecture> studentLectures = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "term_id", referencedColumnName = "id")
+    @JoinColumn(name = "term_id")
     private Term term;
 
     @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    @JoinColumn(name = "course_id")
     private Course course;
 
     @Column(nullable = false)
     private int roomNumber;
 
     @ManyToOne
-    @JoinColumn(name = "master_id", referencedColumnName = "id")
+    @JoinColumn(name = "master_id")
     private Master master;
 
     public long getId() {

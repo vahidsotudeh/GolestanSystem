@@ -48,9 +48,9 @@ public class SecurityHelper {
     }
 
     public User getCurrentUser(){
-        String username = ((org.springframework.security.core.userdetails.User)
+        String email = ((org.springframework.security.core.userdetails.User)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        return  userService.getByUserName(username);
+        return  userService.getByEmail(email);
     }
 
     public String getCurrentUserUserName(){

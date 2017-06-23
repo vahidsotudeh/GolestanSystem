@@ -21,13 +21,14 @@ public class Term {
 
     private int semester;
 
-    @OneToMany
+    @OneToMany(mappedBy = "term")
     private Set<Lecture> lectures;
 
     public void setSemester(int semester){
         if(semester == 1 || semester == 2){
             this.semester = semester;
+        }else {
+            throw new InvalidParameterException("semester number is 1 or 2");
         }
-        throw new InvalidParameterException("semester number is 1 or 2");
     }
 }

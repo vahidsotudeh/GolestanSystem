@@ -49,4 +49,12 @@ public class UserController extends AbstractPagingAndSortingController<User, Use
         }
         return ResponseEntity.ok(authoritiesDTO);
     }
+
+    @GetMapping("currentUser")
+    public ResponseEntity getCurrentUser(){
+        if(!securityHelper.hasReadPermission(Role.class.getSimpleName()))
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        User user = securityHelper.getCurrentUser();
+        return ResponseEntity.ok(modelMapper.map(user, dClass));
+    }
 }

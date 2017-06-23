@@ -48,4 +48,5 @@ public abstract class AbstractPagingAndSortingEntityService<E> {
     public E get(Long id){
         return (E) r.findOne(id);
     }
+
 }

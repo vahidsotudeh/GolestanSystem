@@ -1,6 +1,6 @@
 package ir.sbu.golestan.controller;
 
-import ir.sbu.golestan.domain.StudentCourse;
+import ir.sbu.golestan.domain.StudentLecture;
 import ir.sbu.golestan.dto.StudentCourseDTO;
 import ir.sbu.golestan.service.StudentCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class StudentCourseController extends AbstractPagingAndSortingController 
     @Autowired
     public StudentCourseController(StudentCourseService service){
         super.s = service;
-        super.eClass = StudentCourse.class;
+        super.eClass = StudentLecture.class;
         super.dClass = StudentCourseDTO.class;
     }
 }

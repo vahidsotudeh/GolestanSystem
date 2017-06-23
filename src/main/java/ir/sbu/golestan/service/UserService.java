@@ -15,9 +15,21 @@ import org.springframework.stereotype.Component;
 public class UserService extends AbstractPagingAndSortingEntityService<User> {
 
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository) {
         super.r = userRepository;
     }
 
+    public User getByUserName(String username) {
+        return ((UserRepository) r).findByUserName(username);
+    }
 
+    public int getPrevTermAvg(String currentUserUserName) {
+
+        return 0;
+    }
+
+    public int getAverage(String userName, int year, int semester){
+
+        return 0;
+    }
 }

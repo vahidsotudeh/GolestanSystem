@@ -52,7 +52,7 @@
 //        addAllPermissions(Permission.class.getSimpleName());
 //        addAllPermissions(Role.class.getSimpleName());
 //        addAllPermissions(Student.class.getSimpleName());
-//        addAllPermissions(StudentCourse.class.getSimpleName());
+//        addAllPermissions(StudentLecture.class.getSimpleName());
 //        addAllPermissions(Term.class.getSimpleName());
 //    }
 //

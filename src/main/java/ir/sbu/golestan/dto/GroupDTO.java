@@ -18,5 +18,5 @@ public class GroupDTO {
     private String name;
 
     @JsonProperty
-    private Set<CourseLightDTO> lectures;
+    private Set<CourseLightDTO> courses;
 }

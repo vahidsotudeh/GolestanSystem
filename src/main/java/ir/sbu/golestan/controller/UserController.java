@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class UserController extends AbstractPagingAndSortingController<User, Use
         super.dClass = UserDto.class;
     }
 
-    @RequestMapping("authorities")
+    @GetMapping("authorities")
     public ResponseEntity getRoles() {
         if(!securityHelper.hasReadPermission(Role.class.getSimpleName()))
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -46,7 +47,6 @@ public class UserController extends AbstractPagingAndSortingController<User, Use
                 authoritiesDTO.addPermissions(authority);
             }
         }
-        System.out.println("hello");
         return ResponseEntity.ok(authoritiesDTO);
     }
 }

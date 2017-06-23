@@ -10,11 +10,11 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Table(name = "student_course")
-@IdClass(StudentCourse.StudentCourseId.class)
-public class StudentCourse implements Serializable {
+@Table(name = "student_lecture")
+@IdClass(StudentLecture.StudentLectureId.class)
+public class StudentLecture implements Serializable {
 
-    class StudentCourseId implements Serializable {
+    class StudentLectureId implements Serializable {
         @ManyToOne
         private Student student;
 
@@ -42,7 +42,7 @@ public class StudentCourse implements Serializable {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
 
-            StudentCourseId sci = (StudentCourseId) o;
+            StudentLectureId sci = (StudentLectureId) o;
 
             return (student != null ? student.equals(sci.student) : sci.student == null)
                     && (lecture != null ? lecture.equals(sci.lecture) : sci.lecture == null);

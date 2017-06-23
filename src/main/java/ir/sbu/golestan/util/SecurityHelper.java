@@ -1,5 +1,8 @@
 package ir.sbu.golestan.util;
 
+import ir.sbu.golestan.domain.User;
+import ir.sbu.golestan.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -11,6 +14,10 @@ import java.util.Collection;
  */
 @Component
 public class SecurityHelper {
+
+    @Autowired
+    UserService userService;
+
     public boolean hasReadPermission(String resource){
         return hasPermission("READ_" + resource.toUpperCase());
     }
@@ -38,5 +45,15 @@ public class SecurityHelper {
             }
         }
         return hasPermission;
+    }
+
+    public User getCurrentUser(){
+        String username = ((org.springframework.security.core.userdetails.User)
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        return  userService.getByUserName(username);
+    }
+
+    public String getCurrentUserUserName(){
+        return getCurrentUser().getUserName();
     }
 }

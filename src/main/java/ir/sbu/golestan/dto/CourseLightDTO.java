@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 @Data
 public class CourseLightDTO implements Serializable{
+
     @JsonProperty
     private Long id;
     @JsonProperty
@@ -18,7 +19,6 @@ public class CourseLightDTO implements Serializable{
     public CourseLightDTO(){
 
     }
-
 
     public CourseLightDTO(Long id, String name) {
         this.id = id;

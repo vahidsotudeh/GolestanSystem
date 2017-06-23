@@ -24,7 +24,7 @@ public class CourseFullDTO implements Serializable{
     @JsonProperty
     private Set<GroupLightDTO> groups = new HashSet<>();
     @JsonProperty
-    private Set<CourseLightDTO> preRequiredLectures = new HashSet<>();
+    private Set<CourseLightDTO> preRequiredCourses = new HashSet<>();
     @JsonProperty
     private int practicalUnitCount;
     @JsonProperty

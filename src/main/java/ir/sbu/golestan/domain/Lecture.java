@@ -19,7 +19,7 @@ public class Lecture {
     private long id;
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST, mappedBy = "lecture")
-    Set<StudentCourse> studentCourses = new HashSet<>();
+    Set<StudentLecture> studentCours = new HashSet<>();
 
     @Column(nullable = false)
     private String name;

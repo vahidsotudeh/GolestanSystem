@@ -1,7 +1,7 @@
 package ir.sbu.golestan.controller;
 
 import ir.sbu.golestan.domain.Master;
-import ir.sbu.golestan.dto.MasterDTO;
+import ir.sbu.golestan.dto.MasterFullDTO;
 import ir.sbu.golestan.service.MasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +18,6 @@ public class MasterController extends AbstractPagingAndSortingController {
     public MasterController(MasterService service){
         super.s = service;
         super.eClass = Master.class;
-        super.dClass = MasterDTO.class;
+        super.dClass = MasterFullDTO.class;
     }
 }

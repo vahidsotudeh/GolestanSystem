@@ -22,7 +22,7 @@ public class Lecture {
     Set<StudentLecture> studentCours = new HashSet<>();
 
     @Column(nullable = false)
-    private String name;
+    private String code;
 
     @ManyToOne
     @JoinColumn(name = "term_id", referencedColumnName = "id")

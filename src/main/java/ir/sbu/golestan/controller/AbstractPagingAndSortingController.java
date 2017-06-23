@@ -70,7 +70,7 @@ public abstract class AbstractPagingAndSortingController<E, D> {
     }
 
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> addLecture(@RequestBody D dto){
         if(!securityHelper.hasCreatePermission(eClass.getSimpleName())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);

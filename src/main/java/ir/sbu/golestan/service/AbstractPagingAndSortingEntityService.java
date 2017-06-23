@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Ali Asghar on 11/06/2017.
@@ -42,7 +44,15 @@ public abstract class AbstractPagingAndSortingEntityService<E> {
     }
 
     public boolean update(E e){
-        return add(e);
+        try {
+            Long id = (long)e.getClass().getMethod("getId").invoke(e);
+            if(r.exists(id)) {
+                return add(e);
+            }
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e1) {
+            e1.printStackTrace();
+        }
+        throw new NoSuchElementException("This entity doesn't exist");
     }
 
     public E get(Long id){

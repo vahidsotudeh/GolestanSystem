@@ -3,25 +3,20 @@ package ir.sbu.golestan.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.util.Set;
+import java.io.Serializable;
 
 /**
  * Created by Ali Asghar on 18/06/2017.
  */
 @Data
-public class MasterDTO {
+public class StudentLectureDTO implements Serializable {
 
     @JsonProperty
-    private Long id;
+    private StudentLightDTO student;
 
     @JsonProperty
-    private String userName;
+    private LectureLightDTO course;
 
     @JsonProperty
-    private String firstName;
-
-    @JsonProperty
-    private String lastName;
-
-    private Set<LectureLightDTO> courses;
+    private float grade;
 }

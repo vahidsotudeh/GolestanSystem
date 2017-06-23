@@ -4,25 +4,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by Ali Asghar on 18/06/2017.
  */
 @Data
-public class TermDTO implements Serializable {
+public class MasterFullDTO implements Serializable {
 
     @JsonProperty
     private Long id;
 
     @JsonProperty
-    private int year;
+    private String userName;
 
     @JsonProperty
-    private int semester;
+    private String firstName;
 
     @JsonProperty
-    private Set<LectureLightDTO> lectures = new HashSet<>();
+    private String lastName;
 
+    @JsonProperty
+    private String password;
+
+    @JsonProperty
+    private String enabled;
+
+    @JsonProperty
+    private Set<LectureLightDTO> lectures;
 }

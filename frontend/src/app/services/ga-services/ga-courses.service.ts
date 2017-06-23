@@ -22,6 +22,11 @@ export class GaCoursesService {
     // this.restangular.post("lectures/update",course);
     return true;
   }
+  public addCourse(course:GaCourse):boolean{
+    this.restangular.all("courses/add").post(course);
+    // this.restangular.post("lectures/update",course);
+    return true;
+  }
   public deleteCourse(id:number):boolean{
     this.restangular.one("courses/delete",id).get();
     return true;

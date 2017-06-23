@@ -3,7 +3,7 @@ export class GaCourse {
     name:string;
     code:string;
     groups:GaCourseGroups[];
-    preRequiredLectures:GaCourseGroups[];
+    preRequiredCourses:GaCourseGroups[];
     practicalUnitCount:number;
     theoreticalUnitCount:number;
     constructor(id,name,code,groups,predefs,practs,theors){
@@ -11,7 +11,7 @@ export class GaCourse {
         this.name=name;
         this.code=code;
         this.groups=groups;
-        this.preRequiredLectures=predefs;
+        this.preRequiredCourses=predefs;
         this.practicalUnitCount=practs;
         this.theoreticalUnitCount=theors;
     }

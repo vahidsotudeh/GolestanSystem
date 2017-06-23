@@ -1,7 +1,7 @@
 package ir.sbu.golestan.controller;
 
 import ir.sbu.golestan.domain.StudentLecture;
-import ir.sbu.golestan.dto.StudentCourseDTO;
+import ir.sbu.golestan.dto.StudentLectureDTO;
 import ir.sbu.golestan.service.StudentCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Ali Asghar on 18/06/2017.
  */
 @RestController
-@RequestMapping("api/studentCourse")
-public class StudentCourseController extends AbstractPagingAndSortingController {
+@RequestMapping("api/studentLecture")
+public class StudentLectureController extends AbstractPagingAndSortingController {
 
     @Autowired
-    public StudentCourseController(StudentCourseService service){
+    public StudentLectureController(StudentCourseService service){
         super.s = service;
         super.eClass = StudentLecture.class;
-        super.dClass = StudentCourseDTO.class;
+        super.dClass = StudentLectureDTO.class;
     }
 }

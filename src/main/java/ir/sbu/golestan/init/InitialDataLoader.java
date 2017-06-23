@@ -17,21 +17,26 @@ import java.util.Set;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    private boolean alreadySetup = true;
+    private boolean alreadySetup = false;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
     private final CourseRepository courseRepository;
     private final GroupRepository groupRepository;
-
+    private final TermRepository termRepository;
+    private final LectureRepository lectureRepository;
+    private final MasterRepository masterRepository;
 
     @Autowired
-    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, CourseRepository courseRepository, GroupRepository groupRepository) {
+    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, CourseRepository courseRepository, GroupRepository groupRepository, TermRepository termRepository, LectureRepository lectureRepository, MasterRepository masterRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
         this.courseRepository = courseRepository;
         this.groupRepository = groupRepository;
+        this.termRepository = termRepository;
+        this.lectureRepository = lectureRepository;
+        this.masterRepository = masterRepository;
     }
 
     @Override
@@ -164,33 +169,78 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             userRepository.save(groupManager);
         }
 
-        Group g1 = new Group();
-        g1.setName("نرم افزار");
-        groupRepository.save(g1);
-
-        Group g2 = new Group();
-        g2.setName("سخت افزار");
-        groupRepository.save(g2);
-
-        for(int i = 0; i < 50; i++){
-            Course lecture11 = new Course();
-            lecture11.setName("درس " + i);
-            lecture11.setPracticalUnitCount(2);
-            lecture11.setTheoreticalUnitCount(1);
-            lecture11.setCode("41-22-132-11" + i);
-            lecture11.setGroups(Sets.newHashSet(g1));
-            courseRepository.save(lecture11);
-
-
-            Course lecture12 = new Course();
-            lecture12.setName("درس وابسته" + i);
-            lecture12.setPracticalUnitCount(3);
-            lecture12.setGroups(Sets.newHashSet(g1));
-            lecture12.setCode("41-44-551-11" + i);
-            lecture12.setPreRequiredCourses(Sets.newHashSet(lecture11));
-
-            courseRepository.save(lecture12);
+        if(groupRepository.findByName("نرم افزار") == null) {
+            Group g1 = new Group();
+            g1.setName("نرم افزار");
+            groupRepository.save(g1);
         }
+
+        if(groupRepository.findByName("سخت افزار") == null) {
+            Group g2 = new Group();
+            g2.setName("سخت افزار");
+            groupRepository.save(g2);
+        }
+
+        if(!courseRepository.findAll().iterator().hasNext()) {
+            for (int i = 0; i < 50; i++) {
+                Course lecture11 = new Course();
+                lecture11.setName("درس " + i);
+                lecture11.setPracticalUnitCount(2);
+                lecture11.setTheoreticalUnitCount(1);
+                lecture11.setCode("41-22-132-11" + i);
+                lecture11.setGroups(Sets.newHashSet(groupRepository.findByName("نرم افزار")));
+                courseRepository.save(lecture11);
+
+                Course lecture12 = new Course();
+                lecture12.setName("درس وابسته" + i);
+                lecture12.setPracticalUnitCount(3);
+                lecture12.setGroups(Sets.newHashSet(groupRepository.findByName("نرم افزار")));
+                lecture12.setCode("41-44-551-11" + i);
+                lecture12.setPreRequiredCourses(Sets.newHashSet(lecture11));
+                courseRepository.save(lecture12);
+            }
+        }
+
+        if(!masterRepository.findAll().iterator().hasNext()){
+            for (int i = 0; i < 50; i++) {
+                Master master = new Master();
+                master.setId(i);
+                master.setFirstName("استاد" + i);
+                master.setLastName("استادی");
+                master.setUserName("ostad" + i);
+                master.setPassword("pass" + i);
+                master.setEnabled(true);
+                master.setEmail("ostad" + i + "@hello.com");
+                masterRepository.save(master);
+            }
+
+        }
+
+
+        if(!lectureRepository.findAll().iterator().hasNext()){
+            for (int i = 0; i < 50; i++) {
+                Lecture lecture = new Lecture();
+                lecture.setId(i);
+                lecture.setCode("12");
+                lecture.setCourse(courseRepository.findOne((long) i + 1));
+                lecture.setMaster(masterRepository.findOne((long) (i + 1)));
+                lecture.setRoomNumber(100 + i);
+                lectureRepository.save(lecture);
+            }
+        }
+
+        if(!termRepository.findAll().iterator().hasNext()){
+            for (int i = 0; i < 50; i++) {
+                Term term = new Term();
+                term.setYear(1380 + i);
+                term.setSemester(i%2 == 0? 1:2);
+                Lecture l = lectureRepository.findOne((long) (i + 1));
+                if(l != null)
+                term.setLectures(Sets.newHashSet(l));
+                termRepository.save(term);
+            }
+        }
+
         alreadySetup = true;
     }
 

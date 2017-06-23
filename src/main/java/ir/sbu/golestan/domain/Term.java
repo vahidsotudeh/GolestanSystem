@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.security.InvalidParameterException;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Ali Asghar on 22/05/2017.
@@ -21,13 +21,14 @@ public class Term {
 
     private int semester;
 
-    @OneToMany
-    private Collection<Lecture> cours;
+    @OneToMany(mappedBy = "term")
+    private Set<Lecture> lectures;
 
     public void setSemester(int semester){
         if(semester == 1 || semester == 2){
             this.semester = semester;
+        }else {
+            throw new InvalidParameterException("semester number is 1 or 2");
         }
-        throw new InvalidParameterException("semester number is 1 or 2");
     }
 }

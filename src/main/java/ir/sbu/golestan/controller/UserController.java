@@ -3,7 +3,7 @@ package ir.sbu.golestan.controller;
 import ir.sbu.golestan.domain.Role;
 import ir.sbu.golestan.domain.User;
 import ir.sbu.golestan.dto.AuthoritiesDTO;
-import ir.sbu.golestan.dto.UserDto;
+import ir.sbu.golestan.dto.UserFullDTO;
 import ir.sbu.golestan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +21,12 @@ import java.util.Collection;
  */
 @RestController
 @RequestMapping("api/users")
-public class UserController extends AbstractPagingAndSortingController<User, UserDto> {
+public class UserController extends AbstractPagingAndSortingController<User, UserFullDTO> {
     @Autowired
     public UserController(UserService userService) {
         super.s = userService;
         super.eClass = User.class;
-        super.dClass = UserDto.class;
+        super.dClass = UserFullDTO.class;
     }
 
     @GetMapping("authorities")
@@ -48,5 +48,13 @@ public class UserController extends AbstractPagingAndSortingController<User, Use
             }
         }
         return ResponseEntity.ok(authoritiesDTO);
+    }
+
+    @GetMapping("currentUser")
+    public ResponseEntity getCurrentUser(){
+        if(!securityHelper.hasReadPermission(Role.class.getSimpleName()))
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        User user = securityHelper.getCurrentUser();
+        return ResponseEntity.ok(modelMapper.map(user, dClass));
     }
 }

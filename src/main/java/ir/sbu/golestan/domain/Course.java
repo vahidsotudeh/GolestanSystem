@@ -27,7 +27,7 @@ public class Course {
     )
     private Set<Group> groups;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(
             joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id")
             ,inverseJoinColumns = @JoinColumn(name = "pre_required_course_id", referencedColumnName = "id")
@@ -93,4 +93,5 @@ public class Course {
     public void setTheoreticalUnitCount(int theoreticalUnitCount) {
         this.theoreticalUnitCount = theoreticalUnitCount;
     }
+
 }

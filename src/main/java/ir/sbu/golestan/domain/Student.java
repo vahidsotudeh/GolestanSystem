@@ -31,7 +31,7 @@ public class Student extends User{
     Group group;
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "student")
-    Set<StudentLecture> studentCours = new HashSet<>();
+    Set<StudentLecture> studentLectures = new HashSet<>();
 
 
     public void setLevel(String level){

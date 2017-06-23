@@ -2,13 +2,14 @@ package ir.sbu.golestan.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Ali Asghar on 18/06/2017.
  */
-public class AuthoritiesDTO{
+public class AuthoritiesDTO implements Serializable {
     @JsonProperty
     private List<String> roles = new ArrayList<>();
     @JsonProperty

@@ -9,26 +9,26 @@
                     <div class=" col-sm-9 col-md-offset-1 " id="rightBox" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
 
                         <div class="row">
-                            <form class="form-inline" #lectureModifyForm="ngForm" (ngSubmit)="modifyForm(lectureModifyForm)" >
+                            <form class="form-inline" #userModifyForm="ngForm" (ngSubmit)="modifyForm(userModifyForm)" >
                                 <div class="col-sm-5 form-group" >
                                         <label style="font-size: large;" for="name">نام:</label>
-                                        <input type="text" class="form-control" name="name" placeholder="نام" [(ngModel)]="name" required minlength="4" maxlength="24" ngModel>
+                                        <input type="text" value="{{currentUser.firstName}}" class="form-control" name="name" placeholder="نام" [(ngModel)]="name" required minlength="4" maxlength="24" ngModel>
                                 </div>
                                 <div class="col-sm-5 form-group" >
                                         <label style="font-size: large;" for="lastName">نام خانوادگی:</label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="نام خانوادگی"  [(ngModel)]="lastName" required minlength="8" maxlength="24">
+                                        <input type="text" value="{{currentUser.lastName}}" class="form-control" id="lastName" name="lastName" placeholder="نام خانوادگی"  [(ngModel)]="lastName" required minlength="8" maxlength="24">
                                 </div>
                                 <div class="col-sm-5 form-group" >
                                         <label style="font-size: large;" for="userName">نام کاربری:</label>
-                                        <input type="text" class="form-control" id="userName" name="userName" placeholder="نام کاربری"  [(ngModel)]="userName" required minlength="8" maxlength="24" disabled>
+                                        <input type="text" value="{{currentUser.userName}}" class="form-control" id="userName" name="userName" placeholder="نام کاربری"  [(ngModel)]="userName" required minlength="8" maxlength="24" disabled>
                                 </div>
                                 <div class="col-sm-5 form-group" >
                                         <label style="font-size: large;" for="password">رمز عبور :</label>
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="رمز عبور"  [(ngModel)]="password" required minlength="8" maxlength="24" >
+                                        <input type="password" value="{{currentUser.password}}" class="form-control" id="password" name="password" placeholder="رمز عبور"  [(ngModel)]="password" required minlength="8" maxlength="24" >
                                 </div>
                                 <div class=" col-sm-5 form-group" >
                                         <label style="font-size: large;" for="email">ایمیل:</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="نام کاربری"  [(ngModel)]="email" required minlength="8" maxlength="24" >
+                                        <input type="email" value="{{currentUser.email}}" class="form-control" id="email" name="email" placeholder="نام کاربری"  [(ngModel)]="email" required minlength="8" maxlength="24" >
                                 </div>
 
                                 <div class=" col-sm-5 form-group">
@@ -38,13 +38,6 @@
                                          </span>
                                     </button>                             
                                     <!--<input type="submit" value="افزودن">-->
-                                </div>
-                                <div class="form-group" >
-                                    <span [hidden]="!isEditing">
-                                        <a (click)="cancelEditing()" class="btn btn-success">
-                                                لغو ویرایش
-                                        </a>    
-                                    </span>       
                                 </div>
                             </form>
                     </div>

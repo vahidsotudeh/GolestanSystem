@@ -80,7 +80,7 @@ export class CoursesComponent implements OnInit {
     console.log(this.coursesArr);
     this.gaCoursesServices=gaCoursesService;
   }
-    public setTitle( newTitle: string) {
+  public setTitle( newTitle: string) {
     this.titleService.setTitle( newTitle );
   }
   public editCourseSelect(index :number,id:number){

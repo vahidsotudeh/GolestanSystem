@@ -23,6 +23,10 @@ public class UserService extends AbstractPagingAndSortingEntityService<User> {
         return ((UserRepository) r).findByUserName(username);
     }
 
+    public User getByEmail(String email){
+        return ((UserRepository) r).findByEmail(email);
+    }
+
     public int getPrevTermAvg(String currentUserUserName) {
 
         return 0;

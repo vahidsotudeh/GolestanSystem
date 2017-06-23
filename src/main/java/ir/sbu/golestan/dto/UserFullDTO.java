@@ -28,4 +28,7 @@ public class UserFullDTO implements Serializable {
 
     @JsonProperty
     private String enabled;
+
+    @JsonProperty
+    private String email;
 }

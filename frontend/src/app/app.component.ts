@@ -24,6 +24,16 @@ export class AppComponent {
     this.flagTest=false;
 
   }
+  public groupManagement(){
+    this.router.navigate(['/groups']);
+    this.flagTest=false;
+
+  }
+  public editProfile(){
+    this.router.navigate(['/editProfile']);
+    this.flagTest=false;
+
+  }
   title = 'app';
 
 }

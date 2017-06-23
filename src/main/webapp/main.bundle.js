@@ -64,7 +64,7 @@ module.exports = module.exports.toString();
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <!--<link rel=\"stylesheet\" href=\"../assets/css/bootstrap.min.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/bootstrap-rtl.min.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/master.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/courses.css\">-->\r\n<div id=\"wrapper\">\r\n    <!-- Navigation -->\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\r\n        <!-- Brand and toggle get grouped for better mobile display -->\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n\r\n            <a class=\"navbar-brand\" style=\"width: 140px\" href=\"http://cijulenlinea.ucr.ac.cr/dev-users/\">\r\n                <img src=\"../assets/img/golestan.png\"  style=\"width: 100%;\" alt=\"LOGO\">\r\n            </a>\r\n            <ul class=\"nav navbar-right top-nav visible-xs \" style=\"float: right;\">\r\n                <li><a href=\"#\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Stats\"><i class=\"fa fa-bar-chart-o\"></i>\r\n                </a>\r\n                </li>\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">کاربر ادمین <b class=\"fa fa-angle-down\"></b></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\"><i class=\"fa fa-fw fa-user\"></i> Edit Profile</a></li>\r\n                        <li class=\"divider\"></li>\r\n                        <li><a th:href=\"@{/logout}\"><i class=\"fa fa-fw fa-power-off\"></i> خروج</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n\r\n        </div>\r\n        <!-- Top Menu Items -->\r\n        <ul class=\"nav navbar-right top-nav hidden-xs\">\r\n            <li><a href=\"#\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Stats\"><i class=\"fa fa-bar-chart-o\"></i>\r\n            </a>\r\n            </li>\r\n            <li class=\"dropdown\">\r\n                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">کاربر ادمین <b class=\"fa fa-angle-down\"></b></a>\r\n                <ul class=\"dropdown-menu\">\r\n                    <li><a href=\"#\"><i class=\"fa fa-fw fa-user\"></i> ویرایش پروفایل</a></li>\r\n                    <li class=\"divider\"></li>\r\n                    <li><a th:href=\"@{/logout}\"><i class=\"fa fa-fw fa-power-off\"></i> خروج</a></li>\r\n                </ul>\r\n            </li>\r\n        </ul>\r\n        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->\r\n        <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\r\n            <ul class=\"nav navbar-nav side-nav\">\r\n                <li >\r\n                    <a href=\"#\" data-toggle=\"collapse\" class=\"collapsed\" aria-expanded=\"true\"><i class=\"fa fa-fw fa-search\"></i> ثبت نام <i class=\"fa fa-fw pull-right fa-angle-down\"></i></a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\" data-toggle=\"collapse\" data-target=\"#submenu-2\"><i class=\"fa fa-star\"></i>  کارنامه <i class=\"fa fa-fw fa-angle-down pull-right\"></i></a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\" data-toggle=\"collapse\" data-target=\"#course-gp\" class=\"collapsed\" aria-expanded=\"false\" ><i class=\"fa fa-fw fa-angle-down pull-right \"></i> <i class=\"fa fa-user-plus\" ></i> دروس</a>\r\n                    <ul id=\"course-gp\" class=\"collapse\" aria-expanded=\"false\" style=\"height: 1px;\">\r\n                        <li><a routerLink='/courses' (click)=\"courseManagement()\"> مدیریت دروس <i class=\"fa fa-angle-double-left\"></i></a></li>\r\n                        <li><a href=\"#\"> گروه های درسی <i class=\"fa fa-angle-double-left\"></i></a></li>\r\n                    </ul>\r\n                </li>\r\n                <li>\r\n                    <a href=\"sugerencias\"><i class=\"fa fa-fw fa-paper-plane-o\"></i>ترم ها</a>\r\n                </li>\r\n                <li class=\"active\">\r\n                    <a href=\"faq\"><i class=\"fa fa-fw fa fa-question-circle\"></i> اساتید</a>\r\n                </li>\r\n                <li >\r\n                    <a href=\"faq\"><i class=\"fa fa-fw fa fa-question-circle\"></i> دانشجویان</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- /.navbar-collapse -->\r\n    </nav>\r\n\r\n    <div id=\"page-wrapper\">\r\n        <div class=\"container-fluid\">\r\n            <!-- Page Heading -->\r\n            <div *ngIf=\"flagTest\" class=\"row\" style=\"margin-bottom: 25px\">\r\n                <div class=\"col-md-12 text-center \"><h1>خوش آمدید</h1></div>\r\n            </div>\r\n            <router-outlet></router-outlet>\r\n            <!-- /.row -->\r\n        </div>\r\n        <!-- /.container-fluid -->\r\n    </div>\r\n    <!-- /#page-wrapper -->\r\n</div>\r\n\r\n\r\n"
+module.exports = "  <!--<link rel=\"stylesheet\" href=\"../assets/css/bootstrap.min.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/bootstrap-rtl.min.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/master.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/courses.css\">-->\r\n<div id=\"wrapper\">\r\n    <!-- Navigation -->\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\r\n        <!-- Brand and toggle get grouped for better mobile display -->\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n\r\n            <a class=\"navbar-brand\" style=\"width: 140px\" href=\"http://cijulenlinea.ucr.ac.cr/dev-users/\">\r\n                <img src=\"../assets/img/golestan.png\"  style=\"width: 100%;\" alt=\"LOGO\">\r\n            </a>\r\n            <ul class=\"nav navbar-right top-nav visible-xs \" style=\"float: right;\">\r\n                <li><a href=\"#\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Stats\"><i class=\"fa fa-bar-chart-o\"></i>\r\n                </a>\r\n                </li>\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">کاربر ادمین <b class=\"fa fa-angle-down\"></b></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\"><i class=\"fa fa-fw fa-user\"></i> Edit Profile</a></li>\r\n                        <li class=\"divider\"></li>\r\n                        <li><a th:href=\"@{/logout}\"><i class=\"fa fa-fw fa-power-off\"></i> خروج</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n\r\n        </div>\r\n        <!-- Top Menu Items -->\r\n        <ul class=\"nav navbar-right top-nav hidden-xs\">\r\n            <li><a href=\"#\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Stats\"><i class=\"fa fa-bar-chart-o\"></i>\r\n            </a>\r\n            </li>\r\n            <li class=\"dropdown\">\r\n                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">مدیر گروه <b class=\"fa fa-angle-down\"></b></a>\r\n                <ul class=\"dropdown-menu\">\r\n                    <li><a routerLink='/editProfile' (click)=\"editProfile()\" href=\"#\"><i class=\"fa fa-fw fa-user\"></i> ویرایش پروفایل</a></li>\r\n                    <li class=\"divider\"></li>\r\n                    <li><a th:href=\"@{/logout}\"><i class=\"fa fa-fw fa-power-off\"></i> خروج</a></li>\r\n                </ul>\r\n            </li>\r\n        </ul>\r\n        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->\r\n        <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\r\n            <ul class=\"nav navbar-nav side-nav\">\r\n                <li >\r\n                    <a href=\"#\" data-toggle=\"collapse\" class=\"collapsed\" aria-expanded=\"true\"><i class=\"fa fa-fw fa-search\"></i> ثبت نام <i class=\"fa fa-fw pull-right fa-angle-down\"></i></a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\" data-toggle=\"collapse\" data-target=\"#submenu-2\"><i class=\"fa fa-star\"></i>  کارنامه <i class=\"fa fa-fw fa-angle-down pull-right\"></i></a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\" data-toggle=\"collapse\" data-target=\"#course-gp\" class=\"collapsed\" aria-expanded=\"false\" ><i class=\"fa fa-fw fa-angle-down pull-right \"></i> <i class=\"fa fa-user-plus\" ></i> دروس</a>\r\n                    <ul id=\"course-gp\" class=\"collapse\" aria-expanded=\"false\" style=\"height: 1px;\">\r\n                        <li><a routerLink='/courses' (click)=\"courseManagement()\"> مدیریت دروس <i class=\"fa fa-angle-double-left\"></i></a></li>\r\n                        <li><a routerLink='/groups' (click)=\"groupManagement()\"> گروه های درسی <i class=\"fa fa-angle-double-left\"></i></a></li>\r\n                    </ul>\r\n                </li>\r\n                <li>\r\n                    <a href=\"sugerencias\"><i class=\"fa fa-fw fa-paper-plane-o\"></i>ترم ها</a>\r\n                </li>\r\n                <li class=\"active\">\r\n                    <a href=\"faq\"><i class=\"fa fa-fw fa fa-question-circle\"></i> اساتید</a>\r\n                </li>\r\n                <li >\r\n                    <a href=\"faq\"><i class=\"fa fa-fw fa fa-question-circle\"></i> دانشجویان</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- /.navbar-collapse -->\r\n    </nav>\r\n\r\n    <div id=\"page-wrapper\">\r\n        <div class=\"container-fluid\">\r\n            <!-- Page Heading -->\r\n            <div *ngIf=\"flagTest\" class=\"row\" style=\"margin-bottom: 25px\">\r\n                <div class=\"col-md-12 text-center \"><h1>خوش آمدید</h1></div>\r\n            </div>\r\n            <router-outlet></router-outlet>\r\n            <!-- /.row -->\r\n        </div>\r\n        <!-- /.container-fluid -->\r\n    </div>\r\n    <!-- /#page-wrapper -->\r\n</div>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -94,6 +94,14 @@ var AppComponent = (function () {
     }
     AppComponent.prototype.courseManagement = function () {
         this.router.navigate(['/courses']);
+        this.flagTest = false;
+    };
+    AppComponent.prototype.groupManagement = function () {
+        this.router.navigate(['/groups']);
+        this.flagTest = false;
+    };
+    AppComponent.prototype.editProfile = function () {
+        this.router.navigate(['/editProfile']);
         this.flagTest = false;
     };
     return AppComponent;
@@ -128,6 +136,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("./src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__courses_courses_component__ = __webpack_require__("./src/app/courses/courses.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular_2_dropdown_multiselect__ = __webpack_require__("./node_modules/angular-2-dropdown-multiselect/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__courses_groups_component__ = __webpack_require__("./src/app/courses/groups.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__edit_profile_edit_profile_component__ = __webpack_require__("./src/app/edit-profile/edit-profile.component.ts");
 /* unused harmony export RestangularConfigFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -147,13 +157,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 function RestangularConfigFactory(RestangularProvider) {
     RestangularProvider.setBaseUrl('http://localhost:8080/api');
     //RestangularProvider.setFullResponse(true);
     RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response) {
-        console.log(data.length);
-        console.log(url);
-        console.log(what);
         return data;
     });
 }
@@ -166,7 +175,9 @@ AppModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         declarations: [
             __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__courses_courses_component__["a" /* CoursesComponent */]
+            __WEBPACK_IMPORTED_MODULE_7__courses_courses_component__["a" /* CoursesComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__courses_groups_component__["a" /* GroupsComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__edit_profile_edit_profile_component__["a" /* EditProfileComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -191,13 +202,19 @@ AppModule = __decorate([
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__courses_courses_component__ = __webpack_require__("./src/app/courses/courses.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__courses_groups_component__ = __webpack_require__("./src/app/courses/groups.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__edit_profile_edit_profile_component__ = __webpack_require__("./src/app/edit-profile/edit-profile.component.ts");
 /* unused harmony export appRoutingProviders */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routing; });
 
 
+
+
 var routes = [
     { path: 'courses', component: __WEBPACK_IMPORTED_MODULE_1__courses_courses_component__["a" /* CoursesComponent */] },
-    { path: 'teachers', component: __WEBPACK_IMPORTED_MODULE_1__courses_courses_component__["a" /* CoursesComponent */] }
+    { path: 'groups', component: __WEBPACK_IMPORTED_MODULE_2__courses_groups_component__["a" /* GroupsComponent */] },
+    { path: 'teachers', component: __WEBPACK_IMPORTED_MODULE_1__courses_courses_component__["a" /* CoursesComponent */] },
+    { path: 'editProfile', component: __WEBPACK_IMPORTED_MODULE_3__edit_profile_edit_profile_component__["a" /* EditProfileComponent */] }
 ];
 var appRoutingProviders = [];
 var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* RouterModule */].forRoot(routes);
@@ -226,7 +243,7 @@ module.exports = module.exports.toString();
 /***/ "./src/app/courses/courses.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\n                <div class=\"col-md-12 text-center \"><h1>دروس</h1></div>\n            </div>\n            <div class=\"row\" >\n                <div class=\"col-md-11\" [ngClass]=\"{'alert-success': operationSuccessFull, 'alert-danger': operationUnSuccessFull}\" >{{alertMessage}}</div>\n            </div>\n            <div class=\"row\" id=\"main\" >\n                <div id=\"no-more-tables\" >\n                    <div class=\" col-sm-9 col-md-offset-1 \" id=\"rightBox\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\" >\n\n                        <div class=\"row\">\n                            <form class=\"form-inline\" #lectureModifyForm=\"ngForm\" (ngSubmit)=\"modifyForm(lectureModifyForm)\" >\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecName\" name=\"lecName\" placeholder=\"نام درس\" [(ngModel)]=\"lecName\" required minlength=\"4\" maxlength=\"24\" ngModel>\n                                </div>\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecCode\" name=\"lecCode\" placeholder=\"شماره درس\"  [(ngModel)]=\"lecCode\" required minlength=\"8\" maxlength=\"24\">\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"courseGroups\" [options]=\"courseGroups\" [texts]=\"groupsText\" [(ngModel)]=\"courseGroupsModel\" [settings]=\"mySettings\" required></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"coursePreRequired\" [options]=\"coursePreRequired\" [texts]=\"preRequiredsText\" [(ngModel)]=\"coursePreRequiredModel\" [settings]=\"mySettings\" (ngModelChange)=\"onChangecourseGroups($event)\" required ></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <div class=\"input-group\">\n                                        <input class=\"input-lg\" type=\"number\" class=\"form-control\" name=\"lecPracUnit\" id=\"lecPracUnit\" placeholder=\"تئوری\" [(ngModel)]=\"lecPracUnit\" min=\"0\" max=\"4\" required minlength=\"1\" maxlength=\"1\">\n                                        <div class=\"input-group-addon\">تعداد واحد تئوری---تعداد واحد عملی</div>\n                                        <input type=\"number\" class=\"form-control\" name=\"lecTheorUnit\" id=\"lecTheorUnit\" placeholder=\"عملی \" [(ngModel)]=\"lecTheorUnit\" min=\"0\" max=\"4\" required minlength=\"1\" maxlength=\"1\">\n                                    </div>  \n                                </div>\n                                <div class=\"form-group\">\n                                    <button class=\" btn btn-success\" >\n                                         <span [hidden]=\"isEditing\">\n                                             افزودن\n                                         </span>\n                                         <span [hidden]=\"!isEditing\">\n                                             ویرایش\n                                         </span>\n                                    </button>                             \n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\n                                </div>\n                                <div class=\"form-group\" >\n                                    <span [hidden]=\"!isEditing\">\n                                        <a (click)=\"cancelEditing()\" class=\"btn btn-success\">\n                                                لغو ویرایش\n                                        </a>    \n                                    </span>       \n                                </div>\n                            </form>\n                    </div>\n                </div>\n                    <table class=\"col-md-11 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\n                        <thead class=\"cf\">\n                        <tr>\n                            <th>ردیف</th>\n                            <th>نام درس</th>\n                            <th >شماره درس</th>\n                            <th >تعداد واحد عملی</th>\n                            <th >تعداد واحد تئوری</th>\n                            <th >گروه</th>\n                            <th >پیش نیاز ها</th>\n                            <th >ویرایش</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"definedCourses\">\n                            <tr *ngFor=\"let course of coursesArr; let i=index\">\n                                <td data-title=\"test\">{{i+1}}</td>\n                                <td data-title=\"test\">{{course.name}}</td>\n                                <td data-title=\"test\">{{course.code}}</td>\n                                <td data-title=\"test\">{{course.practicalUnitCount}}</td>\n                                <td data-title=\"test\">{{course.theoreticalUnitCount}}</td>\n                                <td data-title=\"test\">\n                                    <span *ngFor=\"let coursegp of course.groups \">\n                                        {{coursegp.name}} \n                                    </span>\n                                </td>\n                                <td data-title=\"test\">\n                                    <span *ngFor=\"let predef of course.preRequiredLectures \">\n                                        {{predef.name}} \n                                    </span>\n                                </td>\n\n                                <td data-title=\"test\">\n                                    <span (click)=\"removeCourse(i,course.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\n                                    </span>\n                                    <span (click)=\"editCourseSelect(i,course.id)\" class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\">\n                                    </span>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n            <!-- /.row -->\n<modal #myModal [keyboard]=\"false\" [backdrop]=\"'static'\">\n    <modal-header [show-close]=\"false\">\n        <h4 class=\"modal-title\">تایید عملیات</h4>\n    </modal-header>\n    <modal-body>\n        {{confirmMessage}}\n    </modal-body>\n    <modal-footer >\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">خیر</button>\n        <button type=\"button\" class=\"btn btn-defult\" (click)=\"modal.close()\">بله</button>\n    </modal-footer>\n</modal>"
+module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\r\n                <div class=\"col-md-12 text-center \"><h1>دروس</h1></div>\r\n            </div>\r\n            <div class=\"row\" >\r\n                <div class=\"col-md-11\" [ngClass]=\"{'alert-success': operationSuccessFull, 'alert-danger': operationUnSuccessFull}\" >{{alertMessage}}</div>\r\n            </div>\r\n            <div class=\"row\" id=\"main\" >\r\n                <div id=\"no-more-tables\" >\r\n                    <div class=\" col-sm-9 col-md-offset-1 \" id=\"rightBox\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\" >\r\n\r\n                        <div class=\"row\">\r\n                            <form class=\"form-inline\" #lectureModifyForm=\"ngForm\" (ngSubmit)=\"modifyForm(lectureModifyForm)\" >\r\n                                <div class=\"form-group\" >\r\n                                        <input type=\"text\" class=\"form-control\" id=\"lecName\" name=\"lecName\" placeholder=\"نام درس\" [(ngModel)]=\"lecName\" required minlength=\"4\" maxlength=\"24\" ngModel>\r\n                                </div>\r\n                                <div class=\"form-group\" >\r\n                                        <input type=\"text\" class=\"form-control\" id=\"lecCode\" name=\"lecCode\" placeholder=\"شماره درس\"  [(ngModel)]=\"lecCode\" required minlength=\"8\" maxlength=\"24\">\r\n                                </div>\r\n                                <div class=\"form-group\" >\r\n                                    <ss-multiselect-dropdown name=\"courseGroups\" [options]=\"courseGroups\" [texts]=\"groupsText\" [(ngModel)]=\"courseGroupsModel\" [settings]=\"mySettings\" required></ss-multiselect-dropdown>\r\n                                </div>\r\n                                <div class=\"form-group\" >\r\n                                    <ss-multiselect-dropdown name=\"coursePreRequired\" [options]=\"coursePreRequired\" [texts]=\"preRequiredsText\" [(ngModel)]=\"coursePreRequiredModel\" [settings]=\"mySettings\" (ngModelChange)=\"onChangecourseGroups($event)\" required ></ss-multiselect-dropdown>\r\n                                </div>\r\n                                <div class=\"form-group\" >\r\n                                    <div class=\"input-group\">\r\n                                        <input class=\"input-lg\" type=\"number\" class=\"form-control\" name=\"lecPracUnit\" id=\"lecPracUnit\" placeholder=\"تئوری\" [(ngModel)]=\"lecPracUnit\" min=\"0\" max=\"4\" required minlength=\"1\" maxlength=\"1\">\r\n                                        <div class=\"input-group-addon\">تعداد واحد تئوری---تعداد واحد عملی</div>\r\n                                        <input type=\"number\" class=\"form-control\" name=\"lecTheorUnit\" id=\"lecTheorUnit\" placeholder=\"عملی \" [(ngModel)]=\"lecTheorUnit\" min=\"0\" max=\"4\" required minlength=\"1\" maxlength=\"1\">\r\n                                    </div>  \r\n                                </div>\r\n                                <div class=\"form-group\">\r\n                                    <button class=\" btn btn-success\" >\r\n                                         <span [hidden]=\"isEditing\">\r\n                                             افزودن\r\n                                         </span>\r\n                                         <span [hidden]=\"!isEditing\">\r\n                                             ویرایش\r\n                                         </span>\r\n                                    </button>                             \r\n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\r\n                                </div>\r\n                                <div class=\"form-group\" >\r\n                                    <span [hidden]=\"!isEditing\">\r\n                                        <a (click)=\"cancelEditing()\" class=\"btn btn-success\">\r\n                                                لغو ویرایش\r\n                                        </a>    \r\n                                    </span>       \r\n                                </div>\r\n                            </form>\r\n                    </div>\r\n                </div>\r\n                    <table class=\"col-md-11 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\r\n                        <thead class=\"cf\">\r\n                        <tr>\r\n                            <th>ردیف</th>\r\n                            <th>نام درس</th>\r\n                            <th >شماره درس</th>\r\n                            <th >تعداد واحد عملی</th>\r\n                            <th >تعداد واحد تئوری</th>\r\n                            <th >گروه</th>\r\n                            <th >پیش نیاز ها</th>\r\n                            <th >ویرایش</th>\r\n                        </tr>\r\n                        </thead>\r\n                        <tbody id=\"definedCourses\">\r\n                            <tr *ngFor=\"let course of coursesArr; let i=index\">\r\n                                <td data-title=\"test\">{{i+1}}</td>\r\n                                <td data-title=\"test\">{{course.name}}</td>\r\n                                <td data-title=\"test\">{{course.code}}</td>\r\n                                <td data-title=\"test\">{{course.practicalUnitCount}}</td>\r\n                                <td data-title=\"test\">{{course.theoreticalUnitCount}}</td>\r\n                                <td data-title=\"test\">\r\n                                    <span *ngFor=\"let coursegp of course.groups \">\r\n                                        {{coursegp.name}} \r\n                                    </span>\r\n                                </td>\r\n                                <td data-title=\"test\">\r\n                                    <span *ngFor=\"let predef of course.preRequiredCourses \">\r\n                                        {{predef.name}} \r\n                                    </span>\r\n                                </td>\r\n\r\n                                <td data-title=\"test\">\r\n                                    <span (click)=\"removeCourse(i,course.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\r\n                                    </span>\r\n                                    <span (click)=\"editCourseSelect(i,course.id)\" class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\">\r\n                                    </span>\r\n                                </td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>\r\n                </div>\r\n            </div>\r\n            <!-- /.row -->\r\n<modal #myModal [keyboard]=\"false\" [backdrop]=\"'static'\">\r\n    <modal-header [show-close]=\"false\">\r\n        <h4 class=\"modal-title\">تایید عملیات</h4>\r\n    </modal-header>\r\n    <modal-body>\r\n        {{confirmMessage}}\r\n    </modal-body>\r\n    <modal-footer >\r\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">خیر</button>\r\n        <button type=\"button\" class=\"btn btn-defult\" (click)=\"modal.close()\">بله</button>\r\n    </modal-footer>\r\n</modal>"
 
 /***/ }),
 
@@ -469,6 +486,262 @@ var GaCourseGroups = (function () {
 
 /***/ }),
 
+/***/ "./src/app/courses/groups.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/courses/groups.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\n                <div class=\"col-md-12 text-center \"><h1>گروه های درسی</h1></div>\n            </div>\n            <div class=\"row\" >\n                <div class=\"col-md-11\" [ngClass]=\"{'alert-success': operationSuccessFull, 'alert-danger': operationUnSuccessFull}\" >{{alertMessage}}</div>\n            </div>\n            <div class=\"row\" id=\"main\" >\n                <div id=\"no-more-tables\" >\n                    <div class=\" col-sm-9 col-md-offset-1 \" id=\"rightBox\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\" >\n\n                        <div class=\"row\">\n                            <form class=\"form-inline\" #lectureModifyForm=\"ngForm\" (ngSubmit)=\"modifyForm(lectureModifyForm)\" >\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecName\" name=\"lecName\" placeholder=\"نام درس\" [(ngModel)]=\"lecName\" required minlength=\"4\" maxlength=\"24\" ngModel>\n                                </div>\n                                <div class=\"form-group\" >\n                                        <input type=\"text\" class=\"form-control\" id=\"lecCode\" name=\"lecCode\" placeholder=\"شماره درس\"  [(ngModel)]=\"lecCode\" required minlength=\"8\" maxlength=\"24\">\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"courseGroups\" [options]=\"courseGroups\" [texts]=\"groupsText\" [(ngModel)]=\"courseGroupsModel\" [settings]=\"mySettings\" required></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"coursePreRequired\" [options]=\"coursePreRequired\" [texts]=\"preRequiredsText\" [(ngModel)]=\"coursePreRequiredModel\" [settings]=\"mySettings\" (ngModelChange)=\"onChangecourseGroups($event)\" required ></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\">\n                                    <button class=\" btn btn-success\" >\n                                         <span [hidden]=\"isEditing\">\n                                             افزودن\n                                         </span>\n                                         <span [hidden]=\"!isEditing\">\n                                             ویرایش\n                                         </span>\n                                    </button>                             \n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\n                                </div>\n                                <div class=\"form-group\" >\n                                    <span [hidden]=\"!isEditing\">\n                                        <a (click)=\"cancelEditing()\" class=\"btn btn-success\">\n                                                لغو ویرایش\n                                        </a>    \n                                    </span>       \n                                </div>\n                            </form>\n                    </div>\n                </div>\n                    <table class=\"col-md-6 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\n                        <thead class=\"cf\">\n                        <tr>\n                            <th>ردیف</th>\n                            <th>نام گروه</th>\n                            <th >تعداد دروس</th>\n                            <th >ویرایش</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"definedCourses\">\n                            <tr *ngFor=\"let course of courseGroups; let i=index\">\n                                <td data-title=\"test\">{{i+1}}</td>\n                                <td data-title=\"test\">{{course.name}}</td>\n                                <td data-title=\"test\">{{course.courses}}</td>\n                                <!--<td data-title=\"test\">\n                                    <span *ngFor=\"let coursegp of course.groups \">\n                                        {{coursegp.name}} \n                                    </span>\n                                </td>-->\n                                <td data-title=\"test\">\n                                    <span (click)=\"removeCourse(i,course.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\n                                    </span>\n                                    <span (click)=\"editCourseSelect(i,course.id)\" class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\">\n                                    </span>\n                                </td>\n                            </tr>\n                        </tbody>\n\n                    </table>\n                    <table class=\"col-md-5 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"margin-right:10px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\n                        <thead class=\"cf\">\n                        <tr>\n                            <th>ردیف</th>\n                            <th>نام گروه</th>\n                            <th >تعداد دروس</th>\n                            <th >ویرایش</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"definedCourses\">\n                            <tr *ngFor=\"let course of courseGroups; let i=index\">\n                                <td data-title=\"test\">{{i+1}}</td>\n                                <td data-title=\"test\">{{course.name}}</td>\n                                <td data-title=\"test\">{{course.courses}}</td>\n                                <!--<td data-title=\"test\">\n                                    <span *ngFor=\"let coursegp of course.groups \">\n                                        {{coursegp.name}} \n                                    </span>\n                                </td>-->\n                                <td data-title=\"test\">\n                                    <span (click)=\"removeCourse(i,course.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\n                                    </span>\n                                    <span (click)=\"editCourseSelect(i,course.id)\" class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\">\n                                    </span>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n\n                </div>\n            </div>\n            <!-- /.row -->\n<modal #myModal [keyboard]=\"false\" [backdrop]=\"'static'\">\n    <modal-header [show-close]=\"false\">\n        <h4 class=\"modal-title\">تایید عملیات</h4>\n    </modal-header>\n    <modal-body>\n        {{confirmMessage}}\n    </modal-body>\n    <modal-footer >\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">خیر</button>\n        <button type=\"button\" class=\"btn btn-defult\" (click)=\"modal.close()\">بله</button>\n    </modal-footer>\n</modal>"
+
+/***/ }),
+
+/***/ "./src/app/courses/groups.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__ = __webpack_require__("./src/app/services/ga-services/ga-courses.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("./node_modules/ng2-bs3-modal/ng2-bs3-modal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GroupsComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var GroupsComponent = (function () {
+    function GroupsComponent(titleService, route, gaCoursesService) {
+        var _this = this;
+        this.titleService = titleService;
+        this.route = route;
+        this.gaCoursesService = gaCoursesService;
+        this.mySettings = {
+            enableSearch: true,
+            checkedStyle: 'fontawesome',
+            buttonClasses: 'btn btn-default btn-block',
+            dynamicTitleMaxItems: 3,
+            displayAllSelectedText: false
+        };
+        this.groupsText = {
+            checkAll: 'همه را انتخاب کنید',
+            uncheckAll: 'انتخاب ها را کنید',
+            checked: 'انتخاب شد',
+            checkedPlural: 'تا انتخاب شدند',
+            searchPlaceholder: 'بگردید',
+            defaultTitle: 'گروه ها',
+            allSelected: 'همه انتخاب شدند',
+        };
+        this.preRequiredsText = {
+            checkAll: 'همه را انتخاب کنید',
+            uncheckAll: 'انتخاب ها را کنید',
+            checked: 'انتخاب شد',
+            checkedPlural: 'تا انتخاب شدند',
+            searchPlaceholder: 'بگردید',
+            defaultTitle: 'پیش نیازها',
+            allSelected: 'همه انتخاب شدند',
+        };
+        this.isEditing = false;
+        this.isDeleting = false;
+        this.operationSuccessFull = false;
+        this.operationUnSuccessFull = false;
+        this.setTitle("Courses");
+        gaCoursesService.getGroupsList().then(function (data) {
+            _this.groupsArr = data;
+            var tempArrData = new Array;
+            for (var i = 0; i < data.length; i++) {
+                tempArrData[i] = { id: data[i].id, name: data[i].name.toString() };
+            }
+            _this.courseGroups = tempArrData;
+        });
+    }
+    GroupsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // this.courseGroups = [
+        //     { id: 1, name: 'مهندسی نرم افزار' },
+        //     { id: 2, name: 'مهندسی اینترنت' },
+        // ];    
+        this.rowCounter = 1;
+        this.modal.onClose.subscribe(function () { return _this.ApproveOperation(); });
+        this.modal.onDismiss.subscribe(function () { return _this.cancelOperation(); });
+        this.modal.onOpen.subscribe(function () { return _this.openConfirmPanel(); });
+    };
+    GroupsComponent.prototype.setTitle = function (newTitle) {
+        this.titleService.setTitle(newTitle);
+    };
+    GroupsComponent.prototype.editCourseSelect = function (index, id) {
+        this.isEditing = true;
+        this.isDeleting = false;
+        this.selectedCourseId = id;
+        this.selectedCourseIndex = index;
+        this.confirmMessage = "آیا از ویرایش درس مطمئن هستید؟";
+        this.modal.open();
+    };
+    GroupsComponent.prototype.removeCourse = function (index, id) {
+        this.isEditing = false;
+        this.isDeleting = true;
+        this.selectedCourseId = id;
+        this.selectedCourseIndex = index;
+        this.confirmMessage = "آیا از حذف درس مطمئن هستید؟";
+        this.modal.open();
+    };
+    GroupsComponent.prototype.addLecture = function (formFields) {
+        this.modifyForm(formFields);
+    };
+    GroupsComponent.prototype.openConfirmPanel = function () {
+    };
+    GroupsComponent.prototype.cancelOperation = function () {
+        this.isDeleting = false;
+        this.isEditing = false;
+    };
+    GroupsComponent.prototype.ApproveOperation = function () {
+        console.log(this.isEditing);
+        if (this.isDeleting) {
+            // this.coursesArr.splice(this.selectedCourseIndex,1);
+            this.isDeleting = false;
+            this.isEditing = false;
+            this.gaCoursesService.deleteCourse(this.selectedCourseId);
+            this.courseForm.reset();
+            // this.opera
+            //send delete to server
+        }
+        else if (this.isEditing) {
+            //show course fields in form to edit
+            this.isDeleting = false;
+        }
+    };
+    GroupsComponent.prototype.cancelEditing = function () {
+        this.isDeleting = false;
+        this.isEditing = false;
+        this.courseForm.reset();
+    };
+    GroupsComponent.prototype.modifyForm = function (formFields) {
+        console.log("hellp");
+        // var groups:GaCourseGroups[]=new Array;
+        // for(var i=0;i<this.courseGroupsModel.length;i++){
+        //     groups[i]={id:this.courseGroupsModel[i],name:this.groupsArr.find(x => x.id === this.courseGroupsModel[i]).name.toString()};
+        // }
+        this.courseForm.reset();
+        this.isEditing = false;
+        this.isDeleting = false;
+    };
+    GroupsComponent.prototype.onChangecourseGroups = function (event) {
+        console.log(this.coursePreRequiredModel);
+    };
+    return GroupsComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('myModal'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"]) === "function" && _a || Object)
+], GroupsComponent.prototype, "modal", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('lectureModifyForm'),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* NgForm */]) === "function" && _b || Object)
+], GroupsComponent.prototype, "courseForm", void 0);
+GroupsComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-groups',
+        template: __webpack_require__("./src/app/courses/groups.component.html"),
+        styles: [__webpack_require__("./src/app/courses/groups.component.css")],
+        providers: [__WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__["a" /* GaCoursesService */]]
+    }),
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__["a" /* GaCoursesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_courses_service__["a" /* GaCoursesService */]) === "function" && _e || Object])
+], GroupsComponent);
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=groups.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/edit-profile/edit-profile.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "./src/app/edit-profile/edit-profile.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  edit-profile works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/edit-profile/edit-profile.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditProfileComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var EditProfileComponent = (function () {
+    function EditProfileComponent() {
+    }
+    EditProfileComponent.prototype.ngOnInit = function () {
+    };
+    return EditProfileComponent;
+}());
+EditProfileComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-edit-profile',
+        template: __webpack_require__("./src/app/edit-profile/edit-profile.component.html"),
+        styles: [__webpack_require__("./src/app/edit-profile/edit-profile.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], EditProfileComponent);
+
+//# sourceMappingURL=edit-profile.component.js.map
+
+/***/ }),
+
 /***/ "./src/app/services/ga-services/ga-courses.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -493,19 +766,19 @@ var GaCoursesService = (function () {
         this.restangular = restangular;
     }
     GaCoursesService.prototype.getCourseList = function () {
-        return this.restangular.one('lectures/list').getList().toPromise();
+        return this.restangular.one('courses/list').getList().toPromise();
     };
     GaCoursesService.prototype.getGroupsList = function () {
         return this.restangular.one('groups/list').getList().toPromise();
     };
     GaCoursesService.prototype.updateCourse = function (course) {
         // console.log(this.restangular.one("lectures/update").post(course));
-        this.restangular.all("lectures/update").post(course);
+        this.restangular.all("courses/update").post(course);
         // this.restangular.post("lectures/update",course);
         return true;
     };
     GaCoursesService.prototype.deleteCourse = function (id) {
-        this.restangular.one("lectures/delete", id).get();
+        this.restangular.one("courses/delete", id).get();
         return true;
     };
     return GaCoursesService;

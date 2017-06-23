@@ -1,7 +1,6 @@
 package ir.sbu.golestan.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ir.sbu.golestan.domain.Term;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,7 +15,7 @@ public class LectureFullDTO implements Serializable {
     private long id;
 
     @JsonProperty
-    private Term term;
+    private TermLightDTO term;
 
     @JsonProperty
     private CourseLightDTO course;

@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {GaTermsService} from '../services/ga-services/ga-terms.service';
+import {GaCourse} from '../courses/ga-course';
 import {Lecture} from '../Poao-classes/lecture';
 import {Term} from './term';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
@@ -21,19 +22,25 @@ declare var $: any
 export class TermsComponent implements OnInit {
   @ViewChild('myModal')
     modal: ModalComponent;
-  @ViewChild('lectureModifyForm') 
-    public courseForm: NgForm;
-  courseGroupsModel: number[];
-  courseGroups: IMultiSelectOption[];  
-  coursePreRequiredModel: number[];
-  coursePreRequired: IMultiSelectOption[];  
+  @ViewChild('pleaseSelectModal')
+    pleaseSelectModal: ModalComponent;
+  @ViewChild('addTermForm') 
+    public addTermForm: NgForm;
+  @ViewChild('addLectureToTermForm') 
+    public addLectureToTermForm: NgForm;
+  coursesModel: number[];
+  courses: IMultiSelectOption[];  
+  mastersModel: number[];
+  masters: IMultiSelectOption[];  
 
   mySettings: IMultiSelectSettings = {
     enableSearch: true,
     checkedStyle: 'fontawesome',
     buttonClasses: 'btn btn-default btn-block',
     dynamicTitleMaxItems: 3,
-    displayAllSelectedText: false
+    displayAllSelectedText: false,
+    selectionLimit: 1,
+    autoUnselect: true
   };
   groupsText: IMultiSelectTexts = {
       checkAll: 'همه را انتخاب کنید',
@@ -41,7 +48,7 @@ export class TermsComponent implements OnInit {
       checked: 'انتخاب شد',
       checkedPlural: 'تا انتخاب شدند',
       searchPlaceholder: 'بگردید',
-      defaultTitle: 'گروه ها',
+      defaultTitle: 'درس ها',
       allSelected: 'همه انتخاب شدند',
   };
   preRequiredsText: IMultiSelectTexts = {
@@ -50,7 +57,7 @@ export class TermsComponent implements OnInit {
       checked: 'انتخاب شد',
       checkedPlural: 'تا انتخاب شدند',
       searchPlaceholder: 'بگردید',
-      defaultTitle: 'پیش نیازها',
+      defaultTitle: 'اساتید',
       allSelected: 'همه انتخاب شدند',
   };
 
@@ -64,6 +71,7 @@ export class TermsComponent implements OnInit {
   selectedCourseIndex:number;
   confirmMessage:String;
   public terms:Term[];
+  public lecturesArr:Lecture[];
   ngOnInit() {
     // this.courseGroups = [
     //     { id: 1, name: 'مهندسی نرم افزار' },
@@ -102,7 +110,25 @@ export class TermsComponent implements OnInit {
     this.modal.open();
   }
   public addLecture(formFields : NgForm){
-    this.modifyForm(formFields);
+    //this.modifyForm(formFields);
+  }
+  public addLectureToTerm(formFields : NgForm){
+    if(this.isEditing){
+        var newLecture=new Lecture();
+        newLecture.code=formFields.value.lectureCodeTxt;
+        newLecture.master.id=this.mastersModel[0];
+        newLecture.roomNumber=formFields.value.roomNumberTxt;
+        newLecture.term.id=this.selectedCourseId;
+        this.gaTermsService.addLecture(newLecture);
+        this.operationSuccessFull=true;
+        this.alertMessage="درس به ترم اضافه شد";
+    }else{
+        this.pleaseSelectModal.open();
+    }
+  }
+  public removeLecture(index,id){
+      this.gaTermsService.deleteLecture(id);
+      this.lecturesArr.splice(index,1);
   }
   public openConfirmPanel(){
 
@@ -115,14 +141,21 @@ export class TermsComponent implements OnInit {
   public ApproveOperation(){
     console.log(this.isEditing);
       if(this.isDeleting){
-        // this.coursesArr.splice(this.selectedCourseIndex,1);
+        this.terms.splice(this.selectedCourseIndex,1);
         this.isDeleting=false;
         this.isEditing=false;  
         this.gaTermsService.deleteTerm(this.selectedCourseId);
-        this.courseForm.reset();      
+        this.addTermForm.reset();      
         // this.opera
         //send delete to server
       }else if(this.isEditing){
+        this.isDeleting=false;
+        this.addTermForm.controls['yearTxt'].setValue(this.terms[this.selectedCourseIndex].year);  
+        this.addTermForm.controls['termSelection'].setValue(this.terms[this.selectedCourseIndex].semester);  
+        this.gaTermsService.getLectureByTerm(this.selectedCourseId).then((data)=>{
+          this.lecturesArr=data;
+        });
+        // this.lecuresArr
         //show course fields in form to edit
         // var tempArrindexGroups:number[]=new Array;
         // var tempArrindexPreReqs:number[]=new Array;
@@ -153,12 +186,28 @@ export class TermsComponent implements OnInit {
   public cancelEditing(){
     this.isDeleting=false;
     this.isEditing=false;
-    this.courseForm.reset();
+    this.addTermForm.reset();
     $("#term"+this.selectedCourseIndex).css('background-color', '');
-
-    
   }
-  public modifyForm(formFields : NgForm){
+  public addTerm(formFields : NgForm){
+    if(!this.isEditing){
+      var newTerm=new Term();
+      newTerm.semester=formFields.value.termSelection;
+      newTerm.year=formFields.value.yearTxt;
+      this.gaTermsService.addTerm(newTerm);
+      this.operationSuccessFull=true;
+      this.alertMessage="ترم اضافه شد";
+      this.retrieveData();
+    }else if (this.isEditing){
+      var newTerm=new Term();
+      newTerm.semester=formFields.value.termSelection;
+      newTerm.year=formFields.value.yearTxt;
+      newTerm.id=this.selectedCourseId;
+      this.gaTermsService.addTerm(newTerm);
+      this.operationSuccessFull=true;
+      this.alertMessage="ترم ویرایش شد";
+      this.retrieveData();
+    }
     // console.log("hellp");
     //   var groups:GaCourseGroups[]=new Array;
     //   for(var i=0;i<this.courseGroupsModel.length;i++){
@@ -202,30 +251,34 @@ export class TermsComponent implements OnInit {
     // }
   }
   public onChangecourseGroups(event){
-    console.log(this.coursePreRequiredModel);
+    // console.log(this.coursePreRequiredModel);
   }
   public retrieveData(){
     this.gaTermsService.getTermList().then(
       (data) => {
       this.terms=data;
-      // var tempArrData:IMultiSelectOption[]=new Array;
-      // for(var i=0;i<data.length;i++){
-      //   tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
-      // }
-      // this.coursePreRequired=tempArrData;
-      console.log(data);
-      // this.gaCoursesService.getGroupsList().then((data)=>{ 
-      //   this.groupsArr=data;
-      //   var tempArrData:IMultiSelectOption[]=new Array;
-      //   for(var i=0;i<data.length;i++){
-      //     tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
-      //   }
-      //   this.courseGroups=tempArrData;
+      this.gaTermsService.getCourseList().then((data)=>{
+        var tempArrData:IMultiSelectOption[]=new Array;
+        for(var i=0;i<data.length;i++){
+          tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
+        }
+        this.courses=tempArrData;
+        console.log(data);
+      });
+      
+      this.gaTermsService.getMasterList().then((data)=>{ 
+        
+        var tempArrData:IMultiSelectOption[]=new Array;
+        for(var i=0;i<data.length;i++){
+          tempArrData[i]={id:data[i].id,name:data[i].firstName+data[i].lastName};
+        }
+        this.masters=tempArrData;
           
-      // });
+      });
       }
     );
 
   }
+  
 }
 

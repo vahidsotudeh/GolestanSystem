@@ -43,6 +43,21 @@ webpackEmptyContext.id = "./src async recursive";
 
 /***/ }),
 
+/***/ "./src/app/Poao-classes/lecture.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Lecture; });
+var Lecture = (function () {
+    function Lecture() {
+    }
+    return Lecture;
+}());
+
+//# sourceMappingURL=lecture.js.map
+
+/***/ }),
+
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -951,13 +966,31 @@ var GaTermsService = (function () {
         // this.restangular.post("lectures/update",course);
         return true;
     };
-    GaTermsService.prototype.addCourse = function (Term) {
+    GaTermsService.prototype.addTerm = function (Term) {
         this.restangular.all("terms/add").post(Term);
         // this.restangular.post("lectures/update",course);
         return true;
     };
     GaTermsService.prototype.deleteTerm = function (id) {
         this.restangular.one("terms/delete", id).get();
+        return true;
+    };
+    GaTermsService.prototype.getCourseList = function () {
+        return this.restangular.one('courses/list').getList().toPromise();
+    };
+    GaTermsService.prototype.getMasterList = function () {
+        return this.restangular.one('maters/list').getList().toPromise();
+    };
+    GaTermsService.prototype.addLecture = function (lec) {
+        this.restangular.all("lectures/add").post(lec);
+        // this.restangular.post("lectures/update",course);
+        return true;
+    };
+    GaTermsService.prototype.getLectureByTerm = function (id) {
+        return this.restangular.one('api/terms/lectures', id).getList().toPromise();
+    };
+    GaTermsService.prototype.deleteLecture = function (id) {
+        this.restangular.one("lectures/delete", id).get();
         return true;
     };
     return GaTermsService;
@@ -1016,6 +1049,21 @@ var _a;
 
 /***/ }),
 
+/***/ "./src/app/terms/term.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Term; });
+var Term = (function () {
+    function Term() {
+    }
+    return Term;
+}());
+
+//# sourceMappingURL=term.js.map
+
+/***/ }),
+
 /***/ "./src/app/terms/terms.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1037,7 +1085,7 @@ module.exports = module.exports.toString();
 /***/ "./src/app/terms/terms.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\n                <div class=\"col-md-12 text-center \"><h1>ترم ها</h1></div>\n            </div>\n            <div class=\"row\" >\n                <div class=\"col-md-11\" [ngClass]=\"{'alert-success': operationSuccessFull, 'alert-danger': operationUnSuccessFull}\" >{{alertMessage}}</div>\n            </div>\n            <div class=\"row\" id=\"main\" >\n                <div id=\"no-more-tables\" >\n                        <table class=\"col-md-5 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\n                        <thead class=\"cf\">\n                        <tr>\n                            <th>ردیف</th>\n                            <th>ترم</th>\n                            <th >سال تحصیلی</th>\n                            <th > ویرایش</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"definedCourses\">\n                            <tr *ngFor=\"let term of terms; let i=index\" id=\"term{{i}}\">\n                                <td  data-title=\"ردیف\">{{i+1}}</td>\n                                <td  data-title=\"ترم\" *ngIf=\"term.semester==1\" data-title=\"شماره ترم\">\n                                  ترم پاییز\n                                </td>\n                                <td data-title=\"ترم\" *ngIf=\"term.semester==2\">ترم زمستان</td>\n                                <td data-title=\"سال تحصیلی\">{{term.year}}</td>\n                                <td data-title=\"ویرایش \">\n                                    <a class=\"btn btn-defult\">\n                                    <span (click)=\"removeCourse(i,term.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\n                                    </span>\n                                    </a>\n                                    <a class=\"btn btn-defult\">                                    \n                                    <span (click)=\"editTermSelect(i,term.id)\" class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\">\n                                    </span>\n                                    </a>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n\n                    <div class=\" col-sm-5 col-md-offset-1 \" id=\"rightBox\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\" >\n\n                        <div class=\"row\">\n                            <form class=\"form-inline\" #lectureModifyForm=\"ngForm\" (ngSubmit)=\"modifyForm(lectureModifyForm)\" >\n                                <div class=\"form-group\" >\n                                        <label for=\"yearTxt\" style=\"font-size:large;\">سال تحصیلی:</label>\n                                        <input type=\"number\" class=\"form-control\" style=\"width:95px;\" id=\"yearTxt\" name=\"yearTxt\" [(ngModel)]=\"yearTxt\" required minlength=\"4\" maxlength=\"24\" ngModel>\n                                </div>\n                                <div class=\"form-group\" >\n                                        <label style=\"font-size:large;\" for=\"termSelection\">نوع ترم:</label>\n                                        <select class=\"form-control\" id=\"termSelection\" name=\"termSelection\" placeholder=\"ترم\"  [(ngModel)]=\"termSelection\" required minlength=\"8\" maxlength=\"24\">\n                                          <option value=\"1\">پاییز</option>\n                                          <option value=\"2\">زمستان</option>\n                                        </select>\n                                </div>\n                                <!--<div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"courseGroups\" [options]=\"courseGroups\" [texts]=\"groupsText\" [(ngModel)]=\"courseGroupsModel\" [settings]=\"mySettings\" required></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"coursePreRequired\" [options]=\"coursePreRequired\" [texts]=\"preRequiredsText\" [(ngModel)]=\"coursePreRequiredModel\" [settings]=\"mySettings\" (ngModelChange)=\"onChangecourseGroups($event)\" required ></ss-multiselect-dropdown>\n                                </div>-->\n                                <div class=\"form-group\">\n                                    <button class=\" btn btn-success\" >\n                                         <span [hidden]=\"isEditing\">\n                                             افزودن\n                                         </span>\n                                         <span [hidden]=\"!isEditing\">\n                                             ویرایش\n                                         </span>\n                                    </button>                             \n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\n                                </div>\n                                <div class=\"form-group\" >\n                                    <span [hidden]=\"!isEditing\">\n                                        <a (click)=\"cancelEditing()\" class=\"btn btn-success\">\n                                                لغو ویرایش\n                                        </a>    \n                                    </span>       \n                                </div>\n                            </form>\n                            <hr>\n                            <div class=\"text-center\">افزودن درس به ترم انتخاب شده</div>\n                            <form class=\"form-inline\" #lectureModifyForm=\"ngForm\" (ngSubmit)=\"modifyForm(lectureModifyForm)\" >\n                                <div class=\"form-group\" >\n                                    <label for=\"courseGroups\">انتخاب درس</label>\n                                    <ss-multiselect-dropdown name=\"courseGroups\" [options]=\"courseGroups\" [texts]=\"groupsText\" [(ngModel)]=\"courseGroupsModel\" [settings]=\"mySettings\" required></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"coursePreRequired\" [options]=\"coursePreRequired\" [texts]=\"preRequiredsText\" [(ngModel)]=\"coursePreRequiredModel\" [settings]=\"mySettings\" (ngModelChange)=\"onChangecourseGroups($event)\" required ></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\">\n                                    <button class=\" btn btn-success\" >\n                                         <span [hidden]=\"isEditing\">\n                                             افزودن\n                                         </span>\n                                         <span [hidden]=\"!isEditing\">\n                                             ویرایش\n                                         </span>\n                                    </button>                             \n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\n                                </div>\n                                <div class=\"form-group\" >\n                                    <span [hidden]=\"!isEditing\">\n                                        <a (click)=\"cancelEditing()\" class=\"btn btn-success\">\n                                                لغو ویرایش\n                                        </a>    \n                                    </span>       \n                                </div>\n                            </form>\n                            \n                    </div>\n                </div>\n                </div>\n            </div>\n            <!-- /.row -->\n<modal #myModal [keyboard]=\"false\" [backdrop]=\"'static'\">\n    <modal-header [show-close]=\"false\">\n        <h4 class=\"modal-title\">تایید عملیات</h4>\n    </modal-header>\n    <modal-body>\n        {{confirmMessage}}\n    </modal-body>\n    <modal-footer >\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">خیر</button>\n        <button type=\"button\" class=\"btn btn-defult\" (click)=\"modal.close()\">بله</button>\n    </modal-footer>\n</modal>"
+module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\n                <div class=\"col-md-12 text-center \"><h1>ترم ها</h1></div>\n            </div>\n            <div class=\"row\" >\n                <div class=\"col-md-11\" [ngClass]=\"{'alert-success': operationSuccessFull, 'alert-danger': operationUnSuccessFull}\" >{{alertMessage}}</div>\n            </div>\n            <div class=\"row\" id=\"main\" >\n                <div id=\"no-more-tables\" >\n                    <table class=\"col-md-5 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\n                        <thead class=\"cf\">\n                        <tr>\n                            <th>ردیف</th>\n                            <th>ترم</th>\n                            <th >سال تحصیلی</th>\n                            <th > ویرایش</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"definedCourses\">\n                            <tr *ngFor=\"let term of terms; let i=index\" id=\"term{{i}}\">\n                                <td  data-title=\"ردیف\">{{i+1}}</td>\n                                <td  data-title=\"ترم\" *ngIf=\"term.semester==1\" data-title=\"شماره ترم\">\n                                  ترم پاییز\n                                </td>\n                                <td data-title=\"ترم\" *ngIf=\"term.semester==2\">ترم زمستان</td>\n                                <td data-title=\"سال تحصیلی\">{{term.year}}</td>\n                                <td data-title=\"ویرایش \">\n                                    <a class=\"btn btn-defult\">\n                                    <span (click)=\"removeCourse(i,term.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\n                                    </span>\n                                    </a>\n                                    <a class=\"btn btn-defult\">                                    \n                                    <span (click)=\"editTermSelect(i,term.id)\" class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\">\n                                    </span>\n                                    </a>\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n\n                    <div class=\" col-sm-5 col-md-offset-1 \" id=\"rightBox\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\" >\n\n                        <div class=\"row\">\n                            <div class=\"text-center\">افزودن ترم</div>\n                            <form class=\"form-inline\" #addTermForm=\"ngForm\" (ngSubmit)=\"addTerm(addTermForm)\" >\n                                <div class=\"form-group\" >\n                                        <label for=\"yearTxt\" style=\"font-size:large;\">سال تحصیلی:</label>\n                                        <input type=\"number\" class=\"form-control\" style=\"width:95px;\" id=\"yearTxt\" name=\"yearTxt\" [(ngModel)]=\"yearTxt\" required minlength=\"4\" maxlength=\"24\" ngModel>\n                                </div>\n                                <div class=\"form-group\" >\n                                        <label style=\"font-size:large;\" for=\"termSelection\">نوع ترم:</label>\n                                        <select class=\"form-control\" id=\"termSelection\" name=\"termSelection\" placeholder=\"ترم\"  [(ngModel)]=\"termSelection\" required minlength=\"8\" maxlength=\"24\">\n                                          <option value=\"1\">پاییز</option>\n                                          <option value=\"2\">زمستان</option>\n                                        </select>\n                                </div>\n                                <!--<div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"courseGroups\" [options]=\"courseGroups\" [texts]=\"groupsText\" [(ngModel)]=\"courseGroupsModel\" [settings]=\"mySettings\" required></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"coursePreRequired\" [options]=\"coursePreRequired\" [texts]=\"preRequiredsText\" [(ngModel)]=\"coursePreRequiredModel\" [settings]=\"mySettings\" (ngModelChange)=\"onChangecourseGroups($event)\" required ></ss-multiselect-dropdown>\n                                </div>-->\n                                <div class=\"form-group\">\n                                    <button class=\" btn btn-success\" >\n                                         <span [hidden]=\"isEditing\">\n                                             افزودن\n                                         </span>\n                                         <span [hidden]=\"!isEditing\">\n                                             ویرایش\n                                         </span>\n                                    </button>                             \n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\n                                </div>\n                                <div class=\"form-group\" >\n                                    <span [hidden]=\"!isEditing\">\n                                        <a (click)=\"cancelEditing()\" class=\"btn btn-success\">\n                                                لغو ویرایش\n                                        </a>    \n                                    </span>       \n                                </div>\n                            </form>\n                            <hr>\n                            <div class=\"text-center\">افزودن درس به ترم انتخاب شده</div>\n                            <form class=\"form-inline\" #addLectureToTermForm=\"ngForm\" (ngSubmit)=\"addLectureToTerm(addLectureToTermForm)\" >\n                                <div class=\"form-group\" >\n                                    <label for=\"courseGroups\">انتخاب درس</label>\n                                    <ss-multiselect-dropdown name=\"courses\" [options]=\"courses\" [texts]=\"groupsText\" [(ngModel)]=\"coursesModel\" [settings]=\"mySettings\" required></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\" >\n                                    <ss-multiselect-dropdown name=\"masters\" [options]=\"masters\" [texts]=\"preRequiredsText\" [(ngModel)]=\"mastersModel\" [settings]=\"mySettings\" (ngModelChange)=\"onChangecourseGroups($event)\" required ></ss-multiselect-dropdown>\n                                </div>\n                                <div class=\"form-group\">\n                                        <label for=\"yearTxt\" style=\"font-size:large;\">کد درس :</label>\n                                        <input type=\"number\" class=\"form-control\" style=\"width:95px;\" id=\"lectureCodeTxt\" name=\"lectureCodeTxt\" [(ngModel)]=\"lectureCodeTxt\" required minlength=\"4\" maxlength=\"24\" ngModel>\n                                </div>\n                                <div class=\"form-group\">\n                                        <label for=\"yearTxt\" style=\"font-size:large;\">شماره کلاس :</label>\n                                        <input type=\"number\" class=\"form-control\" style=\"width:95px;\" id=\"roomNumberTxt\" name=\"roomNumberTxt\" [(ngModel)]=\"roomNumberTxt\" required minlength=\"4\" maxlength=\"24\" ngModel>\n                                </div>\n                                <div class=\"form-group\">\n                                    <button class=\" btn btn-success\" >\n                                         <span>\n                                             افزودن\n                                         </span>\n                                    </button>                             \n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\n                                </div>\n                                <div class=\"form-group\" >\n                                    <span [hidden]=\"!isEditing\">\n                                        <a (click)=\"cancelEditing()\" class=\"btn btn-success\">\n                                                لغو ویرایش\n                                        </a>    \n                                    </span>       \n                                </div>\n                            </form>\n                            <table class=\"col-md-5 col-sm-11 table-bordered table-striped table-condensed cf\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\">\n                                <thead class=\"cf\">\n                                <tr>\n                                    <th>ردیف </th>                                    \n                                    <th>درس </th>\n                                    <th>شماره کلاس</th>\n                                    <th >استاد</th>\n                                    <th > حذف</th>\n                                </tr>\n                                </thead>\n                                <tbody id=\"definedCourses\">\n                                    <tr *ngFor=\"let lecture of lecturesArr; let i=index\" id=\"lecture{{i}}\">\n                                        <td  data-title=\"ردیف\">{{i+1}}</td>\n                                        <td  data-title=\"درس\">\n                                          {{lecture.course.name}}\n                                        </td>\n                                        <td data-title=\"شماره کلاس\" >{{lecture.roomNumber}}</td>\n                                        <td data-title=\"سال تحصیلی\">{{lecture.master.firstName}} {{lecture.master.lastName}}</td>\n                                        <td data-title=\"حذف \">\n                                            <a class=\"btn btn-defult\">\n                                            <span (click)=\"removeLecture(i,lecture.id)\" class=\"glyphicon glyphicon-remove\" style=\"margin-left: 5px;\"  aria-hidden=\"true\">\n                                            </span>\n                                            </a>\n                                        </td>\n                                    </tr>\n                                </tbody>\n                            </table>\n                            \n                    </div>\n                </div>\n                </div>\n            </div>\n            <!-- /.row -->\n<modal #myModal [keyboard]=\"false\" [backdrop]=\"'static'\">\n    <modal-header [show-close]=\"false\">\n        <h4 class=\"modal-title\">تایید عملیات</h4>\n    </modal-header>\n    <modal-body>\n        {{confirmMessage}}\n    </modal-body>\n    <modal-footer >\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">خیر</button>\n        <button type=\"button\" class=\"btn btn-defult\" (click)=\"modal.close()\">بله</button>\n    </modal-footer>\n</modal>\n<modal #pleaseSelectModal [keyboard]=\"false\" [backdrop]=\"'static'\">\n    <modal-header [show-close]=\"false\">\n        <h4 class=\"modal-title\">تایید عملیات</h4>\n    </modal-header>\n    <modal-body>\nلطفا یک ترم را  انتخاب کنید\n    </modal-body>\n    <modal-footer >\n        <button type=\"button\" class=\"btn btn-defult\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">بله</button>\n    </modal-footer>\n</modal>"
 
 /***/ }),
 
@@ -1049,9 +1097,11 @@ module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_terms_service__ = __webpack_require__("./src/app/services/ga-services/ga-terms.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("./node_modules/ng2-bs3-modal/ng2-bs3-modal.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Poao_classes_lecture__ = __webpack_require__("./src/app/Poao-classes/lecture.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__term__ = __webpack_require__("./src/app/terms/term.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("./node_modules/ng2-bs3-modal/ng2-bs3-modal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_bs3_modal_ng2_bs3_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TermsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1068,6 +1118,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var TermsComponent = (function () {
     function TermsComponent(titleService, route, gaTermsService) {
         this.titleService = titleService;
@@ -1078,7 +1130,9 @@ var TermsComponent = (function () {
             checkedStyle: 'fontawesome',
             buttonClasses: 'btn btn-default btn-block',
             dynamicTitleMaxItems: 3,
-            displayAllSelectedText: false
+            displayAllSelectedText: false,
+            selectionLimit: 1,
+            autoUnselect: true
         };
         this.groupsText = {
             checkAll: 'همه را انتخاب کنید',
@@ -1086,7 +1140,7 @@ var TermsComponent = (function () {
             checked: 'انتخاب شد',
             checkedPlural: 'تا انتخاب شدند',
             searchPlaceholder: 'بگردید',
-            defaultTitle: 'گروه ها',
+            defaultTitle: 'درس ها',
             allSelected: 'همه انتخاب شدند',
         };
         this.preRequiredsText = {
@@ -1095,7 +1149,7 @@ var TermsComponent = (function () {
             checked: 'انتخاب شد',
             checkedPlural: 'تا انتخاب شدند',
             searchPlaceholder: 'بگردید',
-            defaultTitle: 'پیش نیازها',
+            defaultTitle: 'اساتید',
             allSelected: 'همه انتخاب شدند',
         };
         this.isEditing = false;
@@ -1139,7 +1193,26 @@ var TermsComponent = (function () {
         this.modal.open();
     };
     TermsComponent.prototype.addLecture = function (formFields) {
-        this.modifyForm(formFields);
+        //this.modifyForm(formFields);
+    };
+    TermsComponent.prototype.addLectureToTerm = function (formFields) {
+        if (this.isEditing) {
+            var newLecture = new __WEBPACK_IMPORTED_MODULE_4__Poao_classes_lecture__["a" /* Lecture */]();
+            newLecture.code = formFields.value.lectureCodeTxt;
+            newLecture.master.id = this.mastersModel[0];
+            newLecture.roomNumber = formFields.value.roomNumberTxt;
+            newLecture.term.id = this.selectedCourseId;
+            this.gaTermsService.addLecture(newLecture);
+            this.operationSuccessFull = true;
+            this.alertMessage = "درس به ترم اضافه شد";
+        }
+        else {
+            this.pleaseSelectModal.open();
+        }
+    };
+    TermsComponent.prototype.removeLecture = function (index, id) {
+        this.gaTermsService.deleteLecture(id);
+        this.lecturesArr.splice(index, 1);
     };
     TermsComponent.prototype.openConfirmPanel = function () {
     };
@@ -1149,17 +1222,25 @@ var TermsComponent = (function () {
         $("#term" + this.selectedCourseIndex).css('background-color', '');
     };
     TermsComponent.prototype.ApproveOperation = function () {
+        var _this = this;
         console.log(this.isEditing);
         if (this.isDeleting) {
-            // this.coursesArr.splice(this.selectedCourseIndex,1);
+            this.terms.splice(this.selectedCourseIndex, 1);
             this.isDeleting = false;
             this.isEditing = false;
             this.gaTermsService.deleteTerm(this.selectedCourseId);
-            this.courseForm.reset();
+            this.addTermForm.reset();
             // this.opera
             //send delete to server
         }
         else if (this.isEditing) {
+            this.isDeleting = false;
+            this.addTermForm.controls['yearTxt'].setValue(this.terms[this.selectedCourseIndex].year);
+            this.addTermForm.controls['termSelection'].setValue(this.terms[this.selectedCourseIndex].semester);
+            this.gaTermsService.getLectureByTerm(this.selectedCourseId).then(function (data) {
+                _this.lecturesArr = data;
+            });
+            // this.lecuresArr
             //show course fields in form to edit
             // var tempArrindexGroups:number[]=new Array;
             // var tempArrindexPreReqs:number[]=new Array;
@@ -1186,10 +1267,29 @@ var TermsComponent = (function () {
     TermsComponent.prototype.cancelEditing = function () {
         this.isDeleting = false;
         this.isEditing = false;
-        this.courseForm.reset();
+        this.addTermForm.reset();
         $("#term" + this.selectedCourseIndex).css('background-color', '');
     };
-    TermsComponent.prototype.modifyForm = function (formFields) {
+    TermsComponent.prototype.addTerm = function (formFields) {
+        if (!this.isEditing) {
+            var newTerm = new __WEBPACK_IMPORTED_MODULE_5__term__["a" /* Term */]();
+            newTerm.semester = formFields.value.termSelection;
+            newTerm.year = formFields.value.yearTxt;
+            this.gaTermsService.addTerm(newTerm);
+            this.operationSuccessFull = true;
+            this.alertMessage = "ترم اضافه شد";
+            this.retrieveData();
+        }
+        else if (this.isEditing) {
+            var newTerm = new __WEBPACK_IMPORTED_MODULE_5__term__["a" /* Term */]();
+            newTerm.semester = formFields.value.termSelection;
+            newTerm.year = formFields.value.yearTxt;
+            newTerm.id = this.selectedCourseId;
+            this.gaTermsService.addTerm(newTerm);
+            this.operationSuccessFull = true;
+            this.alertMessage = "ترم ویرایش شد";
+            this.retrieveData();
+        }
         // console.log("hellp");
         //   var groups:GaCourseGroups[]=new Array;
         //   for(var i=0;i<this.courseGroupsModel.length;i++){
@@ -1230,38 +1330,47 @@ var TermsComponent = (function () {
         // }
     };
     TermsComponent.prototype.onChangecourseGroups = function (event) {
-        console.log(this.coursePreRequiredModel);
+        // console.log(this.coursePreRequiredModel);
     };
     TermsComponent.prototype.retrieveData = function () {
         var _this = this;
         this.gaTermsService.getTermList().then(function (data) {
             _this.terms = data;
-            // var tempArrData:IMultiSelectOption[]=new Array;
-            // for(var i=0;i<data.length;i++){
-            //   tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
-            // }
-            // this.coursePreRequired=tempArrData;
-            console.log(data);
-            // this.gaCoursesService.getGroupsList().then((data)=>{ 
-            //   this.groupsArr=data;
-            //   var tempArrData:IMultiSelectOption[]=new Array;
-            //   for(var i=0;i<data.length;i++){
-            //     tempArrData[i]={id:data[i].id,name:data[i].name.toString()};
-            //   }
-            //   this.courseGroups=tempArrData;
-            // });
+            _this.gaTermsService.getCourseList().then(function (data) {
+                var tempArrData = new Array;
+                for (var i = 0; i < data.length; i++) {
+                    tempArrData[i] = { id: data[i].id, name: data[i].name.toString() };
+                }
+                _this.courses = tempArrData;
+                console.log(data);
+            });
+            _this.gaTermsService.getMasterList().then(function (data) {
+                var tempArrData = new Array;
+                for (var i = 0; i < data.length; i++) {
+                    tempArrData[i] = { id: data[i].id, name: data[i].firstName + data[i].lastName };
+                }
+                _this.masters = tempArrData;
+            });
         });
     };
     return TermsComponent;
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('myModal'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_6_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"]) === "function" && _a || Object)
 ], TermsComponent.prototype, "modal", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('lectureModifyForm'),
-    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* NgForm */]) === "function" && _b || Object)
-], TermsComponent.prototype, "courseForm", void 0);
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('pleaseSelectModal'),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"]) === "function" && _b || Object)
+], TermsComponent.prototype, "pleaseSelectModal", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('addTermForm'),
+    __metadata("design:type", typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_forms__["c" /* NgForm */]) === "function" && _c || Object)
+], TermsComponent.prototype, "addTermForm", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('addLectureToTermForm'),
+    __metadata("design:type", typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_7__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_forms__["c" /* NgForm */]) === "function" && _d || Object)
+], TermsComponent.prototype, "addLectureToTermForm", void 0);
 TermsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-terms',
@@ -1269,10 +1378,10 @@ TermsComponent = __decorate([
         styles: [__webpack_require__("./src/app/terms/terms.component.css")],
         providers: [__WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_terms_service__["a" /* GaTermsService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_terms_service__["a" /* GaTermsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_terms_service__["a" /* GaTermsService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Title */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_terms_service__["a" /* GaTermsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_ga_services_ga_terms_service__["a" /* GaTermsService */]) === "function" && _g || Object])
 ], TermsComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=terms.component.js.map
 
 /***/ }),

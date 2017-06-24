@@ -9,4 +9,5 @@ export class Lecture{
     code:string;
     roomNumber:number;
     master:Master
+    
 }

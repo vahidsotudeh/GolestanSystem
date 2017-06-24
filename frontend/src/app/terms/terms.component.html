@@ -6,7 +6,7 @@
             </div>
             <div class="row" id="main" >
                 <div id="no-more-tables" >
-                        <table class="col-md-5 col-sm-11 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <table class="col-md-5 col-sm-11 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                         <thead class="cf">
                         <tr>
                             <th>ردیف</th>
@@ -40,7 +40,8 @@
                     <div class=" col-sm-5 col-md-offset-1 " id="rightBox" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
 
                         <div class="row">
-                            <form class="form-inline" #lectureModifyForm="ngForm" (ngSubmit)="modifyForm(lectureModifyForm)" >
+                            <div class="text-center">افزودن ترم</div>
+                            <form class="form-inline" #addTermForm="ngForm" (ngSubmit)="addTerm(addTermForm)" >
                                 <div class="form-group" >
                                         <label for="yearTxt" style="font-size:large;">سال تحصیلی:</label>
                                         <input type="number" class="form-control" style="width:95px;" id="yearTxt" name="yearTxt" [(ngModel)]="yearTxt" required minlength="4" maxlength="24" ngModel>
@@ -79,21 +80,26 @@
                             </form>
                             <hr>
                             <div class="text-center">افزودن درس به ترم انتخاب شده</div>
-                            <form class="form-inline" #lectureModifyForm="ngForm" (ngSubmit)="modifyForm(lectureModifyForm)" >
+                            <form class="form-inline" #addLectureToTermForm="ngForm" (ngSubmit)="addLectureToTerm(addLectureToTermForm)" >
                                 <div class="form-group" >
                                     <label for="courseGroups">انتخاب درس</label>
-                                    <ss-multiselect-dropdown name="courseGroups" [options]="courseGroups" [texts]="groupsText" [(ngModel)]="courseGroupsModel" [settings]="mySettings" required></ss-multiselect-dropdown>
+                                    <ss-multiselect-dropdown name="courses" [options]="courses" [texts]="groupsText" [(ngModel)]="coursesModel" [settings]="mySettings" required></ss-multiselect-dropdown>
                                 </div>
                                 <div class="form-group" >
-                                    <ss-multiselect-dropdown name="coursePreRequired" [options]="coursePreRequired" [texts]="preRequiredsText" [(ngModel)]="coursePreRequiredModel" [settings]="mySettings" (ngModelChange)="onChangecourseGroups($event)" required ></ss-multiselect-dropdown>
+                                    <ss-multiselect-dropdown name="masters" [options]="masters" [texts]="preRequiredsText" [(ngModel)]="mastersModel" [settings]="mySettings" (ngModelChange)="onChangecourseGroups($event)" required ></ss-multiselect-dropdown>
+                                </div>
+                                <div class="form-group">
+                                        <label for="yearTxt" style="font-size:large;">کد درس :</label>
+                                        <input type="number" class="form-control" style="width:95px;" id="lectureCodeTxt" name="lectureCodeTxt" [(ngModel)]="lectureCodeTxt" required minlength="4" maxlength="24" ngModel>
+                                </div>
+                                <div class="form-group">
+                                        <label for="yearTxt" style="font-size:large;">شماره کلاس :</label>
+                                        <input type="number" class="form-control" style="width:95px;" id="roomNumberTxt" name="roomNumberTxt" [(ngModel)]="roomNumberTxt" required minlength="4" maxlength="24" ngModel>
                                 </div>
                                 <div class="form-group">
                                     <button class=" btn btn-success" >
-                                         <span [hidden]="isEditing">
+                                         <span>
                                              افزودن
-                                         </span>
-                                         <span [hidden]="!isEditing">
-                                             ویرایش
                                          </span>
                                     </button>                             
                                     <!--<input type="submit" value="افزودن">-->
@@ -106,6 +112,33 @@
                                     </span>       
                                 </div>
                             </form>
+                            <table class="col-md-5 col-sm-11 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                <thead class="cf">
+                                <tr>
+                                    <th>ردیف </th>                                    
+                                    <th>درس </th>
+                                    <th>شماره کلاس</th>
+                                    <th >استاد</th>
+                                    <th > حذف</th>
+                                </tr>
+                                </thead>
+                                <tbody id="definedCourses">
+                                    <tr *ngFor="let lecture of lecturesArr; let i=index" id="lecture{{i}}">
+                                        <td  data-title="ردیف">{{i+1}}</td>
+                                        <td  data-title="درس">
+                                          {{lecture.course.name}}
+                                        </td>
+                                        <td data-title="شماره کلاس" >{{lecture.roomNumber}}</td>
+                                        <td data-title="سال تحصیلی">{{lecture.master.firstName}} {{lecture.master.lastName}}</td>
+                                        <td data-title="حذف ">
+                                            <a class="btn btn-defult">
+                                            <span (click)="removeLecture(i,lecture.id)" class="glyphicon glyphicon-remove" style="margin-left: 5px;"  aria-hidden="true">
+                                            </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             
                     </div>
                 </div>
@@ -122,5 +155,16 @@
     <modal-footer >
         <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modal.dismiss()">خیر</button>
         <button type="button" class="btn btn-defult" (click)="modal.close()">بله</button>
+    </modal-footer>
+</modal>
+<modal #pleaseSelectModal [keyboard]="false" [backdrop]="'static'">
+    <modal-header [show-close]="false">
+        <h4 class="modal-title">تایید عملیات</h4>
+    </modal-header>
+    <modal-body>
+لطفا یک ترم را  انتخاب کنید
+    </modal-body>
+    <modal-footer >
+        <button type="button" class="btn btn-defult" data-dismiss="modal" (click)="modal.dismiss()">بله</button>
     </modal-footer>
 </modal>

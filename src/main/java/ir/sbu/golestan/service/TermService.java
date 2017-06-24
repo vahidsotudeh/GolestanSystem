@@ -17,11 +17,7 @@ public class TermService extends AbstractPagingAndSortingEntityService {
         super.r = repository;
     }
 
-    public Term getLastTerm() {
-        return null;
-    }
-
-    public Term getPrevTerm() {
-        return null;
+    public Term getTerm(int year, int semester){
+        return ((TermRepository)r).findByYearAndAndSemester(year, semester);
     }
 }

@@ -20,7 +20,7 @@ public class Lecture {
     private String code;
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST, mappedBy = "lecture")
-    Set<StudentLecture> studentLectures = new HashSet<>();
+    private Set<StudentLecture> studentLectures = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "term_id")

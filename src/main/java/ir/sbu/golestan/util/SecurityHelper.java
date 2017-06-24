@@ -56,4 +56,15 @@ public class SecurityHelper {
     public String getCurrentUserUserName(){
         return getCurrentUser().getUserName();
     }
+
+    public boolean hasAuthority(String authority){
+        Collection authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        for (Object ga :
+                authorities) {
+            String auth = ((GrantedAuthority) ga).getAuthority();
+            if(auth.equalsIgnoreCase(authority))
+                return true;
+        }
+        return false;
+    }
 }

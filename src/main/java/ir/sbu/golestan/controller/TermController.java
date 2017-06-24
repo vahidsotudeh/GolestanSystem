@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/terms")
-public class TermController extends AbstractPagingAndSortingController {
+public class TermController extends AbstractPagingAndSortingController<Term, TermDTO> {
     public TermController(TermService service){
         super.s = service;
         super.eClass = Term.class;

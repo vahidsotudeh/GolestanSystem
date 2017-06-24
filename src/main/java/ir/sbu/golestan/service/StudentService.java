@@ -1,5 +1,6 @@
 package ir.sbu.golestan.service;
 
+import ir.sbu.golestan.domain.Student;
 import ir.sbu.golestan.repository.StudentRepository;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Service
 @Component
-public class StudentService extends AbstractPagingAndSortingEntityService {
+public class StudentService extends AbstractPagingAndSortingEntityService<Student> {
 
     @Autowired
     public StudentService(StudentRepository repository){

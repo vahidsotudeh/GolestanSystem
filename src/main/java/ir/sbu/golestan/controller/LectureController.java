@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/lectures")
-public class LectureController extends AbstractPagingAndSortingController {
+public class LectureController extends AbstractPagingAndSortingController<Lecture, LectureFullDTO> {
 
     @Autowired
     public LectureController(LectureService service){

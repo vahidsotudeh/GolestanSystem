@@ -32,7 +32,7 @@ public class MainController {
 
 
 
-    @GetMapping("courses")
+    @GetMapping("/course")
     public String course(){
         return "redirect:/";
     }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/maters")
-public class MasterController extends AbstractPagingAndSortingController {
+public class MasterController extends AbstractPagingAndSortingController<Master, MasterFullDTO> {
 
     @Autowired
     public MasterController(MasterService service){

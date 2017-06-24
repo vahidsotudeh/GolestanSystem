@@ -1,17 +1,21 @@
 package ir.sbu.golestan.controller;
 
+import ir.sbu.golestan.domain.Lecture;
 import ir.sbu.golestan.domain.Student;
-import ir.sbu.golestan.domain.Term;
+import ir.sbu.golestan.domain.StudentLecture;
 import ir.sbu.golestan.service.LectureService;
+import ir.sbu.golestan.service.StudentLectureService;
+import ir.sbu.golestan.service.StudentService;
 import ir.sbu.golestan.service.TermService;
-import ir.sbu.golestan.service.UserService;
+import ir.sbu.golestan.util.DateUtil;
 import ir.sbu.golestan.util.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.ws.rs.QueryParam;
 
 /**
  * Created by Ali Asghar on 22/06/2017.
@@ -24,28 +28,68 @@ public class RegisterController {
     SecurityHelper securityHelper;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
     LectureService lectureService;
 
     @Autowired
     TermService termService;
 
-    @RequestMapping(value = "/addLecture" , method = RequestMethod.GET)
-    public void addLecture(@QueryParam("lectureId") String courseID){
-        if(securityHelper.hasUpdatePermission(Student.class.getSimpleName())){
-            if(CanAdd(courseID)){
+    @Autowired
+    StudentLectureService studentLectureService;
 
-            }else{
+    @Autowired
+    StudentService studentService;
 
+    @RequestMapping(value = "/addLecture", method = RequestMethod.GET)
+    public ResponseEntity addLecture(@RequestParam("lectureId") Long lectureID) {
+
+        if (securityHelper.hasUpdatePermission(Student.class.getSimpleName())
+                && securityHelper.hasUpdatePermission(StudentLecture.class.getSimpleName())
+                && securityHelper.hasUpdatePermission(Lecture.class.getSimpleName())
+                && securityHelper.hasAuthority("ROLE_STUDENT")) {
+
+            if (canAdd(lectureID)) {
+                StudentLecture sl = new StudentLecture();
+                Student s = studentService.get(securityHelper.getCurrentUser().getId());
+                sl.setStudent(s);
+                Lecture l = lectureService.get(lectureID);
+                sl.setLecture(l);
+                s.getStudentLectures().add(sl);
+                l.getStudentLectures().add(sl);
+                studentLectureService.add(sl);
+                studentService.update(s);
+                lectureService.update(l);
+                return ResponseEntity.status(HttpStatus.OK).body("added successfully");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("unit count exceeds");
             }
         }
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("you don't have permission");
     }
 
-    private boolean CanAdd(String courseID) {
-        Term term = termService.getPrevTerm();
-//        float avg = lectureService.getAvg(securityHelper.getCurrentUserUserName(), term);
+    private boolean canAdd(long lectureID) {
+        int year = DateUtil.getYear();
+        int semester = DateUtil.getSemester();
+        int adoptedUnits = lectureService.getAdoptedUnits(securityHelper.getCurrentUser(), termService.getTerm(year, semester));
+        int adoptingCourseUnit = lectureService.get(lectureID).getCourse().getPracticalUnitCount()
+                + lectureService.get(lectureID).getCourse().getTheoreticalUnitCount();
+        if (semester == 2) {
+            semester = 1;
+        } else {
+            year -= 1;
+            semester = 2;
+        }
+        float avg = studentLectureService.getAvg(securityHelper.getCurrentUser(), termService.getTerm(year, semester));
+
+//        float avg = studentLectureService.getAvg(securityHelper.getCurrentUser(), termService.getTerm(1380, 1));
+
+        if (avg > 17) {
+            if (adoptedUnits + adoptingCourseUnit < 24)
+                return true;
+        } else {
+            if (adoptedUnits + adoptingCourseUnit < 20)
+                return true;
+        }
+
         return false;
     }
 

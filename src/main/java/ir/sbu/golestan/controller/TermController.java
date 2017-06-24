@@ -8,6 +8,7 @@ import ir.sbu.golestan.service.TermService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +24,8 @@ public class TermController extends AbstractPagingAndSortingController<Term, Ter
         super.dClass = TermDTO.class;
     }
 
-    @GetMapping("/lectures")
-    public ResponseEntity getLectures(Long termId){
+    @GetMapping("/lectures/{termId}")
+    public ResponseEntity getLectures(@PathVariable Long termId){
         if(securityHelper.hasReadPermission(Lecture.class.getSimpleName())
                 &&securityHelper.hasReadPermission(Term.class.getSimpleName())) {
             Term t = s.get(termId);

@@ -15,4 +15,10 @@ public class MasterLightDTO implements Serializable {
 
     @JsonProperty
     private String userName;
+
+    @JsonProperty
+    private String firstName;
+
+    @JsonProperty
+    private String lastName;
 }

@@ -43,4 +43,17 @@ public class LectureService extends AbstractPagingAndSortingEntityService<Lectur
         return unitCount;
     }
 
+    public List<Lecture> getAdoptedLectures(User user){
+        List<Lecture> lectures = r.findAll(new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder builder) {
+                Join<Lecture, StudentLecture> join1 = root.join("studentLectures");
+                Join<StudentLecture, Student> join2 = join1.join("student");
+                Predicate studentPredicate = builder.equal(join2.get("id"), user.getId());
+                return builder.and(studentPredicate);
+            }
+        });
+        return lectures;
+    }
+
 }

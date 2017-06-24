@@ -1,5 +1,6 @@
 package ir.sbu.golestan.controller;
 
+import ir.sbu.golestan.domain.Course;
 import ir.sbu.golestan.domain.Lecture;
 import ir.sbu.golestan.domain.Student;
 import ir.sbu.golestan.domain.StudentLecture;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.transaction.Transactional;
+import java.util.Set;
 
 /**
  * Created by Ali Asghar on 22/06/2017.
@@ -40,6 +44,7 @@ public class RegisterController {
     StudentService studentService;
 
     @RequestMapping(value = "/addLecture", method = RequestMethod.GET)
+    @Transactional
     public ResponseEntity addLecture(@RequestParam("lectureId") Long lectureID) {
 
         if (securityHelper.hasUpdatePermission(Student.class.getSimpleName())
@@ -67,6 +72,23 @@ public class RegisterController {
     }
 
     private boolean canAdd(long lectureID) {
+        return isAVGOK(lectureID) && isPreRequiredOK(lectureID);
+    }
+
+    private boolean isPreRequiredOK(long lectureID) {
+        Course current = lectureService.get(lectureID).getCourse();
+        Set<Course> preRequiredCourses = current.getPreRequiredCourses();
+        for (Lecture l : lectureService.getAdoptedLectures(securityHelper.getCurrentUser())) {
+            for (Course c :
+                    preRequiredCourses) {
+                if (c.equals(l.getCourse()))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isAVGOK(long lectureID){
         int year = DateUtil.getYear();
         int semester = DateUtil.getSemester();
         int adoptedUnits = lectureService.getAdoptedUnits(securityHelper.getCurrentUser(), termService.getTerm(year, semester));
@@ -79,7 +101,6 @@ public class RegisterController {
             semester = 2;
         }
         float avg = studentLectureService.getAvg(securityHelper.getCurrentUser(), termService.getTerm(year, semester));
-
 //        float avg = studentLectureService.getAvg(securityHelper.getCurrentUser(), termService.getTerm(1380, 1));
 
         if (avg > 17) {

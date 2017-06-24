@@ -49,7 +49,7 @@ public abstract class AbstractPagingAndSortingController<E, D> {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<D> getLecture(@PathVariable("id") Long id){
+    public ResponseEntity<D> getEntity(@PathVariable("id") Long id){
         if(!securityHelper.hasReadPermission(eClass.getSimpleName())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
@@ -71,7 +71,7 @@ public abstract class AbstractPagingAndSortingController<E, D> {
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<String> addLecture(@RequestBody D dto){
+    public ResponseEntity<String> addEntity(@RequestBody D dto){
         if(!securityHelper.hasCreatePermission(eClass.getSimpleName())){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }

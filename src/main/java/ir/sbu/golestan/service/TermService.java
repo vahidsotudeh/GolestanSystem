@@ -20,4 +20,5 @@ public class TermService extends AbstractPagingAndSortingEntityService {
     public Term getTerm(int year, int semester){
         return ((TermRepository)r).findByYearAndAndSemester(year, semester);
     }
+
 }

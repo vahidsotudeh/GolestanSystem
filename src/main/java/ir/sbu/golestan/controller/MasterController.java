@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Ali Asghar on 18/06/2017.
  */
 @RestController
-@RequestMapping("api/maters")
+@RequestMapping("api/masters")
 public class MasterController extends AbstractPagingAndSortingController<Master, MasterFullDTO> {
 
     @Autowired
@@ -20,4 +20,6 @@ public class MasterController extends AbstractPagingAndSortingController<Master,
         super.eClass = Master.class;
         super.dClass = MasterFullDTO.class;
     }
+
+
 }

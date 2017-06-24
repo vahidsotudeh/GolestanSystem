@@ -64,7 +64,7 @@ module.exports = module.exports.toString();
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <!--<link rel=\"stylesheet\" href=\"../assets/css/bootstrap.min.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/bootstrap-rtl.min.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/master.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/courses.css\">-->\r\n<div id=\"wrapper\">\r\n    <!-- Navigation -->\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\r\n        <!-- Brand and toggle get grouped for better mobile display -->\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n\r\n            <a class=\"navbar-brand\" style=\"width: 140px\" href=\"http://cijulenlinea.ucr.ac.cr/dev-users/\">\r\n                <img src=\"../assets/img/golestan.png\"  style=\"width: 100%;\" alt=\"LOGO\">\r\n            </a>\r\n            <ul class=\"nav navbar-right top-nav visible-xs \" style=\"float: right;\">\r\n                <li><a href=\"#\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Stats\"><i class=\"fa fa-bar-chart-o\"></i>\r\n                </a>\r\n                </li>\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">کاربر ادمین <b class=\"fa fa-angle-down\"></b></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\"><i class=\"fa fa-fw fa-user\"></i> Edit Profile</a></li>\r\n                        <li class=\"divider\"></li>\r\n                        <li><a th:href=\"@{/logout}\"><i class=\"fa fa-fw fa-power-off\"></i> خروج</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n\r\n        </div>\r\n        <!-- Top Menu Items -->\r\n        <ul class=\"nav navbar-right top-nav hidden-xs\">\r\n            <li><a href=\"#\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Stats\"><i class=\"fa fa-bar-chart-o\"></i>\r\n            </a>\r\n            </li>\r\n            <li class=\"dropdown\">\r\n                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">مدیر گروه <b class=\"fa fa-angle-down\"></b></a>\r\n                <ul class=\"dropdown-menu\">\r\n                    <li><a routerLink='/editProfile' (click)=\"editProfile()\" href=\"#\"><i class=\"fa fa-fw fa-user\"></i> ویرایش پروفایل</a></li>\r\n                    <li class=\"divider\"></li>\r\n                    <li><a th:href=\"@{/logout}\"><i class=\"fa fa-fw fa-power-off\"></i> خروج</a></li>\r\n                </ul>\r\n            </li>\r\n        </ul>\r\n        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->\r\n        <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\r\n            <ul class=\"nav navbar-nav side-nav\">\r\n                <li >\r\n                    <a href=\"#\" data-toggle=\"collapse\" class=\"collapsed\" aria-expanded=\"true\"><i class=\"fa fa-fw fa-search\"></i> ثبت نام <i class=\"fa fa-fw pull-right fa-angle-down\"></i></a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\" data-toggle=\"collapse\" data-target=\"#submenu-2\"><i class=\"fa fa-star\"></i>  کارنامه <i class=\"fa fa-fw fa-angle-down pull-right\"></i></a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\" data-toggle=\"collapse\" data-target=\"#course-gp\" class=\"collapsed\" aria-expanded=\"false\" ><i class=\"fa fa-fw fa-angle-down pull-right \"></i> <i class=\"fa fa-user-plus\" ></i> دروس</a>\r\n                    <ul id=\"course-gp\" class=\"collapse\" aria-expanded=\"false\" style=\"height: 1px;\">\r\n                        <li><a routerLink='/courses' (click)=\"courseManagement()\"> مدیریت دروس <i class=\"fa fa-angle-double-left\"></i></a></li>\r\n                        <li><a routerLink='/groups' (click)=\"groupManagement()\"> گروه های درسی <i class=\"fa fa-angle-double-left\"></i></a></li>\r\n                    </ul>\r\n                </li>\r\n                <li>\r\n                    <a routerLink='/terms'(click)=\"termsManagement()\"><i class=\"fa fa-fw fa-paper-plane-o\"></i>ترم ها</a>\r\n                </li>\r\n                <li class=\"active\">\r\n                    <a href=\"faq\"><i class=\"fa fa-fw fa-question-circle\"></i> اساتید</a>\r\n                </li>\r\n                <li >\r\n                    <a href=\"faq\"><i class=\"fa fa-fw fa-question-circle\"></i> دانشجویان</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- /.navbar-collapse -->\r\n    </nav>\r\n\r\n    <div id=\"page-wrapper\">\r\n        <div class=\"container-fluid\">\r\n            <!-- Page Heading -->\r\n            <div *ngIf=\"flagTest\" class=\"row\" style=\"margin-bottom: 25px\">\r\n                <div class=\"col-md-12 text-center \"><h1>خوش آمدید</h1></div>\r\n            </div>\r\n            <router-outlet></router-outlet>\r\n            <!-- /.row -->\r\n        </div>\r\n        <!-- /.container-fluid -->\r\n    </div>\r\n    <!-- /#page-wrapper -->\r\n</div>\r\n\r\n\r\n"
+module.exports = "  <!--<link rel=\"stylesheet\" href=\"../assets/css/bootstrap.min.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/bootstrap-rtl.min.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/master.css\">\r\n  <link rel=\"stylesheet\" href=\"../assets/css/courses.css\">-->\r\n<div id=\"wrapper\">\r\n    <!-- Navigation -->\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\r\n        <!-- Brand and toggle get grouped for better mobile display -->\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n\r\n            <a class=\"navbar-brand\" style=\"width: 140px\" href=\"http://cijulenlinea.ucr.ac.cr/dev-users/\">\r\n                <img src=\"../assets/img/golestan.png\"  style=\"width: 100%;\" alt=\"LOGO\">\r\n            </a>\r\n            <ul class=\"nav navbar-right top-nav visible-xs \" style=\"float: right;\">\r\n                <li><a href=\"#\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Stats\"><i class=\"fa fa-bar-chart-o\"></i>\r\n                </a>\r\n                </li>\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">کاربر ادمین <b class=\"fa fa-angle-down\"></b></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\"><i class=\"fa fa-fw fa-user\"></i> Edit Profile</a></li>\r\n                        <li class=\"divider\"></li>\r\n                        <li><a th:href=\"@{/logout}\"><i class=\"fa fa-fw fa-power-off\"></i> خروج</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n\r\n        </div>\r\n        <!-- Top Menu Items -->\r\n        <ul class=\"nav navbar-right top-nav hidden-xs\">\r\n            <li><a href=\"#\" data-placement=\"bottom\" data-toggle=\"tooltip\" data-original-title=\"Stats\"><i class=\"fa fa-bar-chart-o\"></i>\r\n            </a>\r\n            </li>\r\n            <li class=\"dropdown\">\r\n                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">مدیر گروه <b class=\"fa fa-angle-down\"></b></a>\r\n                <ul class=\"dropdown-menu\">\r\n                    <li><a routerLink='/editProfile' (click)=\"editProfile()\" href=\"#\"><i class=\"fa fa-fw fa-user\"></i> ویرایش پروفایل</a></li>\r\n                    <li class=\"divider\"></li>\r\n                    <li><a href=\"/logout\"><i class=\"fa fa-fw fa-power-off\"></i> خروج</a></li>\r\n                </ul>\r\n            </li>\r\n        </ul>\r\n        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->\r\n        <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\r\n            <ul class=\"nav navbar-nav side-nav\">\r\n                <li >\r\n                    <a href=\"#\" data-toggle=\"collapse\" class=\"collapsed\" aria-expanded=\"true\"><i class=\"fa fa-fw fa-search\"></i> ثبت نام <i class=\"fa fa-fw pull-right fa-angle-down\"></i></a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\" data-toggle=\"collapse\" data-target=\"#submenu-2\"><i class=\"fa fa-star\"></i>  کارنامه <i class=\"fa fa-fw fa-angle-down pull-right\"></i></a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\" data-toggle=\"collapse\" data-target=\"#course-gp\" class=\"collapsed\" aria-expanded=\"false\" ><i class=\"fa fa-fw fa-angle-down pull-right \"></i> <i class=\"fa fa-user-plus\" ></i> دروس</a>\r\n                    <ul id=\"course-gp\" class=\"collapse\" aria-expanded=\"false\" style=\"height: 1px;\">\r\n                        <li><a routerLink='/courses' (click)=\"courseManagement()\"> مدیریت دروس <i class=\"fa fa-angle-double-left\"></i></a></li>\r\n                        <li><a routerLink='/groups' (click)=\"groupManagement()\"> گروه های درسی <i class=\"fa fa-angle-double-left\"></i></a></li>\r\n                    </ul>\r\n                </li>\r\n                <li>\r\n                    <a routerLink='/terms'(click)=\"termsManagement()\"><i class=\"fa fa-fw fa-paper-plane-o\"></i>ترم ها</a>\r\n                </li>\r\n                <li class=\"active\">\r\n                    <a href=\"faq\"><i class=\"fa fa-fw fa-question-circle\"></i> اساتید</a>\r\n                </li>\r\n                <li >\r\n                    <a href=\"faq\"><i class=\"fa fa-fw fa-question-circle\"></i> دانشجویان</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <!-- /.navbar-collapse -->\r\n    </nav>\r\n\r\n    <div id=\"page-wrapper\">\r\n        <div class=\"container-fluid\">\r\n            <!-- Page Heading -->\r\n            <div *ngIf=\"flagTest\" class=\"row\" style=\"margin-bottom: 25px\">\r\n                <div class=\"col-md-12 text-center \"><h1>خوش آمدید</h1></div>\r\n            </div>\r\n            <router-outlet></router-outlet>\r\n            <!-- /.row -->\r\n        </div>\r\n        <!-- /.container-fluid -->\r\n    </div>\r\n    <!-- /#page-wrapper -->\r\n</div>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -710,6 +710,21 @@ var _a, _b, _c, _d, _e;
 
 /***/ }),
 
+/***/ "./src/app/poao-classes/user.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
+var User = (function () {
+    function User() {
+    }
+    return User;
+}());
+
+//# sourceMappingURL=user.js.map
+
+/***/ }),
+
 /***/ "./src/app/profile/profile.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -731,7 +746,7 @@ module.exports = module.exports.toString();
 /***/ "./src/app/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  profile works!\n</p>\n"
+module.exports = "            <div class=\"row\" style=\"margin-bottom: 25px\">\r\n                <div class=\"col-md-12 text-center \"><h1>ویرایش اطلاعات پروفایل</h1></div>\r\n            </div>\r\n            <div class=\"row\" >\r\n                <div class=\"col-md-11 alert\" [ngClass]=\"{'alert-success': operationSuccessFull, 'alert-danger': operationUnSuccessFull}\" >{{alertMessage}}</div>\r\n            </div>\r\n            <div class=\"row\" id=\"main\" >\r\n                <div id=\"no-more-tables\" >\r\n                    <div class=\" col-sm-9 col-md-offset-1 \" id=\"rightBox\" style=\"box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\" >\r\n\r\n                        <div class=\"row\">\r\n                            <form class=\"form-inline\" #userModifyForm=\"ngForm\" (ngSubmit)=\"modifyForm(userModifyForm)\" >\r\n                                <div class=\"col-sm-5 form-group\" >\r\n                                        <label style=\"font-size: large;\" for=\"name\">نام:</label>\r\n                                        <input type=\"text\" value=\"{{currentUser.firstName}}\" class=\"form-control\" name=\"name\" placeholder=\"نام\" [(ngModel)]=\"name\" required minlength=\"4\" maxlength=\"24\" ngModel>\r\n                                </div>\r\n                                <div class=\"col-sm-5 form-group\" >\r\n                                        <label style=\"font-size: large;\" for=\"lastName\">نام خانوادگی:</label>\r\n                                        <input type=\"text\" value=\"{{currentUser.lastName}}\" class=\"form-control\" id=\"lastName\" name=\"lastName\" placeholder=\"نام خانوادگی\"  [(ngModel)]=\"lastName\" required minlength=\"8\" maxlength=\"24\">\r\n                                </div>\r\n                                <div class=\"col-sm-5 form-group\" >\r\n                                        <label style=\"font-size: large;\" for=\"userName\">نام کاربری:</label>\r\n                                        <input type=\"text\" value=\"{{currentUser.userName}}\" class=\"form-control\" id=\"userName\" name=\"userName\" placeholder=\"نام کاربری\"  [(ngModel)]=\"userName\" required minlength=\"8\" maxlength=\"24\" disabled>\r\n                                </div>\r\n                                <div class=\"col-sm-5 form-group\" >\r\n                                        <label style=\"font-size: large;\" for=\"password\">رمز عبور :</label>\r\n                                        <input type=\"password\" value=\"{{currentUser.password}}\" class=\"form-control\" id=\"password\" name=\"password\" placeholder=\"رمز عبور\"  [(ngModel)]=\"password\" required minlength=\"8\" maxlength=\"24\" >\r\n                                </div>\r\n                                <div class=\" col-sm-5 form-group\" >\r\n                                        <label style=\"font-size: large;\" for=\"email\">ایمیل:</label>\r\n                                        <input type=\"email\" value=\"{{currentUser.email}}\" class=\"form-control\" id=\"email\" name=\"email\" placeholder=\"نام کاربری\"  [(ngModel)]=\"email\" required minlength=\"8\" maxlength=\"24\" >\r\n                                </div>\r\n\r\n                                <div class=\" col-sm-5 form-group\">\r\n                                    <button class=\" btn btn-success btn-block\" >\r\n                                         <span>\r\n                                             ویرایش\r\n                                         </span>\r\n                                    </button>                             \r\n                                    <!--<input type=\"submit\" value=\"افزودن\">-->\r\n                                </div>\r\n                            </form>\r\n                    </div>\r\n                </div>\r\n                </div>\r\n            </div>\r\n            <!-- /.row -->\r\n<modal #myModal [keyboard]=\"false\" [backdrop]=\"'static'\">\r\n    <modal-header [show-close]=\"false\">\r\n        <h4 class=\"modal-title\">تایید عملیات</h4>\r\n    </modal-header>\r\n    <modal-body>\r\n        {{confirmMessage}}\r\n    </modal-body>\r\n    <modal-footer >\r\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" (click)=\"modal.dismiss()\">خیر</button>\r\n        <button type=\"button\" class=\"btn btn-defult\" (click)=\"modal.close()\">بله</button>\r\n    </modal-footer>\r\n</modal>"
 
 /***/ }),
 
@@ -740,6 +755,13 @@ module.exports = "<p>\n  profile works!\n</p>\n"
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__poao_classes_user__ = __webpack_require__("./src/app/poao-classes/user.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_profile_service_service__ = __webpack_require__("./src/app/services/profile-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__ = __webpack_require__("./node_modules/ng2-bs3-modal/ng2-bs3-modal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -751,22 +773,75 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
+
 var ProfileComponent = (function () {
-    function ProfileComponent() {
+    function ProfileComponent(titleService, route, profileService) {
+        this.titleService = titleService;
+        this.route = route;
+        this.profileService = profileService;
+        this.setTitle("profile");
+        this.retrieveData();
+        this.currentUser = new __WEBPACK_IMPORTED_MODULE_2__poao_classes_user__["a" /* User */]();
     }
     ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.modal.onClose.subscribe(function () { return _this.ApproveOperation(); });
+        this.modal.onDismiss.subscribe(function () { return _this.cancelOperation(); });
+        this.modal.onOpen.subscribe(function () { return _this.openConfirmPanel(); });
+    };
+    ProfileComponent.prototype.openConfirmPanel = function () {
+    };
+    ProfileComponent.prototype.cancelOperation = function () {
+    };
+    ProfileComponent.prototype.ApproveOperation = function () {
+    };
+    ProfileComponent.prototype.setTitle = function (newTitle) {
+        this.titleService.setTitle(newTitle);
+    };
+    ProfileComponent.prototype.retrieveData = function () {
+        var _this = this;
+        this.profileService.getUser().then(function (data) {
+            _this.currentUser = data;
+        });
+    };
+    ProfileComponent.prototype.modifyForm = function (form) {
+        if (form.value.email)
+            this.currentUser.email = form.value.email;
+        if (form.value.firstName)
+            this.currentUser.firstName = form.value.firstName;
+        if (form.value.lastName)
+            this.currentUser.lastName = form.value.lastName;
+        if (form.value.password)
+            this.currentUser.password = form.value.password;
+        this.profileService.updateUser(this.currentUser);
+        this.retrieveData();
     };
     return ProfileComponent;
 }());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('myModal'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ng2_bs3_modal_ng2_bs3_modal__["ModalComponent"]) === "function" && _a || Object)
+], ProfileComponent.prototype, "modal", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('userModifyForm'),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_forms__["c" /* NgForm */]) === "function" && _b || Object)
+], ProfileComponent.prototype, "courseForm", void 0);
 ProfileComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-profile',
         template: __webpack_require__("./src/app/profile/profile.component.html"),
-        styles: [__webpack_require__("./src/app/profile/profile.component.css")]
+        styles: [__webpack_require__("./src/app/profile/profile.component.css")],
+        providers: [__WEBPACK_IMPORTED_MODULE_3__services_profile_service_service__["a" /* ProfileService */]]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["b" /* Title */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["b" /* Title */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_profile_service_service__["a" /* ProfileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_profile_service_service__["a" /* ProfileService */]) === "function" && _e || Object])
 ], ProfileComponent);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),
@@ -876,6 +951,50 @@ GaTermsService = __decorate([
 
 var _a;
 //# sourceMappingURL=ga-terms.service.js.map
+
+/***/ }),
+
+/***/ "./src/app/services/profile-service.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_restangular__ = __webpack_require__("./node_modules/ngx-restangular/dist/esm/src/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_restangular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ngx_restangular__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ProfileService = (function () {
+    function ProfileService(restangular) {
+        this.restangular = restangular;
+    }
+    ProfileService.prototype.getUser = function () {
+        return this.restangular.one('users/currentUser').get().toPromise();
+    };
+    ProfileService.prototype.updateUser = function (user) {
+        // console.log(this.restangular.one("lectures/update").post(course));
+        this.restangular.all("users/update").post(user);
+        // this.restangular.post("lectures/update",course);
+        return true;
+    };
+    return ProfileService;
+}());
+ProfileService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ngx_restangular__["Restangular"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ngx_restangular__["Restangular"]) === "function" && _a || Object])
+], ProfileService);
+
+var _a;
+//# sourceMappingURL=profile-service.service.js.map
 
 /***/ }),
 

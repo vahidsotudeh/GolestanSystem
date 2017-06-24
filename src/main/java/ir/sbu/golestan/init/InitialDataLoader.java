@@ -153,6 +153,8 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             sr.setPermissions(Sets.newHashSet(p1, p3, p5, p6, p7, p21, p25, p29, p31, p33, p34, p35));
             roleRepository.save(sr);
 
+
+
         }
 
 

@@ -1,7 +1,6 @@
 package ir.sbu.golestan.domain;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,10 +37,8 @@ public class Lecture {
     @JoinColumn(name = "master_id")
     private Master master;
 
-    private Date startTime;
-
-    private Date endTime;
-
+    @OneToMany
+    private Set<LectureTime> lectureTimes = new HashSet<>();
 
     public long getId() {
         return id;
@@ -97,5 +94,13 @@ public class Lecture {
 
     public void setMaster(Master master) {
         this.master = master;
+    }
+
+    public Set<LectureTime> getLectureTimes() {
+        return lectureTimes;
+    }
+
+    public void setLectureTimes(Set<LectureTime> lectureTimes) {
+        this.lectureTimes = lectureTimes;
     }
 }

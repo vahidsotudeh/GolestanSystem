@@ -67,9 +67,9 @@ public class PersianCalendar implements Serializable {
      * Converts specified gregorian date to persian date in form of (yyyy/mm/dd)
      */
     public static String getPersianDate(int gregYear, int gregMonth, int gregDay) {
-        // passed days from Greg orig
+        // passed Days from Greg orig
         double d = Math.ceil((gregYear - 1) * greg_len);
-        // passed days from jalali base
+        // passed Days from jalali base
         double d_j = d + greg_origin_from_jalali_base
                 + getGregDayOfYear(gregYear, gregMonth, gregDay);
 
@@ -534,7 +534,7 @@ public class PersianCalendar implements Serializable {
 
 
     /**
-     * Returns how much days are blank at start
+     * Returns how much Days are blank at start
      */
     public int getBlankDayAtMonthStarting() {
 

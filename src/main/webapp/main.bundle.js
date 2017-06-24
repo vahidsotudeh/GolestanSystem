@@ -979,7 +979,7 @@ var GaTermsService = (function () {
         return this.restangular.one('courses/list').getList().toPromise();
     };
     GaTermsService.prototype.getMasterList = function () {
-        return this.restangular.one('maters/list').getList().toPromise();
+        return this.restangular.one('masters/list').getList().toPromise();
     };
     GaTermsService.prototype.addLecture = function (lec) {
         this.restangular.all("lectures/add").post(lec);
@@ -987,7 +987,7 @@ var GaTermsService = (function () {
         return true;
     };
     GaTermsService.prototype.getLectureByTerm = function (id) {
-        return this.restangular.one('api/terms/lectures', id).getList().toPromise();
+        return this.restangular.one('terms/lectures', id).getList().toPromise();
     };
     GaTermsService.prototype.deleteLecture = function (id) {
         this.restangular.one("lectures/delete", id).get();

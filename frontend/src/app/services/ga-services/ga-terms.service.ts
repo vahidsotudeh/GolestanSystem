@@ -33,7 +33,7 @@ export class GaTermsService {
     return this.restangular.one('courses/list').getList().toPromise();
   }
   public getMasterList():Promise<Array<Master>>{
-    return this.restangular.one('maters/list').getList().toPromise();
+    return this.restangular.one('masters/list').getList().toPromise();
   }
   public addLecture(lec:Lecture):boolean{
     this.restangular.all("lectures/add").post(lec);
@@ -41,7 +41,7 @@ export class GaTermsService {
     return true;
   }
   public getLectureByTerm(id:number):Promise<Array<Lecture>>{
-    return this.restangular.one('api/terms/lectures',id).getList().toPromise();
+    return this.restangular.one('terms/lectures',id).getList().toPromise();
   }
   public deleteLecture(id:number):boolean{
     this.restangular.one("lectures/delete",id).get();

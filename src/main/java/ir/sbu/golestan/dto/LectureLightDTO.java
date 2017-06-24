@@ -10,6 +10,8 @@ import java.io.Serializable;
  */
 @Data
 public class LectureLightDTO implements Serializable {
+
     @JsonProperty
     private Long id;
+
 }

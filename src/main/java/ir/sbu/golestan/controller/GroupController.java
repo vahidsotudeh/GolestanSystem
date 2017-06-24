@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/groups")
-public class GroupController extends AbstractPagingAndSortingController{
+public class GroupController extends AbstractPagingAndSortingController<Group, GroupDTO>{
     @Autowired
     public GroupController(GroupService service){
         super.s = service;

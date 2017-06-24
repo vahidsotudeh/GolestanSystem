@@ -1,10 +1,10 @@
 package ir.sbu.golestan.service;
 
+import ir.sbu.golestan.repository.PagingAndSortingRepositoryWithSpecifications;
 import ir.sbu.golestan.util.PageHelper;
 import ir.sbu.golestan.util.PageParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
  * Created by Ali Asghar on 11/06/2017.
  */
 public abstract class AbstractPagingAndSortingEntityService<E> {
-    PagingAndSortingRepository r;
+    PagingAndSortingRepositoryWithSpecifications r;
 
     @Autowired
     PageHelper ph;

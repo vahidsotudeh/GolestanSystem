@@ -9,7 +9,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.Set;
+import java.util.Date;
 
 /**
  * Created by Ali Asghar on 21/05/2017.
@@ -26,9 +26,10 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     private final TermRepository termRepository;
     private final LectureRepository lectureRepository;
     private final MasterRepository masterRepository;
+    private final StudentRepository studentRepository;
 
     @Autowired
-    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, CourseRepository courseRepository, GroupRepository groupRepository, TermRepository termRepository, LectureRepository lectureRepository, MasterRepository masterRepository) {
+    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, CourseRepository courseRepository, GroupRepository groupRepository, TermRepository termRepository, LectureRepository lectureRepository, MasterRepository masterRepository, StudentRepository studentRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
@@ -37,6 +38,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         this.termRepository = termRepository;
         this.lectureRepository = lectureRepository;
         this.masterRepository = masterRepository;
+        this.studentRepository = studentRepository;
     }
 
     @Override
@@ -44,22 +46,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (alreadySetup)
             return;
-        if(userRepository.findByUserName("92213055") == null) {
-            Role sr = createRoleIfNotFound(Role.RoleTypes.STUDENT.name(), null);
-            User student = new User();
-            student.setRoles(Sets.newHashSet(sr));
-            student.setFirstName("Ali");
-            student.setLastName("Taghizadeh");
-            student.setPassword("st");
-            student.setEmail("ali@gmail.com");
-            student.setUserName("92213055");
-            student.setEnabled(true);
-            userRepository.save(student);
 
-        }
-
-
-        if(userRepository.findByUserName("nazemi") == null){
+        //adding roles and permissions
+        if(!permissionRepository.findAll().iterator().hasNext()){
             Permission p1 = new Permission("READ_LECTURE");
             Permission p2 = new Permission("CREATE_LECTURE");
             Permission p3 = new Permission("UPDATE_LECTURE");
@@ -102,10 +91,10 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             Permission p32 = new Permission("DELETE_STUDENT");
 
 
-            Permission p33 = new Permission("READ_STUDENTCOURSE");
-            Permission p34 = new Permission("CREATE_STUDENTCOURSE");
-            Permission p35 = new Permission("UPDATE_STUDENTCOURSE");
-            Permission p36 = new Permission("DELETE_STUDENTCOURSE");
+            Permission p33 = new Permission("READ_STUDENTLECTURE");
+            Permission p34 = new Permission("CREATE_STUDENTLECTURE");
+            Permission p35 = new Permission("UPDATE_STUDENTLECTURE");
+            Permission p36 = new Permission("DELETE_STUDENTLECTURE");
 
             Permission p37 = new Permission("READ_TERM");
             Permission p38 = new Permission("CREATE_TERM");
@@ -153,13 +142,24 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             permissionRepository.save(p39);
             permissionRepository.save(p40);
 
-            Role gr = createRoleIfNotFound(Role.RoleTypes.GROUP_MANAGER.name(), null);
+            Role gr = createRoleIfNotFound(Role.RoleTypes.GROUP_MANAGER.name());
             gr.setPermissions(Sets.newHashSet(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13,
                     p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29
                     ,p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40));
             roleRepository.save(gr);
+
+            Role sr = new Role();
+            sr.setName(Role.RoleTypes.STUDENT.name());
+            sr.setPermissions(Sets.newHashSet(p1, p3, p5, p6, p7, p21, p25, p29, p31, p33, p34, p35));
+            roleRepository.save(sr);
+
+        }
+
+
+        //adding super user
+        if(userRepository.findByUserName("nazemi") == null){
             User groupManager = new User();
-            groupManager.setRoles(Sets.newHashSet(gr));
+            groupManager.setRoles(Sets.newHashSet(roleRepository.findByName(Role.RoleTypes.GROUP_MANAGER.name())));
             groupManager.setFirstName("Islam");
             groupManager.setLastName("Nazemi");
             groupManager.setPassword("gm");
@@ -169,18 +169,19 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             userRepository.save(groupManager);
         }
 
+        //adding default groups
         if(groupRepository.findByName("نرم افزار") == null) {
             Group g1 = new Group();
             g1.setName("نرم افزار");
             groupRepository.save(g1);
         }
-
         if(groupRepository.findByName("سخت افزار") == null) {
             Group g2 = new Group();
             g2.setName("سخت افزار");
             groupRepository.save(g2);
         }
 
+        //sample courses
         if(!courseRepository.findAll().iterator().hasNext()) {
             for (int i = 0; i < 50; i++) {
                 Course lecture11 = new Course();
@@ -200,15 +201,23 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 courseRepository.save(lecture12);
             }
         }
+
+        //sampleTerms
         if(!termRepository.findAll().iterator().hasNext()){
+            int year = 1380;
             for (int i = 0; i < 50; i++) {
                 Term term = new Term();
-                term.setYear(1380 + i);
+                term.setYear(year);
                 term.setSemester(i%2 == 0? 1:2);
                 termRepository.save(term);
+                if(i%2 != 0){
+                    year++;
+                }
+
             }
         }
 
+        //sample masters
         if(!masterRepository.findAll().iterator().hasNext()){
             for (int i = 0; i < 50; i++) {
                 Master master = new Master();
@@ -224,41 +233,68 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
         }
 
-
+        //sample lectures
         if(!lectureRepository.findAll().iterator().hasNext()){
             for (int i = 0; i < 50; i++) {
                 Lecture lecture = new Lecture();
-                lecture.setId(i);
+                lecture.setId(i + 1);
                 lecture.setCode("12");
                 lecture.setCourse(courseRepository.findOne((long) i + 1));
                 lecture.setMaster(masterRepository.findOne((long) (i + 1)));
                 lecture.setRoomNumber(100 + i);
-                lecture.setTerm(termRepository.findOne((long) i));
+                lecture.setTerm(termRepository.findOne((long) 1));
                 lectureRepository.save(lecture);
             }
         }
 
 
+        //sample student
+        if(!studentRepository.findAll().iterator().hasNext()) {
+            Role sr = roleRepository.findByName(Role.RoleTypes.STUDENT.name());
+            Student student = new Student();
+            student.setRoles(Sets.newHashSet(sr));
+            student.setFirstName("Ali");
+            student.setLastName("Taghizadeh");
+            student.setPassword("st");
+            student.setEmail("ali@gmail.com");
+            student.setUserName("92213055");
+            student.setEnabled(true);
+            student.setEntranceDate(new Date());
+            student.setLevel(Student.StudentLevelTypes.BACHELOR.name());
+
+            StudentLecture sl = new StudentLecture();
+            sl.setLecture(lectureRepository.findOne((long) 1));
+            sl.setStudent(student);
+            student.getStudentLectures().add(sl);
+            sl = new StudentLecture();
+            sl.setLecture(lectureRepository.findOne((long) 2));
+            sl.setStudent(student);
+            student.getStudentLectures().add(sl);
+            sl = new StudentLecture();
+            sl.setLecture(lectureRepository.findOne((long) 3));
+            sl.setStudent(student);
+            student.getStudentLectures().add(sl);
+            sl = new StudentLecture();
+            sl.setLecture(lectureRepository.findOne((long) 4));
+            sl.setStudent(student);
+            student.getStudentLectures().add(sl);
+            sl = new StudentLecture();
+            sl.setLecture(lectureRepository.findOne((long) 5));
+            sl.setStudent(student);
+            student.getStudentLectures().add(sl);
+
+            userRepository.save(student);
+
+        }
 
         alreadySetup = true;
     }
 
     @Transactional
-    private Permission createPermissionIfNotFound(String name) {
-        Permission permission = permissionRepository.findByName(name);
-        if (permission == null) {
-            permission = new Permission(name);
-            permissionRepository.save(permission);
-        }
-        return permission;
-    }
-
-    @Transactional
-    private Role createRoleIfNotFound(String name, Set<Permission> permissions) {
+    private Role createRoleIfNotFound(String name) {
         Role role = roleRepository.findByName(name);
         if (role == null) {
             role = new Role(name);
-            role.setPermissions(permissions);
             roleRepository.save(role);
         }
         return role;

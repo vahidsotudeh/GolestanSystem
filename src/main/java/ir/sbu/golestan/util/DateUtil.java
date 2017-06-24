@@ -9,4 +9,10 @@ public class DateUtil {
     public synchronized static int getYear(){
         return pc.getYear();
     }
+    public synchronized static int getSemester(){
+        if(pc.getMonth() > 6 && pc.getMonth() < 11)
+            return 1;
+        else
+            return 2;
+    }
 }

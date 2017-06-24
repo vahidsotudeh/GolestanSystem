@@ -1,6 +1,7 @@
 package ir.sbu.golestan.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public class Lecture {
     private String code;
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST, mappedBy = "lecture")
-    Set<StudentLecture> studentLectures = new HashSet<>();
+    private Set<StudentLecture> studentLectures = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "term_id")
@@ -36,6 +37,11 @@ public class Lecture {
     @ManyToOne
     @JoinColumn(name = "master_id")
     private Master master;
+
+    private Date startTime;
+
+    private Date endTime;
+
 
     public long getId() {
         return id;

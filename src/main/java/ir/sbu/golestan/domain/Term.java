@@ -1,7 +1,5 @@
 package ir.sbu.golestan.domain;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.security.InvalidParameterException;
 import java.util.Set;
@@ -9,7 +7,7 @@ import java.util.Set;
 /**
  * Created by Ali Asghar on 22/05/2017.
  */
-@Data
+
 @Entity
 @Table(name = "terms")
 public class Term {
@@ -30,5 +28,33 @@ public class Term {
         }else {
             throw new InvalidParameterException("semester number is 1 or 2");
         }
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public Set<Lecture> getLectures() {
+        return lectures;
+    }
+
+    public void setLectures(Set<Lecture> lectures) {
+        this.lectures = lectures;
     }
 }

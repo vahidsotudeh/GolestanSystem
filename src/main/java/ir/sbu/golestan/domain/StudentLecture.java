@@ -1,65 +1,58 @@
 package ir.sbu.golestan.domain;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Ali Asghar on 22/05/2017.
  */
-@Data
+
 @Entity
 @Table(name = "student_lecture")
-@IdClass(StudentLecture.StudentLectureId.class)
 public class StudentLecture implements Serializable {
 
-    class StudentLectureId implements Serializable {
-        @ManyToOne
-        private Student student;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-        @ManyToOne
-        private Lecture lecture;
+    @ManyToOne
+    private Student student;
 
-        Student getStudent() {
-            return student;
-        }
-
-        void setStudent(Student student) {
-            this.student = student;
-        }
-
-        Lecture getLecture() {
-            return lecture;
-        }
-
-        void setLecture(Lecture lecture) {
-            this.lecture = lecture;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            StudentLectureId sci = (StudentLectureId) o;
-
-            return (student != null ? student.equals(sci.student) : sci.student == null)
-                    && (lecture != null ? lecture.equals(sci.lecture) : sci.lecture == null);
-        }
-
-        @Override
-        public int hashCode() {
-            int result;
-            result = (student != null ? student.hashCode() : 0);
-            result = 31 * result + (lecture != null ? lecture.hashCode() : 0);
-            return result;
-        }
-    }
-
-    @Id private Student student;
-    @Id private Lecture lecture;
+    @ManyToOne
+    private Lecture lecture;
 
     private float grade;
 
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Lecture getLecture() {
+        return lecture;
+    }
+
+    public void setLecture(Lecture lecture) {
+        this.lecture = lecture;
+    }
+
+    public float getGrade() {
+        return grade;
+    }
+
+    public void setGrade(float grade) {
+        this.grade = grade;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

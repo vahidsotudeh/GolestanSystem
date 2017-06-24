@@ -38,7 +38,17 @@
             </a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">مدیر گروه <b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">سلام آقای 
+                    {{currentUser.firstName}}
+                    شما 
+                    <span *ngIf="currentUser?.roles">
+                        <span [ngSwitch]="getRoles()">
+                            <span *ngSwitchCase="'GROUP_MANAGER'">مدیر گروه هستید</span>
+                            <span *ngSwitchCase="'MASTER'">استاد</span>
+                            <span *ngSwitchCase="'STUDENT'">دانشجو</span>
+                        </span>
+                    </span>
+                    <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
                     <li><a routerLink='/editProfile' (click)="editProfile()" href="#"><i class="fa fa-fw fa-user"></i> ویرایش پروفایل</a></li>
                     <li class="divider"></li>
@@ -49,13 +59,18 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li >
+                
+                <li *ngIf="currentUser?.roles&&isStudent()">
                     <a href="#" data-toggle="collapse" class="collapsed" aria-expanded="true"><i class="fa fa-fw fa-search"></i> ثبت نام <i class="fa fa-fw pull-right fa-angle-down"></i></a>
                 </li>
-                <li>
-                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-star"></i>  کارنامه <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                <li *ngIf="currentUser?.roles&&isStudent()">
+                    <a href="#" data-toggle="collapse" ><i class="fa fa-star"></i>  کارنامه <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                 </li>
-                <li>
+                <li *ngIf="currentUser?.roles&&isMaster()">
+                    <a href="#" data-toggle="collapse" ><i class="fa fa-star"></i>  کلاس ها <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                </li>
+
+                <li *ngIf="currentUser?.roles&&isGroupManager()">
                     <a href="#" data-toggle="collapse" data-target="#course-gp" class="collapsed" aria-expanded="false" ><i class="fa fa-fw fa-angle-down pull-right "></i> <i class="fa fa-user-plus" ></i> دروس</a>
                     <ul id="course-gp" class="collapse" aria-expanded="false" style="height: 1px;">
                         <li><a routerLink='/courses' (click)="courseManagement()"> مدیریت دروس <i class="fa fa-angle-double-left"></i></a></li>
@@ -65,12 +80,13 @@
                 <li>
                     <a routerLink='/terms'(click)="termsManagement()"><i class="fa fa-fw fa-paper-plane-o"></i>ترم ها</a>
                 </li>
-                <li class="active">
+                <li class="active" *ngIf="currentUser?.roles&&isGroupManager()">
                     <a href="faq"><i class="fa fa-fw fa-question-circle"></i> اساتید</a>
                 </li>
-                <li >
-                    <a href="faq"><i class="fa fa-fw fa-question-circle"></i> دانشجویان</a>
+                <li *ngIf="currentUser?.roles&&isStudent()">
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-star"></i>درس های دانشجو <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                 </li>
+                
             </ul>
         </div>
         <!-- /.navbar-collapse -->

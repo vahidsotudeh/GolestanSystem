@@ -152,7 +152,7 @@ export class TermsComponent implements OnInit {
         this.isDeleting=false;
         this.addTermForm.controls['yearTxt'].setValue(this.terms[this.selectedCourseIndex].year);  
         this.addTermForm.controls['termSelection'].setValue(this.terms[this.selectedCourseIndex].semester);  
-        this.gaTermsService.getLectureByTerm(this.selectedCourseId).then((data)=>{
+        this.gaTermsService.getLecturesByTerm(this.selectedCourseId).then((data)=>{
           this.lecturesArr=data;
         });
         // this.lecuresArr

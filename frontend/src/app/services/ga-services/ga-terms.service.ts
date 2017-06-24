@@ -40,8 +40,8 @@ export class GaTermsService {
     // this.restangular.post("lectures/update",course);
     return true;
   }
-  public getLectureByTerm(id:number):Promise<Array<Lecture>>{
-    return this.restangular.one('terms/lectures',id).getList().toPromise();
+  public getLecturesByTerm(id:number):Promise<Array<Lecture>>{
+    return this.restangular.one('terms/lectures/'+id).getList().toPromise();
   }
   public deleteLecture(id:number):boolean{
     this.restangular.one("lectures/delete",id).get();

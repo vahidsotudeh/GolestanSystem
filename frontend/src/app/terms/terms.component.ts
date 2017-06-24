@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {GaTermsService} from '../services/ga-services/ga-terms.service';
 import {GaCourse} from '../courses/ga-course';
 import {Lecture} from '../Poao-classes/lecture';
+import {LectureTime} from '../Poao-classes/lecture-time';
 import {Term} from './term';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { NgForm } from '@angular/forms';
@@ -119,6 +120,13 @@ export class TermsComponent implements OnInit {
         newLecture.master.id=this.mastersModel[0];
         newLecture.roomNumber=formFields.value.roomNumberTxt;
         newLecture.term.id=this.selectedCourseId;
+        var lt=new LectureTime();
+        lt.days=formFields.value.daySelection;
+        lt.startTime=formFields.value.startTimeTxt;
+        lt.endTime=formFields.value.endTimeTxt;
+        var ltarr=new Array<LectureTime>();
+        ltarr[0]=lt;
+        newLecture.lectureTimes=ltarr;
         this.gaTermsService.addLecture(newLecture);
         this.operationSuccessFull=true;
         this.alertMessage="درس به ترم اضافه شد";
@@ -188,6 +196,7 @@ export class TermsComponent implements OnInit {
     this.isEditing=false;
     this.addTermForm.reset();
     $("#term"+this.selectedCourseIndex).css('background-color', '');
+    this.lecturesArr=[];
   }
   public addTerm(formFields : NgForm){
     if(!this.isEditing){

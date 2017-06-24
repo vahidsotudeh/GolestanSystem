@@ -97,16 +97,23 @@
                                         <input type="number" class="form-control" style="width:95px;" id="roomNumberTxt" name="roomNumberTxt" [(ngModel)]="roomNumberTxt" required minlength="4" maxlength="24" ngModel>
                                 </div>
                                 <div class="form-group">
-                                        <label for="yearTxt" style="font-size:large;">روز</label>
-                                        <input type="number" class="form-control" style="width:95px;" id="roomNumberTxt" name="roomNumberTxt" [(ngModel)]="roomNumberTxt" required minlength="4" maxlength="24" ngModel>
+                                    <label for="yearTxt" style="font-size:large;">روز</label>
+                                    <select class="form-control" id="daySelection" name="daySelection" placeholder="روز"  [(ngModel)]="daySelection" required minlength="8" maxlength="24">
+                                        <option value="1">شنبه</option>
+                                        <option value="2">بکشنبه</option>
+                                        <option value="3">دوشنبه</option>
+                                        <option value="4">سه شنبه</option>
+                                        <option value="5">چهار شنبه</option>
+                                        <option value="6">پنجشنبه</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                        <label for="yearTxt" style="font-size:large;">ساعت</label>
-                                        <input type="number" class="form-control" style="width:95px;" id="roomNumberTxt" name="roomNumberTxt" [(ngModel)]="roomNumberTxt" required minlength="4" maxlength="24" ngModel>
+                                        <label for="yearTxt" style="font-size:large;">ساعت شروع کلاس:</label>
+                                        <input type="time" class="form-control" style="width:95px;" id="startTimeTxt" name="startTimeTxt" [(ngModel)]="startTimeTxt" required minlength="4" maxlength="24" ngModel>
                                 </div>
                                 <div class="form-group">
-                                        <label for="yearTxt" style="font-size:large;">ساعت</label>
-                                        <input type="number" class="form-control" style="width:95px;" id="roomNumberTxt" name="roomNumberTxt" [(ngModel)]="roomNumberTxt" required minlength="4" maxlength="24" ngModel>
+                                        <label for="yearTxt" style="font-size:large;">ساعت پایان کلاس:</label>
+                                        <input type="time" class="form-control" style="width:95px;" id="endTimeTxt" name="endTimeTxt" [(ngModel)]="endTimeTxt" required minlength="4" maxlength="24" ngModel>
                                 </div>
 
                                 <div class="form-group">
@@ -117,15 +124,8 @@
                                     </button>                             
                                     <!--<input type="submit" value="افزودن">-->
                                 </div>
-                                <div class="form-group" >
-                                    <span [hidden]="!isEditing">
-                                        <a (click)="cancelEditing()" class="btn btn-success">
-                                                لغو ویرایش
-                                        </a>    
-                                    </span>       
-                                </div>
                             </form>
-                            <table class="col-md-5 col-sm-11 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                            <table class="col-md-12 col-sm-12 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                 <thead class="cf">
                                 <tr>
                                     <th>ردیف </th>                                    
@@ -142,8 +142,13 @@
                                         <td  data-title="درس">
                                           {{lecture.course.name}}
                                         </td>
-                                        <td data-title="شماره کلاس" >{{lecture.roomNumber}}</td>
-                                        <td data-title="سال تحصیلی">{{lecture.master.firstName}} {{lecture.master.lastName}}</td>
+                                        <td data-title="شماره کلاس" >{{lecture.roomNumber||" "}}</td>
+                                        <td data-title="استاد">
+                                            {{lecture.master.firstName||" "}} {{lecture.master.lastName||" "}}
+                                            </td>
+                                        <td data-title="زمان کلاس" >
+                                            {{lecture.lectureTimes||" "}}
+                                            </td>
                                         <td data-title="حذف ">
                                             <a class="btn btn-defult">
                                             <span (click)="removeLecture(i,lecture.id)" class="glyphicon glyphicon-remove" style="margin-left: 5px;"  aria-hidden="true">

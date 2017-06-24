@@ -86,7 +86,13 @@
                 <li *ngIf="currentUser?.roles&&isStudent()">
                     <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-star"></i>درس های دانشجو <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                 </li>
-                
+                <li *ngIf="currentUser?.roles&&isGroupManager">
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-star"></i>دانشجویان <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                </li>
+                <li *ngIf="currentUser?.roles&&isMaster()">
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-star"></i>دانشجویان <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                </li>
+        
             </ul>
         </div>
         <!-- /.navbar-collapse -->

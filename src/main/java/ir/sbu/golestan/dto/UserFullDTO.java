@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by Ali Asghar on 11/06/2017.
@@ -31,4 +32,7 @@ public class UserFullDTO implements Serializable {
 
     @JsonProperty
     private String email;
+
+    @JsonProperty
+    private Set<RoleLightDTO> roles;
 }

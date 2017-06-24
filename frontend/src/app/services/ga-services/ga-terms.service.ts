@@ -9,7 +9,7 @@ export class GaTermsService {
 
   }
   public  getTermList():Promise<Array<Term>>{
-    return this.restangular.one('term/list').getList().toPromise();
+    return this.restangular.one('terms/list').getList().toPromise();
   }
   public updateTerm(term:Term):boolean{
     this.restangular.all("terms/update").post(term);
@@ -22,7 +22,7 @@ export class GaTermsService {
     // this.restangular.post("lectures/update",course);
     return true;
   }
-  public deleteCourse(id:number):boolean{
+  public deleteTerm(id:number):boolean{
     this.restangular.one("terms/delete",id).get();
     return true;
   }

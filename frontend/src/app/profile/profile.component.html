@@ -11,8 +11,8 @@
                         <div class="row">
                             <form class="form-inline" #userModifyForm="ngForm" (ngSubmit)="modifyForm(userModifyForm)" >
                                 <div class="col-sm-5 form-group" >
-                                        <label style="font-size: large;" for="name">نام:</label>
-                                        <input type="text" value="{{currentUser.firstName}}" class="form-control" name="name" placeholder="نام" [(ngModel)]="name" required minlength="4" maxlength="24" ngModel>
+                                        <label style="font-size: large;" for="firstName">نام:</label>
+                                        <input type="text" value="{{currentUser.firstName}}" class="form-control" name="firstName" placeholder="نام" [(ngModel)]="firstName" required minlength="4" maxlength="24" ngModel>
                                 </div>
                                 <div class="col-sm-5 form-group" >
                                         <label style="font-size: large;" for="lastName">نام خانوادگی:</label>

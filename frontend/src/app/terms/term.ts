@@ -5,4 +5,5 @@ export class Term {
     yesr:number;
     semester:number
     lectures:Array<Lecture>;
+
 }

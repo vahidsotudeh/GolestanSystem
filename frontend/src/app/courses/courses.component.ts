@@ -130,7 +130,7 @@ export class CoursesComponent implements OnInit {
         this.courseForm.controls['lecTheorUnit'].setValue(this.coursesArr[this.selectedCourseIndex].theoreticalUnitCount);  
         for(var i=0;i<this.coursesArr[this.selectedCourseIndex].groups.length;i++){
           var grId:Number=this.coursesArr[this.selectedCourseIndex].groups[i].id;
-          tempArrindexGroups[i]=grId.valueOf();
+          tempArrindexGroups[i]=grId.valueOf(); 
         }
         // console.log(this.coursesArr[this.selectedCourseId]);
         console.log(this.selectedCourseIndex + " index");

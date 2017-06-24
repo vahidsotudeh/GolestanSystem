@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
     modal: ModalComponent;
   @ViewChild('userModifyForm') 
     public courseForm: NgForm;
-  
+  operationSuccessFull:boolean=false;
+  alertMessage:string="";
   currentUser :User;
   public constructor(private titleService: Title,private route: ActivatedRoute, public profileService:ProfileService ) {
     this.setTitle("profile");
@@ -59,7 +60,8 @@ export class ProfileComponent implements OnInit {
         this.currentUser.password=form.value.password;
       this.profileService.updateUser(this.currentUser);
       this.retrieveData();
-
+    this.operationSuccessFull=true;
+    this.alertMessage="عملیات ویرایش انجام شد!!";
 }
 
 }

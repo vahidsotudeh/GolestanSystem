@@ -10,32 +10,28 @@
                         <thead class="cf">
                         <tr>
                             <th>ردیف</th>
-                            <th>شماره ترم</th>
+                            <th>ترم</th>
                             <th >سال تحصیلی</th>
-                            <th >تاریخ ایجاد</th>
-                            <th >تاریخ آخرین ویرایش</th>
-                            <th >ویرایش کلاس ها</th>
                             <th > ویرایش</th>
                         </tr>
                         </thead>
                         <tbody id="definedCourses">
-                            <tr *ngFor="let term of terms; let i=index">
-                                <td data-title="ردیف">{{i+1}}</td>
-                                <td data-title="شماره ترم">{{term.code}}</td>
-                                <td data-title="سال تحصیلی">{{term.year}}</td>
-                                <td data-title="تاریخ ایجاد">{{course.practicalUnitCount}}</td>
-                                <td data-title="تاریخ آخرین ویرایش">{{course.theoreticalUnitCount}}</td>
-                                <td data-title="ویرایش ">
-                                    <span (click)="removeCourse(i,course.id)" class="glyphicon glyphicon-remove" style="margin-left: 5px;"  aria-hidden="true">
-                                    </span>
-                                    <span (click)="editCourseSelect(i,course.id)" class="glyphicon glyphicon-edit" aria-hidden="true">
-                                    </span>
+                            <tr *ngFor="let term of terms; let i=index" id="term{{i}}">
+                                <td  data-title="ردیف">{{i+1}}</td>
+                                <td  data-title="ترم" *ngIf="term.semester==1" data-title="شماره ترم">
+                                  ترم پاییز
                                 </td>
-                                <td data-title="ویرایش کلاس ها">
-                                    <span (click)="removeCourse(i,course.id)" class="glyphicon glyphicon-remove" style="margin-left: 5px;"  aria-hidden="true">
+                                <td data-title="ترم" *ngIf="term.semester==2">ترم زمستان</td>
+                                <td data-title="سال تحصیلی">{{term.year}}</td>
+                                <td data-title="ویرایش ">
+                                    <a class="btn btn-defult">
+                                    <span (click)="removeCourse(i,term.id)" class="glyphicon glyphicon-remove" style="margin-left: 5px;"  aria-hidden="true">
                                     </span>
-                                    <span (click)="editCourseSelect(i,course.id)" class="glyphicon glyphicon-edit" aria-hidden="true">
+                                    </a>
+                                    <a class="btn btn-defult">                                    
+                                    <span (click)="editTermSelect(i,term.id)" class="glyphicon glyphicon-edit" aria-hidden="true">
                                     </span>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -46,23 +42,50 @@
                         <div class="row">
                             <form class="form-inline" #lectureModifyForm="ngForm" (ngSubmit)="modifyForm(lectureModifyForm)" >
                                 <div class="form-group" >
-                                        <input type="text" class="form-control" id="lecName" name="lecName" placeholder="نام درس" [(ngModel)]="lecName" required minlength="4" maxlength="24" ngModel>
+                                        <label for="yearTxt" style="font-size:large;">سال تحصیلی:</label>
+                                        <input type="number" class="form-control" style="width:95px;" id="yearTxt" name="yearTxt" [(ngModel)]="yearTxt" required minlength="4" maxlength="24" ngModel>
                                 </div>
                                 <div class="form-group" >
-                                        <input type="text" class="form-control" id="lecCode" name="lecCode" placeholder="شماره درس"  [(ngModel)]="lecCode" required minlength="8" maxlength="24">
+                                        <label style="font-size:large;" for="termSelection">نوع ترم:</label>
+                                        <select class="form-control" id="termSelection" name="termSelection" placeholder="ترم"  [(ngModel)]="termSelection" required minlength="8" maxlength="24">
+                                          <option value="1">پاییز</option>
+                                          <option value="2">زمستان</option>
+                                        </select>
                                 </div>
-                                <div class="form-group" >
+                                <!--<div class="form-group" >
                                     <ss-multiselect-dropdown name="courseGroups" [options]="courseGroups" [texts]="groupsText" [(ngModel)]="courseGroupsModel" [settings]="mySettings" required></ss-multiselect-dropdown>
                                 </div>
                                 <div class="form-group" >
                                     <ss-multiselect-dropdown name="coursePreRequired" [options]="coursePreRequired" [texts]="preRequiredsText" [(ngModel)]="coursePreRequiredModel" [settings]="mySettings" (ngModelChange)="onChangecourseGroups($event)" required ></ss-multiselect-dropdown>
+                                </div>-->
+                                <div class="form-group">
+                                    <button class=" btn btn-success" >
+                                         <span [hidden]="isEditing">
+                                             افزودن
+                                         </span>
+                                         <span [hidden]="!isEditing">
+                                             ویرایش
+                                         </span>
+                                    </button>                             
+                                    <!--<input type="submit" value="افزودن">-->
                                 </div>
                                 <div class="form-group" >
-                                    <div class="input-group">
-                                        <input class="input-lg" type="number" class="form-control" name="lecPracUnit" id="lecPracUnit" placeholder="تئوری" [(ngModel)]="lecPracUnit" min="0" max="4" required minlength="1" maxlength="1">
-                                        <div class="input-group-addon">تعداد واحد تئوری---تعداد واحد عملی</div>
-                                        <input type="number" class="form-control" name="lecTheorUnit" id="lecTheorUnit" placeholder="عملی " [(ngModel)]="lecTheorUnit" min="0" max="4" required minlength="1" maxlength="1">
-                                    </div>  
+                                    <span [hidden]="!isEditing">
+                                        <a (click)="cancelEditing()" class="btn btn-success">
+                                                لغو ویرایش
+                                        </a>    
+                                    </span>       
+                                </div>
+                            </form>
+                            <hr>
+                            <div class="text-center">افزودن درس به ترم انتخاب شده</div>
+                            <form class="form-inline" #lectureModifyForm="ngForm" (ngSubmit)="modifyForm(lectureModifyForm)" >
+                                <div class="form-group" >
+                                    <label for="courseGroups">انتخاب درس</label>
+                                    <ss-multiselect-dropdown name="courseGroups" [options]="courseGroups" [texts]="groupsText" [(ngModel)]="courseGroupsModel" [settings]="mySettings" required></ss-multiselect-dropdown>
+                                </div>
+                                <div class="form-group" >
+                                    <ss-multiselect-dropdown name="coursePreRequired" [options]="coursePreRequired" [texts]="preRequiredsText" [(ngModel)]="coursePreRequiredModel" [settings]="mySettings" (ngModelChange)="onChangecourseGroups($event)" required ></ss-multiselect-dropdown>
                                 </div>
                                 <div class="form-group">
                                     <button class=" btn btn-success" >
@@ -83,6 +106,7 @@
                                     </span>       
                                 </div>
                             </form>
+                            
                     </div>
                 </div>
                 </div>

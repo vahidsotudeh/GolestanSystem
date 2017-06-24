@@ -10,6 +10,8 @@ import { NgForm } from '@angular/forms';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 import { IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
+declare var $: any
+
 @Component({
   selector: 'app-terms',
   templateUrl: './terms.component.html',
@@ -73,20 +75,22 @@ export class TermsComponent implements OnInit {
     this.modal.onOpen.subscribe(()=>this.openConfirmPanel())
   }
   public constructor(private titleService: Title,private route: ActivatedRoute, public gaTermsService:GaTermsService ) {
-    this.setTitle("Courses");
+    this.setTitle("Terms");
     this.retrieveData();    
     // this.gaCoursesServices=gaCoursesService;
   }
     public setTitle( newTitle: string) {
     this.titleService.setTitle( newTitle );
   }
-  public editCourseSelect(index :number,id:number){
+  public editTermSelect(index :number,id:number){
+    $("#term"+this.selectedCourseIndex).css('background-color', '');
     this.isEditing=true;
     this.isDeleting=false;
     this.selectedCourseId=id;
     this.selectedCourseIndex=index;
-    this.confirmMessage="آیا از ویرایش درس مطمئن هستید؟";
+    this.confirmMessage="آیا از ویرایش ترم مطمئن هستید؟";
     this.modal.open();
+    $("#term"+index).css('background-color', '#fbffbb');
     
   }
   public removeCourse(index :number,id:number){
@@ -94,7 +98,7 @@ export class TermsComponent implements OnInit {
     this.isDeleting=true;
     this.selectedCourseId=id;
     this.selectedCourseIndex=index;
-    this.confirmMessage="آیا از حذف درس مطمئن هستید؟";
+    this.confirmMessage="آیا از حذف ترم مطمئن هستید؟";
     this.modal.open();
   }
   public addLecture(formFields : NgForm){
@@ -106,6 +110,7 @@ export class TermsComponent implements OnInit {
   public cancelOperation(){
     this.isDeleting=false;
     this.isEditing=false;
+    $("#term"+this.selectedCourseIndex).css('background-color', '');
   }
   public ApproveOperation(){
     console.log(this.isEditing);
@@ -113,7 +118,7 @@ export class TermsComponent implements OnInit {
         // this.coursesArr.splice(this.selectedCourseIndex,1);
         this.isDeleting=false;
         this.isEditing=false;  
-        // this.gaCoursesService.deleteCourse(this.selectedCourseId);
+        this.gaTermsService.deleteTerm(this.selectedCourseId);
         this.courseForm.reset();      
         // this.opera
         //send delete to server
@@ -149,6 +154,8 @@ export class TermsComponent implements OnInit {
     this.isDeleting=false;
     this.isEditing=false;
     this.courseForm.reset();
+    $("#term"+this.selectedCourseIndex).css('background-color', '');
+
     
   }
   public modifyForm(formFields : NgForm){

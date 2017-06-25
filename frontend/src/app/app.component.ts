@@ -57,6 +57,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/register']);
     this.flagTest=false;
   }
+  public classesManagement(){
+    this.router.navigate(['/classes']);
+    this.flagTest=false;
+  }
 
   public isGroupManager():boolean{    
     if(this.currentUser!=undefined)

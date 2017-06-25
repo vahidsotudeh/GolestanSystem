@@ -21,7 +21,7 @@
                                 </td>
                                 <td data-title="ترم" *ngIf="term.semester==2">ترم زمستان</td>
                                 <td data-title="سال تحصیلی">{{term.year}}</td>
-                                <td data-title="لیست دانشجویان">
+                                <td  data-title="لیست دانشجویان">
                                     <a class="btn btn-defult">
                                     <span (click)="studentList(i,term.id)" class="glyphicon glyphicon-education" style="margin-left: 5px;"  aria-hidden="true">
                                     </span>
@@ -45,25 +45,24 @@
                         </tr>
                         </thead>
                         <tbody id="definedCourses">
+                          <!--#gradeLectureStudent="ngForm" (ngSubmit)="gradeLectureStudent(gradeForm)"-->
                             <tr *ngFor="let student of students; let i=index" id="class{{i}}">
-                                <td  data-title="ردیف">{{i+1}}</td>
+                                <td  data-title="ردیف">
+                                  {{i+1}}
+                                </td>
                                 <td  data-title="دانشجو" >
                                   <!--ترم پاییز-->
                                 </td>
-                                <td data-title="ایمیل">{{term.year}}</td>
+                                <td data-title="ایمیل">
+                                  {{term.year}}
+                                </td>
                                 <td data-title="نمره">
-                                  <input type="number" name="" value="">
+                                    <input type="number" class="form-control" style="width:95px;" id="gradeTxt{{i}}" name="gradeTxt" [(ngModel)]="gradeTxt" required minlength="1" maxlength="2" ngModel>
                                     <a class="btn btn-defult">
                                     <span (click)="studentList(i,term.id)" class="glyphicon glyphicon-ok" style="margin-left: 5px;"  aria-hidden="true">
                                     </span>
                                     </a>
                                   
-                                </td>
-                                <td data-title="لیست دانشجویان">
-                                    <a class="btn btn-defult">
-                                    <span (click)="studentList(i,term.id)" class="glyphicon glyphicon-education" style="margin-left: 5px;"  aria-hidden="true">
-                                    </span>
-                                    </a>
                                 </td>
                             </tr>
                         </tbody>

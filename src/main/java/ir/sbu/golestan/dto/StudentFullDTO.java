@@ -38,5 +38,5 @@ public class StudentFullDTO implements Serializable {
     GroupLightDTO group;
 
     @JsonProperty
-    Set<StudentLectureDTO> studentCourses = new HashSet<>();
+    Set<StudentLectureDTO> studentLectures = new HashSet<>();
 }

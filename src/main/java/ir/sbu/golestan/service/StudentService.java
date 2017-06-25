@@ -17,4 +17,5 @@ public class StudentService extends AbstractPagingAndSortingEntityService<Studen
     public StudentService(StudentRepository repository){
         super.r = repository;
     }
+
 }

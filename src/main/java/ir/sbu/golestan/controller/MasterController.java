@@ -21,5 +21,4 @@ public class MasterController extends AbstractPagingAndSortingController<Master,
         super.dClass = MasterFullDTO.class;
     }
 
-
 }

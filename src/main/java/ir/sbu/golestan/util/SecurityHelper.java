@@ -67,4 +67,8 @@ public class SecurityHelper {
         }
         return false;
     }
+
+    public boolean hasRole(String role){
+        return hasAuthority("ROLE_" + role);
+    }
 }

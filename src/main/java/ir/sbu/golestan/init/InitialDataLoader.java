@@ -154,19 +154,17 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             permissionRepository.save(p43);
             permissionRepository.save(p44);
 
-            Role gr = createRoleIfNotFound(Role.RoleTypes.GROUP_MANAGER.name());
+            Role gr = new Role(Role.RoleTypes.GROUP_MANAGER.name());
             gr.setPermissions(Sets.newHashSet(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13,
                     p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29
                     ,p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44));
             roleRepository.save(gr);
 
-            Role sr = new Role();
-            sr.setName(Role.RoleTypes.STUDENT.name());
+            Role sr = new Role(Role.RoleTypes.STUDENT.name());
             sr.setPermissions(Sets.newHashSet(p1, p3, p5, p6, p7, p21, p25, p29, p31, p33, p34, p35, p37, p41));
             roleRepository.save(sr);
 
-            Role mr = new Role();
-            mr.setName(Role.RoleTypes.MASTER.name());
+            Role mr = new Role(Role.RoleTypes.MASTER.name());
             mr.setPermissions(Sets.newHashSet(p1, p3, p5, p7, p9, p13, p25,p17, p19, p21, p33, p35, p37, p39, p41));
             roleRepository.save(mr);
 
@@ -177,7 +175,8 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         //adding super user
         if(userRepository.findByUserName("nazemi") == null){
             User groupManager = new User();
-            groupManager.setRoles(Sets.newHashSet(roleRepository.findByName(Role.RoleTypes.GROUP_MANAGER.name())));
+            groupManager.setRoles(Sets.newHashSet(roleRepository.findByName(Role.RoleTypes.GROUP_MANAGER.name()),
+                    roleRepository.findByName(Role.RoleTypes.MASTER.name())));
             groupManager.setFirstName("Islam");
             groupManager.setLastName("Nazemi");
             groupManager.setPassword("gm");

@@ -22,6 +22,11 @@ public class Term {
     @OneToMany(mappedBy = "term")
     private Set<Lecture> lectures;
 
+    @OneToMany(mappedBy = "term", fetch = FetchType.LAZY)
+    private Set<StudentTerm> studentTerms;
+
+    private boolean finished;
+
     public void setSemester(int semester){
         if(semester == 1 || semester == 2){
             this.semester = semester;
@@ -56,5 +61,21 @@ public class Term {
 
     public void setLectures(Set<Lecture> lectures) {
         this.lectures = lectures;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
+    public Set<StudentTerm> getStudentTerms() {
+        return studentTerms;
+    }
+
+    public void setStudentTerms(Set<StudentTerm> studentTerms) {
+        this.studentTerms = studentTerms;
     }
 }

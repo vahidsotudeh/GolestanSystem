@@ -16,6 +16,9 @@ public class CourseLightDTO implements Serializable{
     @JsonProperty
     private String name;
 
+    @JsonProperty
+    private String code;
+
     public CourseLightDTO(){
 
     }

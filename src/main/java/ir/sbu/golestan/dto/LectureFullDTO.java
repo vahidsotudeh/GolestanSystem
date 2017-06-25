@@ -36,4 +36,7 @@ public class LectureFullDTO implements Serializable {
 
     @JsonProperty
     private Set<LectureTimeFullDTO> lectureTimes;
+
+    @JsonProperty
+    private String code;
 }

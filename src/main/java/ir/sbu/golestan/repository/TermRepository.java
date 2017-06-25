@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TermRepository extends PagingAndSortingRepositoryWithSpecifications<Term, Long> {
     Term findByYearAndAndSemester(int year, int semester);
+    Iterable<Term> findByFinished(boolean finished);
 }

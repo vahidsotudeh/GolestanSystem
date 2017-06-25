@@ -8,7 +8,8 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "student_lecture")
+@Table(name = "student_lecture",
+    uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "lecture_id"}))
 public class StudentLecture implements Serializable {
 
     @Id

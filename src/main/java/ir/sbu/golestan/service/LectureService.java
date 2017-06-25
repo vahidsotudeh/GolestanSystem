@@ -56,4 +56,7 @@ public class LectureService extends AbstractPagingAndSortingEntityService<Lectur
         return lectures;
     }
 
+    public List<Lecture> getMasterLectures(Master m) {
+        return ((LectureRepository)r).findByMaster(m);
+    }
 }

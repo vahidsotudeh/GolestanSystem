@@ -27,9 +27,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     private final LectureRepository lectureRepository;
     private final MasterRepository masterRepository;
     private final StudentRepository studentRepository;
+    private final LectureTimeRepository lectureTimeRepository;
+
 
     @Autowired
-    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, CourseRepository courseRepository, GroupRepository groupRepository, TermRepository termRepository, LectureRepository lectureRepository, MasterRepository masterRepository, StudentRepository studentRepository) {
+    public InitialDataLoader(UserRepository userRepository, RoleRepository roleRepository, PermissionRepository permissionRepository, CourseRepository courseRepository, GroupRepository groupRepository, TermRepository termRepository, LectureRepository lectureRepository, MasterRepository masterRepository, StudentRepository studentRepository, LectureTimeRepository lectureTimeRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
@@ -39,6 +41,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         this.lectureRepository = lectureRepository;
         this.masterRepository = masterRepository;
         this.studentRepository = studentRepository;
+        this.lectureTimeRepository = lectureTimeRepository;
     }
 
     @Override
@@ -101,6 +104,11 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             Permission p39 = new Permission("UPDATE_TERM");
             Permission p40 = new Permission("DELETE_TERM");
 
+            Permission p41 = new Permission("READ_LECTURETIME");
+            Permission p42 = new Permission("CREATE_LECTURETIME");
+            Permission p43 = new Permission("UPDATE_LECTURETIME");
+            Permission p44 = new Permission("DELETE_LECTURETIME");
+
             permissionRepository.save(p1);
             permissionRepository.save(p2);
             permissionRepository.save(p3);
@@ -141,17 +149,25 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             permissionRepository.save(p38);
             permissionRepository.save(p39);
             permissionRepository.save(p40);
+            permissionRepository.save(p41);
+            permissionRepository.save(p42);
+            permissionRepository.save(p43);
+            permissionRepository.save(p44);
 
             Role gr = createRoleIfNotFound(Role.RoleTypes.GROUP_MANAGER.name());
             gr.setPermissions(Sets.newHashSet(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13,
                     p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29
-                    ,p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40));
+                    ,p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44));
             roleRepository.save(gr);
 
             Role sr = new Role();
             sr.setName(Role.RoleTypes.STUDENT.name());
-            sr.setPermissions(Sets.newHashSet(p1, p3, p5, p6, p7, p21, p25, p29, p31, p33, p34, p35));
+            sr.setPermissions(Sets.newHashSet(p1, p3, p5, p6, p7, p21, p25, p29, p31, p33, p34, p35, p37, p41));
             roleRepository.save(sr);
+
+            Role mr = new Role();
+            mr.setName(Role.RoleTypes.MASTER.name());
+            mr.setPermissions(Sets.newHashSet(p1, p3, p5, p7, p9, p13, p17, p19, p21, p33, p35, p37, p39, p41));
 
 
 
@@ -237,6 +253,13 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
         //sample lectures
         if(!lectureRepository.findAll().iterator().hasNext()){
+            Date date1 = new Date();
+            date1.setHours(13);
+            date1.setMinutes(30);
+
+            Date date2 = new Date();
+            date2.setHours(15);
+            date2.setMinutes(0);
             for (int i = 0; i < 50; i++) {
                 Lecture lecture = new Lecture();
                 lecture.setId(i + 1);
@@ -245,6 +268,21 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 lecture.setMaster(masterRepository.findOne((long) (i + 1)));
                 lecture.setRoomNumber(100 + i);
                 lecture.setTerm(termRepository.findOne((long) 1));
+
+                LectureTime lectureTime1 = new LectureTime();
+                lectureTime1.setDay(LectureTime.Days.Monday.name());
+                lectureTime1.setStartHour(date1);
+                lectureTime1.setEndHour(date2);
+                lectureTimeRepository.save(lectureTime1);
+
+                LectureTime lectureTime2 = new LectureTime();
+                lectureTime2.setDay(LectureTime.Days.Saturday.name());
+                lectureTime2.setStartHour(date1);
+                lectureTime2.setEndHour(date2);
+                lectureTimeRepository.save(lectureTime2);
+
+
+                lecture.setLectureTimes(Sets.newHashSet(lectureTime1, lectureTime2));
                 lectureRepository.save(lecture);
             }
         }

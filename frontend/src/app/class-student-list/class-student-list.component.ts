@@ -7,6 +7,7 @@ import { IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import {Lecture} from '../poao-classes/lecture';
+import {LectureStudent} from '../poao-classes/lecture-student';
 import {Observable} from 'rxjs/Observable';
 import {ClassesService} from '../services/classes.service';
 
@@ -21,11 +22,31 @@ export class ClassStudentListComponent implements OnInit {
   @ViewChild('gradeLectureStudent') 
     public gradeLectureStudent: NgForm;
 
-  
+  public classes:Lecture[];
+  public students:LectureStudent[];
   inClassView:boolean=true;
-  constructor() { }
-
-  ngOnInit() {
+  selectedClass:string="";
+  public constructor(private titleService: Title,private route: ActivatedRoute, public classesService:ClassesService ) {
+    this.setTitle("کلاس ها");
+    this.retrieveData();    
+  }
+  public setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
   }
 
+  ngOnInit() {
+
+  }
+  public retrieveData(){
+    this.classesService.getCurrentMasterClassList().then((data)=>{
+      this.classes=data;
+    });
+  }
+  public studentList(index,id){
+    this.inClassView=!this.inClassView;
+    this.selectedClass=this.classes[index].course.name;
+    this.classesService.getLectureStudent(id).then((data)=>{
+        this.students=data;
+    });
+  }
 }

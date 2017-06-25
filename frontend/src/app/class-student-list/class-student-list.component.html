@@ -1,4 +1,4 @@
-            <div class="row" style="margin-bottom: 25px">
+            <div *ngIf="inClassView" class="row" style="margin-bottom: 25px">
                 <div class="col-md-12 text-center "><h1>کلاس های من</h1></div>
             </div>
             <div *ngIf="inClassView" class="row" id="main" >
@@ -16,14 +16,15 @@
                         <tbody id="definedCourses">
                             <tr *ngFor="let class of classes; let i=index" id="class{{i}}">
                                 <td  data-title="ردیف">{{i+1}}</td>
-                                <td  data-title="ترم" *ngIf="term.semester==1" data-title="شماره ترم">
+                                <td  data-title="ترم" *ngIf="class.term.semester==1">
                                   ترم پاییز
                                 </td>
-                                <td data-title="ترم" *ngIf="term.semester==2">ترم زمستان</td>
-                                <td data-title="سال تحصیلی">{{term.year}}</td>
+                                <td data-title="ترم" *ngIf="class.term.semester==2">ترم زمستان</td>
+                                <td data-title="سال تحصیلی">{{class.term.year}}</td>
+                                <td data-title="درس">{{class.course.name}}</td>
                                 <td  data-title="لیست دانشجویان">
                                     <a class="btn btn-defult">
-                                    <span (click)="studentList(i,term.id)" class="glyphicon glyphicon-education" style="margin-left: 5px;"  aria-hidden="true">
+                                    <span (click)="studentList(i,class.id)" class="glyphicon glyphicon-education" style="margin-left: 5px;"  aria-hidden="true">
                                     </span>
                                     </a>
                                 </td>
@@ -32,6 +33,9 @@
                     </table>
                   </div>
               </div>
+            <div *ngIf="!inClassView" class="row" style="margin-bottom: 25px">
+                <div class="col-md-12 text-center "><h1> دانشجویان  {{selectedClass}}</h1></div>
+            </div>
             <div *ngIf="!inClassView"  class="row" id="main" >
                 <div id="no-more-tables" >
                     <table class="col-md-11 col-sm-11 table-bordered table-striped table-condensed cf" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
@@ -39,7 +43,6 @@
                         <tr>
                             <th>ردیف</th>
                             <th>دانشجو</th>
-                            <th >ایمیل</th>
                             <th > نمره درس</th>
                             <!--<th > حذف دانشجو</th>-->
                         </tr>
@@ -51,10 +54,10 @@
                                   {{i+1}}
                                 </td>
                                 <td  data-title="دانشجو" >
-                                  <!--ترم پاییز-->
+                                    {{student.userName}}
                                 </td>
                                 <td data-title="ایمیل">
-                                  {{term.year}}
+                                  {{student.grade}}
                                 </td>
                                 <td data-title="نمره">
                                     <input type="number" class="form-control" style="width:95px;" id="gradeTxt{{i}}" name="gradeTxt" [(ngModel)]="gradeTxt" required minlength="1" maxlength="2" ngModel>

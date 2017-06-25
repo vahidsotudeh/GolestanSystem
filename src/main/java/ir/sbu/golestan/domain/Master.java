@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "masters")
 public class Master extends User{
 
-    @OneToMany
+    @OneToMany(mappedBy = "master")
     private Set<Lecture> lectures;
 
     public Set<Lecture> getLectures() {

@@ -38,12 +38,16 @@ public class LectureController extends AbstractPagingAndSortingController<Lectur
     public ResponseEntity getMasterLectures(@PathVariable("masterId") Long masterId){
         if(securityHelper.hasReadPermission(Lecture.class.getSimpleName())) {
             Master m = masterService.get(masterId);
-            Set<Lecture> lectures = m.getLectures();
-            List<LectureFullDTO> response = new ArrayList<>();
-            for (Lecture l : lectures) {
-                response.add(convertToDto(l));
+            if(m != null) {
+                Set<Lecture> lectures = m.getLectures();
+                List<LectureFullDTO> response = new ArrayList<>();
+                for (Lecture l : lectures) {
+                    response.add(convertToDto(l));
+                }
+                return ResponseEntity.ok(response);
+            }else{
+                ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("no such master found");
             }
-            return ResponseEntity.ok(response);
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("you don't have permission");
     }

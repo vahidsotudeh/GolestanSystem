@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Ali Asghar on 18/06/2017.
@@ -37,14 +38,18 @@ public class LectureController extends AbstractPagingAndSortingController<Lectur
     public ResponseEntity getMasterLectures(@PathVariable("masterId") Long masterId){
         if(securityHelper.hasReadPermission(Lecture.class.getSimpleName())) {
             Master m = masterService.get(masterId);
-            List<Lecture> lectures = ((LectureService) s).getMasterLectures(m);
+            Set<Lecture> lectures = m.getLectures();
             List<LectureFullDTO> response = new ArrayList<>();
-            for (Lecture l :
-                    lectures) {
-                response.add(modelMapper.map(l, LectureFullDTO.class));
+            for (Lecture l : lectures) {
+                response.add(convertToDto(l));
             }
             return ResponseEntity.ok(response);
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("you don't have permission");
+    }
+
+    @GetMapping("master/current")
+    public ResponseEntity getCurrentMasterLectures(){
+        return getMasterLectures(securityHelper.getCurrentUser().getId());
     }
 }

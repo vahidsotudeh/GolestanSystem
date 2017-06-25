@@ -168,7 +168,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
             Role mr = new Role();
             mr.setName(Role.RoleTypes.MASTER.name());
             mr.setPermissions(Sets.newHashSet(p1, p3, p5, p7, p9, p13, p17, p19, p21, p33, p35, p37, p39, p41));
-
+            roleRepository.save(mr);
 
 
         }
@@ -246,6 +246,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 master.setPassword("pass" + i);
                 master.setEnabled(true);
                 master.setEmail("ostad" + i + "@hello.com");
+                master.setRoles(Sets.newHashSet(roleRepository.findByName(Role.RoleTypes.MASTER.name())));
                 masterRepository.save(master);
             }
 

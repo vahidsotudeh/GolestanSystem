@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import {Observable} from 'rxjs/Observable';
+import {Lecture} from '../poao-classes/lecture';
+import {LectureStudent} from '../poao-classes/lecture-student';
 @Injectable()
 export class ClassesService {
    
   constructor(private restangular: Restangular) {
 
   }
-  // public  getCourseList():Promise<Array<GaCourse>>{
-  //   return this.restangular.one('courses/list').getList().toPromise();
-  // }
-  // public getGroupsList():Promise<Array<GaGroup>>{
-  //   return this.restangular.one('groups/list').getList().toPromise();
-  // }
+  public  getCurrentMasterClassList():Promise<Array<Lecture>>{
+    return this.restangular.one('lectures/master/current').getList().toPromise();
+  }
+  public getLectureStudent(id:number):Promise<Array<LectureStudent>>{
+    return this.restangular.one('studentLecture/'+id).getList().toPromise();
+  }
   // public updateCourse(course:GaCourse):boolean{
   //   // console.log(this.restangular.one("lectures/update").post(course));
   //   this.restangular.all("courses/update").post(course);

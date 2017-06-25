@@ -15,7 +15,7 @@ public class StudentLectureDTO implements Serializable {
     private StudentLightDTO student;
 
     @JsonProperty
-    private LectureLightDTO course;
+    private LectureLightDTO lecture;
 
     @JsonProperty
     private float grade;

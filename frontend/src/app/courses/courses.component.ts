@@ -57,7 +57,7 @@ export class CoursesComponent implements OnInit {
   isDeleting:boolean=false;
   operationSuccessFull:boolean=false;
   operationUnSuccessFull:boolean=false;
-  alertMessage:string;
+  alertMessage:string="";
   selectedCourseId:number;
   selectedCourseIndex:number;
   confirmMessage:String;

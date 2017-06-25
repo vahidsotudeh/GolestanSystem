@@ -4,6 +4,7 @@ import {ProfileService} from './services/profile-service.service';
 import {routing} from './app.routes';
 import {User} from './poao-classes/user';
 import {Router} from '@angular/router';
+declare var $: any
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -36,11 +37,13 @@ export class AppComponent implements OnInit {
 
   }
   public groupManagement(){
+    $("#menuBar>ul>li.active").removeClass("active");
     this.router.navigate(['/groups']);
     this.flagTest=false;
 
   }
   public editProfile(){
+    
     this.router.navigate(['/editProfile']);
     this.flagTest=false;
 
@@ -50,6 +53,11 @@ export class AppComponent implements OnInit {
     this.flagTest=false;
 
   }
+  public registerManagement(){
+    this.router.navigate(['/register']);
+    this.flagTest=false;
+  }
+
   public isGroupManager():boolean{    
     if(this.currentUser!=undefined)
     if(this.currentUser.roles.find(x => x.name =="GROUP_MANAGER")!=null){

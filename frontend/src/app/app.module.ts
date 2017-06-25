@@ -13,6 +13,8 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { GroupsComponent } from './courses/groups.component';
 import { TermsComponent } from './terms/terms.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
+import { ClassStudentListComponent } from './class-student-list/class-student-list.component';
 export function RestangularConfigFactory (RestangularProvider) {
   RestangularProvider.setBaseUrl('http://localhost:8080/api');
   //RestangularProvider.setFullResponse(true);
@@ -28,7 +30,9 @@ export function RestangularConfigFactory (RestangularProvider) {
     CoursesComponent,
     GroupsComponent,
     TermsComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent,
+    ClassStudentListComponent
   ],
   imports: [
     BrowserModule,

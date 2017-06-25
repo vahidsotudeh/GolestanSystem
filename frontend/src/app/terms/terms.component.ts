@@ -137,6 +137,9 @@ export class TermsComponent implements OnInit {
   public removeLecture(index,id){
       this.gaTermsService.deleteLecture(id);
       this.lecturesArr.splice(index,1);
+        this.operationSuccessFull=true;
+        this.alertMessage="درس از ترم اضافه شد";
+      
   }
   public openConfirmPanel(){
 
